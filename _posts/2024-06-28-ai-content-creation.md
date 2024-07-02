@@ -4,7 +4,7 @@ title: "AI-Powered Content Creation: The Future of Blogging?"
 date: 2024-06-28
 categories: [Artificial Intelligence, Content Creation, Blogging]
 tags: [AI Writing Assistant, Future of Blogging, Teki Solves]
-author: Bard
+author: Khaya Khumalo
 ---
 
 <img src="/ai-content-createion.jpg" alt="Image of woman learning to build a website" title="Image of woman learning to build a website" class="img-fluid">
