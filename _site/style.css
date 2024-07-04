@@ -517,3 +517,30 @@ body {
 .post-card{
   min-height: 280px !important;
 }
+
+/* Adjust these values to match your preference */
+.highlight {
+  background-color: #000; /* Light gray background */
+  border: 4px solid #fff; /* Light gray border */
+  padding: 10px; /* Padding around the code */
+  font-family: monospace; /* Monospace font for code */
+  overflow: auto; /* Allow scrolling for long code blocks */
+  color: #fff;
+}
+
+/* Adjust these styles to target specific code elements (optional) */
+.highlight .cp { /* Color for doctype, attributes, and values */
+  color: #800000;
+}
+
+.highlight .nt { /* Color for HTML tags */
+  color: #ffffff;
+}
+
+.highlight .na { /* Color for HTML attributes */
+  color: #aa00ff;
+}
+
+.highlight .s { /* Color for strings and values */
+  color: #008000;
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8NWH600XP9"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-8NWH600XP9');
+  </script>
+  <meta name="google-adsense-account" content="ca-pub-7848856002087301">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <title>Teki Solves | Web Design, Development, SEO, Digital Art & Tutoring</title> -->
+  <title>How to Incorporate AR/VR on Your Website |  - Web Development, Game Creation, Digital Solutions</title>
+  <meta name="description"
+    content="Teki Solves: Where art meets technology. We offer innovative web development, game creation, bespoke software solutions, and educational content to empower creators and technologists. Join us to elevate your digital experience.">
+  <link rel="icon" href="/tekisolutions_fav_icon.png" type="image/x-icon">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/style.css" rel="stylesheet">
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom p-2">
+    <a class="navbar-brand" href="http://localhost:4000">
+      <img src="/teki-blog-logo.png" alt="Teki Solves Logo"
+        style="height: 124px; z-index: 1000 !important;">
+    </a>
+    <a class="nav-link ml-auto" href="/blog">Blog</a>
+  </nav>
+
+  <section class="arrow_box_white post-bg-ctrl">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 offset-md-1 post_article p-5">
+          <h1>How to Incorporate AR/VR on Your Website</h1>
+          <p>July 04, 2024</p>
+          <h2 id="how-to-incorporate-arvr-on-your-website">How to Incorporate AR/VR on Your Website</h2>
+
+<p><img src="/arvr.png" alt="How to Incorporate AR/VR on Your Website" title="How to Incorporate AR/VR on Your Website" class="img-fluid" /></p>
+
+<p>Augmented Reality (AR) and Virtual Reality (VR) are no longer just futuristic concepts; they are now powerful tools that can be integrated into websites to create immersive user experiences. Whether you’re looking to showcase products in a new way or provide an interactive environment, AR/VR can make your website stand out.</p>
+
+<h3 id="why-use-arvr-on-your-website">Why Use AR/VR on Your Website?</h3>
+
+<ul>
+  <li><strong>Enhanced User Engagement:</strong> AR/VR provides interactive and engaging experiences that keep users on your site longer.</li>
+  <li><strong>Product Visualization:</strong> Allow customers to visualize products in their environment, reducing uncertainty and increasing sales.</li>
+  <li><strong>Innovative Storytelling:</strong> Create immersive storytelling experiences that captivate your audience.</li>
+</ul>
+
+<h3 id="basic-html-and-css-example">Basic HTML and CSS Example</h3>
+
+<p>Here’s a simple example to get you started with integrating AR using the WebXR API and A-Frame, an open-source web framework for building VR experiences.</p>
+
+<h4 id="html">HTML</h4>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html</span> <span class="na">lang=</span><span class="s">"en"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">charset=</span><span class="s">"UTF-8"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">"viewport"</span> <span class="na">content=</span><span class="s">"width=device-width, initial-scale=1.0"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;title&gt;</span>AR/VR on Your Website<span class="nt">&lt;/title&gt;</span>
+    <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://aframe.io/releases/1.2.0/aframe.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+    <span class="nt">&lt;style&gt;</span>
+        <span class="nt">body</span><span class="o">,</span> <span class="nt">html</span> <span class="p">{</span>
+            <span class="nl">margin</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+            <span class="nl">padding</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+            <span class="nl">width</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+            <span class="nl">height</span><span class="p">:</span> <span class="m">100%</span><span class="p">;</span>
+            <span class="nl">overflow</span><span class="p">:</span> <span class="nb">hidden</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="nt">&lt;/style&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;body&gt;</span>
+    <span class="nt">&lt;a-scene</span> <span class="na">embedded</span> <span class="na">arjs</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;a-box</span> <span class="na">position=</span><span class="s">"0 0.5 0"</span> <span class="na">material=</span><span class="s">"color: red;"</span><span class="nt">&gt;&lt;/a-box&gt;</span>
+        <span class="nt">&lt;a-marker</span> <span class="na">preset=</span><span class="s">"hiro"</span><span class="nt">&gt;&lt;/a-marker&gt;</span>
+        <span class="nt">&lt;a-entity</span> <span class="na">camera</span><span class="nt">&gt;&lt;/a-entity&gt;</span>
+    <span class="nt">&lt;/a-scene&gt;</span>
+<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div></div>
+
+<p>Explanation
+A-Frame: This is a powerful framework to build AR/VR experiences. The script is included in the &lt;head&gt; section.
+<a-scene>: The main container for A-Frame content. The embedded attribute makes it responsive, and arjs enables AR features.
+<a-box>: Adds a simple red box to the scene.
+<a-marker>: This uses a pre-defined marker (hiro) for AR tracking.
+<a-entity camera="">: Adds a camera to view the AR scene.
+Conclusion
+Incorporating AR/VR on your website can significantly enhance user engagement and provide a unique, immersive experience. With frameworks like A-Frame, it's easier than ever to get started. The example above is a minimalistic way to integrate AR, and you can expand on this to create more complex and interactive experiences. Dive in and start experimenting to make your website stand out!</a-entity></a-marker></a-box></a-scene></p>
+
+
+        </div>
+        <div class="col-md-10 offset-md-1 arrow_box_blue"></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer bg-black text-white py-2">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 text-left">
+          <p>&copy; 2024 Teki Solves. All rights reserved.</p>
+        </div>
+        <div class="col-md-4 text-center">
+          <a href="http://localhost:4000">
+            <img src="/tekisolutions_b-50.png" alt="Footer Logo" class="footer-image"
+              style="height: 124px; z-index: 1000 !important;">
+          </a>
+        </div>
+        <div class="col-md-4 text-left">
+          <a href="https://www.instagram.com/tekisolves/" class="social-icon text-white" target="_blank">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
