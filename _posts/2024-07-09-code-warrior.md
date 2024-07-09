@@ -1,15 +1,19 @@
 ---
 layout: post
-title: The Developer's Dojo, Why Your Tech Stack is Your Superpower 
+title: "The Developer's Dojo: Why Your Tech Stack is Your Superpower"
 date: 2024-07-09
-categories: [Programming, Skills, Mindset]
-tags: [Developer, Tech Stack, Language Agnostic, Coding Skills, Mastery]
+categories:
+  - Programming
+  - Skills
+  - Mindset
+tags:
+  - Developer
+  - Tech Stack
+  - Language Agnostic
+  - Coding Skills
+  - Mastery
 author: Khaya Khumalo
-<<<<<<< HEAD
-author_url: https://khayasoftware.ghithub.io
-=======
-author_url: https://khayasoftware.github.io/
->>>>>>> 47f8978 (Adding new post, and adding formatting post templates)
+author_url: "https://khayasoftware.github.io/"
 ---
 
 ## Why Your Tech Stack is Your Superpower 
