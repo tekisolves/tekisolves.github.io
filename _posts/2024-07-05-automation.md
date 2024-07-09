@@ -5,7 +5,7 @@ date: 2024-07-05
 categories: [Future of Work, Automation, Technology]
 tags: [Automation, AI, Workforce, Technology, Productivity]
 author: Khaya Khumalo
-author_url: https://khayasoftware.ghithub.io
+author_url: https://khayasoftware.github.io/
 image: future-of-work-automation.png
 ---
 

@@ -5,7 +5,11 @@ date: 2024-06-27
 categories: [Web Development, Website Building, Beginners Guide]
 tags: [Website Builder, Beginner Friendly, DIY Website, Teki Solves]
 author: Khaya Khumalo
+<<<<<<< HEAD
 author_url: https://khayasoftware.ghithub.io
+=======
+author_url: https://khayasoftware.github.io/
+>>>>>>> 47f8978 (Adding new post, and adding formatting post templates)
 ---
 
 <img src="/web-provvider.jpg" alt="Image of woman learning to build a website" title="Image of woman learning to build a website" class="img-fluid">

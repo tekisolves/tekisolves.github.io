@@ -5,7 +5,7 @@ date: 2024-07-03
 categories: [Wearable Tech, Health, Productivity]
 tags: [Smartwatches, Fitness, Productivity, Health Monitors]
 author: Khaya Khumalo
-author_url: https://khayasoftware.ghithub.io
+author_url: https://khayasoftware.github.io/
 ---
 
 <img src="/smartwatch.png" alt="Image of a smartwatch" title="Image of a smartwatch" class="img-fluid">

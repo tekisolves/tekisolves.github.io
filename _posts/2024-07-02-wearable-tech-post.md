@@ -5,7 +5,7 @@ date: 2024-07-02
 categories: [Wearable Tech, Health, Fashion]
 tags: [Smart Rings, Health Monitors, AI Integration, Wearable Trends]
 author: Khaya Khumalo
-author_url: https://khayasoftware.ghithub.io
+author_url: https://khayasoftware.github.io/
 ---
 
 <img src="/tech_wearable.png" alt="Image of wearable technology" title="Image of wearable technology" class="img-fluid">
