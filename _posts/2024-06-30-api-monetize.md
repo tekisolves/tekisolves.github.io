@@ -5,6 +5,7 @@ date: 2024-06-30
 categories: [Software Development, APIs, Monetization]
 tags: [APIs, Software Development, Monetization, Passive Income, Developer Skills]
 author: Khaya Khumalo
+author_url: https://khayasoftware.ghithub.io
 meta: "Learn how software developers can monetize their skills by leveraging APIs. Discover strategies for creating, selling, and integrating APIs to generate revenue."
 ---
 

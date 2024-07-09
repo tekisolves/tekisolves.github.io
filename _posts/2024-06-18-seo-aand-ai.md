@@ -5,6 +5,7 @@ date: 2024-06-18
 categories: [SEO, AI, Web Development]
 tags: [AI, SEO, Website Optimization, Teki Solutions]
 author: Khaya Khumalo
+author_url: https://khayasoftware.ghithub.io
 ---
 
 ## Boost Your Website’s SEO with AI: A Beginner’s Guide

@@ -5,6 +5,7 @@ date: 2024-06-11
 categories: [Tech Education, Coding, Developer Resources]
 tags: [Free Learning, Coding, Developer, Open Source, Teki Solutions]
 author: Khaya Khumalo
+author_url: https://khayasoftware.ghithub.io
 ---
 
 ## Becoming a Developer for Free: A Beginner's Guide

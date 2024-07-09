@@ -5,6 +5,7 @@ date: 2024-07-06
 categories: [Entrepreneurship, Funding, Business Tips]
 tags: [Funding, Startup, Business, Entrepreneurship, Creative Solutions]
 author: Khaya Khumalo
+author_url: https://khayasoftware.ghithub.io
 image: first-injection-of-cash.png
 ---
 

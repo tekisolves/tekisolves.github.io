@@ -4,7 +4,8 @@ title: "Wearable Technology: The Future of Health and Fashion"
 date: 2024-07-02
 categories: [Wearable Tech, Health, Fashion]
 tags: [Smart Rings, Health Monitors, AI Integration, Wearable Trends]
-author: ChatGPT
+author: Khaya Khumalo
+author_url: https://khayasoftware.ghithub.io
 ---
 
 <img src="/tech_wearable.png" alt="Image of wearable technology" title="Image of wearable technology" class="img-fluid">
