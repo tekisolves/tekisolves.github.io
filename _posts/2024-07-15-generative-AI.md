@@ -28,13 +28,13 @@ Cloud gaming, also known as game streaming, is like Netflix for video games. Ins
 ### Who's Leading the Cloud Gaming Revolution?
 
 **Amazon Luna**  
-Amazon Luna is making waves with its affordable cloud gaming service. If you have an Amazon Prime membership, you’re already in! It’s packed with a growing library of games and works on various devices, making it super convenient&#8203;:citation[oaicite:4]{index=4}&#8203;.
+Amazon Luna is making waves with its affordable cloud gaming service. If you have an Amazon Prime membership, you’re already in! It’s packed with a growing library of games and works on various devices, making it super convenient.
 
 **Netflix Games**  
-Netflix Games is still in its early days but is already causing a stir. Currently available on mobile devices and included in your Netflix subscription, it’s set to expand and offer even more gaming goodness soon&#8203;:citation[oaicite:3]{index=3}&#8203;.
+Netflix Games is still in its early days but is already causing a stir. Currently available on mobile devices and included in your Netflix subscription, it’s set to expand and offer even more gaming goodness soon.
 
 **Google Stadia and Nvidia GeForce Now**  
-Don’t forget about Google Stadia and Nvidia GeForce Now. These platforms offer robust game libraries and high-performance streaming, perfect for both casual and hardcore gamers. Whether you're looking for a quick gaming session or some serious competitive play, they’ve got you covered&#8203;:citation[oaicite:2]{index=2}&#8203;.
+Don’t forget about Google Stadia and Nvidia GeForce Now. These platforms offer robust game libraries and high-performance streaming, perfect for both casual and hardcore gamers. Whether you're looking for a quick gaming session or some serious competitive play, they’ve got you covered.
 
 ### Why Cloud Gaming Rocks
 
@@ -63,7 +63,7 @@ You don’t actually own the games you play in the cloud. This rental model migh
 
 ### Looking Ahead: The Future of Cloud Gaming
 
-The future looks bright for cloud gaming. With improvements in internet infrastructure and big investments from tech giants, expect more seamless and immersive gaming experiences. Imagine interactive streaming on platforms like Twitch or new game experiences powered by AI and virtual reality&#8203;:citation[oaicite:1]{index=1}&#8203;&#8203;:citation[oaicite:0]{index=0}&#8203;.
+The future looks bright for cloud gaming. With improvements in internet infrastructure and big investments from tech giants, expect more seamless and immersive gaming experiences. Imagine interactive streaming on platforms like Twitch or new game experiences powered by AI and virtual reality.
 
 ### Wrapping It Up
 
