@@ -544,3 +544,21 @@ body {
 .highlight .s { /* Color for strings and values */
   color: #008000;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.pagination a {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: #f3f3f3;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+.pagination a.current {
+  font-weight: bold;
+  background-color: #555;
+  color: #fff;
+}
