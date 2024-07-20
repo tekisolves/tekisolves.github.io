@@ -4,8 +4,8 @@ title: "AR/VR/MR in the Workspace and Our Understanding of Reality"
 date: 2024-07-19
 categories: [Technology, Workplace, Philosophy]
 tags: [AR, VR, MR, Workplace Technology, Reality Perception, Spirituality]
-author: [Your Name]
-author_url: [Your Website]
+author: Khaya Khumalo
+author_url: https://khayasoftware.github.io/
 ---
 
 ## AR/VR/MR in the Workspace and Our Understanding of Reality
