@@ -53,12 +53,12 @@ title: Home
       {% for post in top_posts %}
       <div class="col-sm-12 col-md-6 col-lg-4">
         <div class="post post-card p-5 mb-4 text-left">
-          <h3>
-            <a href="{{ site.baseurl }}{{ post.url }}" class="post-title-tooltip" title="{{ post.title }}">
-              {{ post.title | truncate: 30 }} ...
-            </a>
+          <h3><b>
+              <a href="{{ site.baseurl }}{{ post.url }}" class="post-title-tooltip" title="{{ post.title }}">
+                {{ post.title | truncate: 30 }} ...
+              </a></b>
           </h3>
-          <p>{{ post.date | date: "%B %d, %Y" }}</p>
+          <p><b>{{ post.date | date: "%B %d, %Y" }}</b></p>
         </div>
       </div>
       {% endfor %}
