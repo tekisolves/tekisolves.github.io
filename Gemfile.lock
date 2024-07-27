@@ -267,6 +267,7 @@ DEPENDENCIES
   dotenv
   github-pages
   jekyll-paginate
+  jekyll-seo-tag
   webrick
 
 BUNDLED WITH
