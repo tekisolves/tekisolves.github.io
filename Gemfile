@@ -6,3 +6,4 @@ gem 'webrick'
 gem "jekyll-paginate"
 gem 'dotenv'
 gem 'jekyll-seo-tag'
+gem 'jekyll-sitemap'
