@@ -6,3 +6,8 @@ plugins:
   - jekyll-seo-tag
 plugins:
   - jekyll-sitemap
+plugins:
+  - jekyll-paginate
+
+paginate: 6
+paginate_path: "/blog/page:num/"
