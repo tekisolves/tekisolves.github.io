@@ -51,14 +51,16 @@ title: Home
       {% assign top_posts = sorted_posts | slice: 0, 3 %}
       {% for post in top_posts %}
       <div class="col-sm-12 col-md-6 col-lg-4">
-        <div class="post post-card p-5 mb-4 text-left">
-          <h3><b>
-              <a href="{{ site.baseurl }}{{ post.url }}" class="post-title-tooltip" title="{{ post.title }}">
+        <a href="{{ site.baseurl }}{{ post.url }}" class="post-title-tooltip" title="{{ post.title }}">
+          <div class="post post-card p-5 mb-4 text-left">
+            <h3>
+              <b>
                 {{ post.title | truncate: 30 }}
-              </a></b>
-          </h3>
-          <p><b>{{ post.date | date: "%B %d, %Y" }}</b></p>
-        </div>
+              </b>
+            </h3>
+            <p><b>{{ post.date | date: "%B %d, %Y" }}</b></p>
+          </div>
+        </a>
       </div>
       {% endfor %}
     </div>

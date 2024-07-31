@@ -337,10 +337,30 @@ a:active {
   cursor: pointer !important;
 }
 
+.post-card h3{
+  height: 100px;
+}
+
+.post-card:hover h3{
+  color: #7df2e5 !important;
+}
+
+.post-card p{
+  color: #000 ;
+}
+
+.post-card:hover .post-card p{
+  color: #fff ;
+}
+
 .post-card:hover {
   border: solid 4px #fff;
-  color: #fff !important;
+  /* color: #fff !important; */
   background-color: #000 !important;
+}
+
+.post-card:hover p{
+  color: #fff;
 }
 
 .post-card:hover a {
