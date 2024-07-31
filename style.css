@@ -566,19 +566,20 @@ body {
 }
 
 .pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
+  text-align: center;
+  margin: 20px 0;
 }
+
 .pagination a {
-  margin: 0 5px;
-  padding: 5px 10px;
-  background-color: #f3f3f3;
   text-decoration: none;
-  border: 1px solid #ddd;
+  color: #007bff;
+  margin: 0 10px;
 }
-.pagination a.current {
-  font-weight: bold;
-  background-color: #555;
-  color: #fff;
+
+.pagination a.prev {
+  float: left;
+}
+
+.pagination a.next {
+  float: right;
 }
