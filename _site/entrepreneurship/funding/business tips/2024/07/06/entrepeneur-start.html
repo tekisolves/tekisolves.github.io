@@ -122,18 +122,31 @@
           <br />
           <!-- Social Media Sharing Buttons -->
           <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fentrepreneurship%2Ffunding%2Fbusiness%2520tips%2F2024%2F07%2F06%2Fentrepeneur-start.html" target="_blank"
-              style="text-decoration: none; color: inherit;">
+            <!-- Facebook Share Button -->
+            <a id="facebook-share" href="#" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-facebook" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?url=%2Fentrepreneurship%2Ffunding%2Fbusiness%2520tips%2F2024%2F07%2F06%2Fentrepeneur-start.html&text=How+to+Get+Your+First+Injection+of+Cash+as+an+Entrepreneur+%28Without+Traditional+Methods%29"
+            <!-- Twitter Share Button -->
+            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4000%2Fentrepreneurship%2Ffunding%2Fbusiness%2520tips%2F2024%2F07%2F06%2Fentrepeneur-start.html&text=How+to+Get+Your+First+Injection+of+Cash+as+an+Entrepreneur+%28Without+Traditional+Methods%29"
               target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-twitter" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
+            <!-- Instagram Share Button -->
             <a href="https://www.instagram.com/" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-instagram" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
           </div>
+
+          <script>
+            // Get the domain name
+            var domainName = window.location.hostname;
+
+            // Construct the full URL for sharing
+            var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://' + domainName + '/entrepreneurship/funding/business%20tips/2024/07/06/entrepeneur-start.html');
+
+            // Set the href attribute of the Facebook share button
+            document.getElementById('facebook-share').href = shareUrl;
+          </script>
           <br />
           <p class="text-right"><b>Author: </b><a href="https://khayasoftware.github.io/">Khaya Khumalo</a></p>
         </div>

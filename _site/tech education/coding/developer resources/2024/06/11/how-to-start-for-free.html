@@ -133,18 +133,31 @@
           <br />
           <!-- Social Media Sharing Buttons -->
           <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=%2Ftech%2520education%2Fcoding%2Fdeveloper%2520resources%2F2024%2F06%2F11%2Fhow-to-start-for-free.html" target="_blank"
-              style="text-decoration: none; color: inherit;">
+            <!-- Facebook Share Button -->
+            <a id="facebook-share" href="#" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-facebook" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?url=%2Ftech%2520education%2Fcoding%2Fdeveloper%2520resources%2F2024%2F06%2F11%2Fhow-to-start-for-free.html&text=Becoming+a+Developer+for+Free%3A+A+Beginner%27s+Guide"
+            <!-- Twitter Share Button -->
+            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4000%2Ftech%2520education%2Fcoding%2Fdeveloper%2520resources%2F2024%2F06%2F11%2Fhow-to-start-for-free.html&text=Becoming+a+Developer+for+Free%3A+A+Beginner%27s+Guide"
               target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-twitter" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
+            <!-- Instagram Share Button -->
             <a href="https://www.instagram.com/" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-instagram" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
           </div>
+
+          <script>
+            // Get the domain name
+            var domainName = window.location.hostname;
+
+            // Construct the full URL for sharing
+            var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://' + domainName + '/tech%20education/coding/developer%20resources/2024/06/11/how-to-start-for-free.html');
+
+            // Set the href attribute of the Facebook share button
+            document.getElementById('facebook-share').href = shareUrl;
+          </script>
           <br />
           <p class="text-right"><b>Author: </b><a href="https://khayasoftware.github.io/">Khaya Khumalo</a></p>
         </div>

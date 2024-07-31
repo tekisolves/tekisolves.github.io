@@ -114,18 +114,31 @@
           <br />
           <!-- Social Media Sharing Buttons -->
           <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=%2Ftechnology%2Fconnectivity%2Ffuture%2520trends%2F2024%2F07%2F23%2F6G-info.html" target="_blank"
-              style="text-decoration: none; color: inherit;">
+            <!-- Facebook Share Button -->
+            <a id="facebook-share" href="#" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-facebook" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?url=%2Ftechnology%2Fconnectivity%2Ffuture%2520trends%2F2024%2F07%2F23%2F6G-info.html&text=6G%3A+Supercharged+Connections+and+a+Transformed+World"
+            <!-- Twitter Share Button -->
+            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4000%2Ftechnology%2Fconnectivity%2Ffuture%2520trends%2F2024%2F07%2F23%2F6G-info.html&text=6G%3A+Supercharged+Connections+and+a+Transformed+World"
               target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-twitter" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
+            <!-- Instagram Share Button -->
             <a href="https://www.instagram.com/" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-instagram" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
           </div>
+
+          <script>
+            // Get the domain name
+            var domainName = window.location.hostname;
+
+            // Construct the full URL for sharing
+            var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://' + domainName + '/technology/connectivity/future%20trends/2024/07/23/6G-info.html');
+
+            // Set the href attribute of the Facebook share button
+            document.getElementById('facebook-share').href = shareUrl;
+          </script>
           <br />
           <p class="text-right"><b>Author: </b><a href="">Khaya Khumalo</a></p>
         </div>

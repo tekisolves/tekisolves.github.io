@@ -98,18 +98,31 @@
           <br />
           <!-- Social Media Sharing Buttons -->
           <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=%2Fethics%2Fsustainable%2520development%2Fsocial%2520justice%2F2024%2F07%2F18%2Fblood-diamons.html" target="_blank"
-              style="text-decoration: none; color: inherit;">
+            <!-- Facebook Share Button -->
+            <a id="facebook-share" href="#" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-facebook" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?url=%2Fethics%2Fsustainable%2520development%2Fsocial%2520justice%2F2024%2F07%2F18%2Fblood-diamons.html&text=Human+Compassion+and+Common+Sense%3A+Challenging+Neo-Imperialism+in+the+Diamond+Industry"
+            <!-- Twitter Share Button -->
+            <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Flocalhost%3A4000%2Fethics%2Fsustainable%2520development%2Fsocial%2520justice%2F2024%2F07%2F18%2Fblood-diamons.html&text=Human+Compassion+and+Common+Sense%3A+Challenging+Neo-Imperialism+in+the+Diamond+Industry"
               target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-twitter" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
+            <!-- Instagram Share Button -->
             <a href="https://www.instagram.com/" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-instagram" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
           </div>
+
+          <script>
+            // Get the domain name
+            var domainName = window.location.hostname;
+
+            // Construct the full URL for sharing
+            var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://' + domainName + '/ethics/sustainable%20development/social%20justice/2024/07/18/blood-diamons.html');
+
+            // Set the href attribute of the Facebook share button
+            document.getElementById('facebook-share').href = shareUrl;
+          </script>
           <br />
           <p class="text-right"><b>Author: </b><a href="https://khayasoftware.github.io/">Khaya Khumalo</a></p>
         </div>

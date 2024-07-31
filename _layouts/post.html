@@ -46,18 +46,31 @@
           <br />
           <!-- Social Media Sharing Buttons -->
           <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.baseurl }}{{ page.url | url_encode }}" target="_blank"
-              style="text-decoration: none; color: inherit;">
+            <!-- Facebook Share Button -->
+            <a id="facebook-share" href="#" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-facebook" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
-            <a href="https://twitter.com/intent/tweet?url={{ site.baseurl }}{{ page.url | url_encode }}&text={{ page.title | url_encode }}"
+            <!-- Twitter Share Button -->
+            <a href="https://twitter.com/intent/tweet?url={{ site.url | append: site.baseurl | append: page.url | url_encode }}&text={{ page.title | url_encode }}"
               target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-twitter" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
+            <!-- Instagram Share Button -->
             <a href="https://www.instagram.com/" target="_blank" style="text-decoration: none; color: inherit;">
               <i class="fab fa-instagram" aria-hidden="true" style="font-size: 24px;"></i>
             </a>
           </div>
+
+          <script>
+            // Get the domain name
+            var domainName = window.location.hostname;
+
+            // Construct the full URL for sharing
+            var shareUrl = 'https://www.facebook.com/sharer/sharer.php?u=' + encodeURIComponent('https://' + domainName + '{{ page.url }}');
+
+            // Set the href attribute of the Facebook share button
+            document.getElementById('facebook-share').href = shareUrl;
+          </script>
           <br />
           <p class="text-right"><b>Author: </b><a href="{{ page.author_url }}">{{ page.author }}</a></p>
         </div>
