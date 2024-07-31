@@ -53,8 +53,3 @@ AI is a game-changer for businesses. By understanding its potential, addressing 
 ## Call to Action
 
 Share this article with your network! Let's discuss the future of AI in business.
-
-
-- **[Share on Facebook](https://www.facebook.com/sharer/sharer.php?u=https://tekisolves.github.io/business/ai/2024/07/31/AI-in-business.html)** <i class="fa fa-facebook" aria-hidden="true"></i>
-- **[Tweet on Twitter](https://twitter.com/intent/tweet?url=https://tekisolves.github.io/business/ai/2024/07/31/AI-in-business.html&text=AI%20for%20Everyone:%20How%20Artificial%20Intelligence%20is%20Transforming%20Business)** <i class="fa fa-twitter" aria-hidden="true"></i>
-- **[Share on Instagram](https://www.instagram.com/) (Post a Story or Feed about it)** <i class="fa fa-instagram" aria-hidden="true"></i>

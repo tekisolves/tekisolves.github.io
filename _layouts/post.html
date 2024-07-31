@@ -15,7 +15,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   {% seo %}
-  <!-- <title>Teki Solves | Web Design, Development, SEO, Digital Art & Tutoring</title> -->
   <title>{{ page.title }} | {{ site.name }} - Web Development, Game Creation, Digital Solutions</title>
   <meta name="description"
     content="Teki Solves: Where art meets technology. We offer innovative web development, game creation, bespoke software solutions, and educational content to empower creators and technologists. Join us to elevate your digital experience.">
@@ -44,8 +43,23 @@
           <h1>{{ page.title }}</h1>
           <p>{{ page.date | date: "%B %d, %Y" }}</p>
           {{ content }}
-          <br/>
-          <p class="text-right"><b>Author: </b><a href="{{page.author_url}}">{{page.author}}</a></p>
+          <br />
+          <!-- Social Media Sharing Buttons -->
+          <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+            <a href="https://www.facebook.com/sharer/sharer.php?u={{ site.baseurl }}{{ page.url | url_encode }}" target="_blank"
+              style="text-decoration: none; color: inherit;">
+              <i class="fab fa-facebook" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?url={{ site.baseurl }}{{ page.url | url_encode }}&text={{ page.title | url_encode }}"
+              target="_blank" style="text-decoration: none; color: inherit;">
+              <i class="fab fa-twitter" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank" style="text-decoration: none; color: inherit;">
+              <i class="fab fa-instagram" aria-hidden="true" style="font-size: 24px;"></i>
+            </a>
+          </div>
+          <br />
+          <p class="text-right"><b>Author: </b><a href="{{ page.author_url }}">{{ page.author }}</a></p>
         </div>
         <div class="col-md-10 offset-md-1 arrow_box_blue"></div>
       </div>
