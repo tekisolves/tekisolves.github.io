@@ -583,3 +583,34 @@ body {
 .pagination a.next {
   float: right;
 }
+
+.gig-container {
+  margin-top: 20px;
+}
+.gig {
+  background-color: #1c1c1c;
+  border: 2px solid #7851A9;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+.gig:hover {
+  transform: scale(1.05);
+}
+.gig img {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #ffd700;
+}
+.gig-content {
+  padding: 20px;
+  text-align: center;
+}
+.gig h3 {
+  color: #7851A9;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+.gig p {
+  color: #000;
+}
