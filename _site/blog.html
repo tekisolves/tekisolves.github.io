@@ -66,6 +66,17 @@
       
       <div class="col-sm-12 col-md-6 col-lg-4">
         <div class="post post-card p-5 mb-4 text-left">
+          <a href="/career/entrepreneurship/tech/2024/08/04/layoffs-intel.html" class="post-title-tooltip" title="Thriving After Intel's Layoffs: Turning Challenges into Opportunities">
+            <h3>
+              Thriving After Intel's Layo... ...
+            </h3>
+            <p><b>August 04, 2024</b></p>
+        </div>
+        </a>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="post post-card p-5 mb-4 text-left">
           <a href="/business/entrepreneurship/ai/2024/08/03/ai-for-solopreneurs.html" class="post-title-tooltip" title="AI Tools for Solopreneurs: Boosting Productivity and Innovation">
             <h3>
               AI Tools for Solopreneurs: ... ...
@@ -482,9 +493,68 @@
         </a>
       </div>
       
+      <!-- Add this section at the end of your blog posts section -->
+      <div id="pagination" class="text-center mt-4">
+        <ul class="pagination">
+          <!-- Pagination buttons will be added dynamically here -->
+        </ul>
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const postsPerPage = 6; // Number of posts to display per page
+    const postsContainer = document.querySelector('.blog-board');
+    const posts = Array.from(postsContainer.children);
+    const totalPosts = posts.length;
+    const totalPages = Math.ceil(totalPosts / postsPerPage);
+    const pagination = document.getElementById('pagination');
+
+    if (totalPosts > postsPerPage) {
+      pagination.style.display = 'block'; // Ensure pagination is visible
+    } else {
+      pagination.style.display = 'none'; // Hide if not needed
+    }
+
+    // Create pagination buttons
+    const paginationUl = pagination.querySelector('ul') || document.createElement('ul');
+    paginationUl.className = 'pagination';
+    pagination.innerHTML = ''; // Clear existing content
+    pagination.appendChild(paginationUl);
+
+    for (let i = 1; i <= totalPages; i++) {
+      const li = document.createElement('li');
+      li.className = 'page-item';
+      li.innerHTML = `<a class="page-link blue-ghost" href="#">${i}</a>`;
+      paginationUl.appendChild(li);
+    }
+
+    function showPage(page) {
+      posts.forEach((post, index) => {
+        post.style.display = (Math.floor(index / postsPerPage) === page - 1) ? 'block' : 'none';
+      });
+      pagination.querySelectorAll('.page-item').forEach((item, index) => {
+        item.classList.toggle('active', index === page - 1);
+      });
+    }
+
+    // Show the first page by default
+    showPage(1);
+
+    // Add event listeners for pagination buttons
+    paginationUl.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        e.preventDefault();
+        const page = parseInt(e.target.textContent);
+        showPage(page);
+      }
+    });
+  });
+</script>
+
+
 
 <!-- <section class="arrow_box black-diamond p-2"></section> -->
 
