@@ -493,11 +493,13 @@
         </a>
       </div>
       
-      <!-- Add this section at the end of your blog posts section -->
-      <div id="pagination" class="text-center mt-4">
-        <ul class="pagination">
-          <!-- Pagination buttons will be added dynamically here -->
-        </ul>
+      <div class="col-xs-12 col-md-12 col-lg-12 always-display">
+        <!-- Add this section at the end of your blog posts section -->
+        <div id="pagination" class="text-center mt-4">
+          <ul class="pagination">
+            <!-- Pagination buttons will be added dynamically here -->
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -512,10 +514,11 @@
     const totalPages = Math.ceil(totalPosts / postsPerPage);
     const pagination = document.getElementById('pagination');
 
+    // Show or hide pagination based on the number of posts
     if (totalPosts > postsPerPage) {
-      pagination.style.display = 'block'; // Ensure pagination is visible
+      pagination.style.display = 'block';
     } else {
-      pagination.style.display = 'none'; // Hide if not needed
+      pagination.style.display = 'none';
     }
 
     // Create pagination buttons
@@ -527,14 +530,17 @@
     for (let i = 1; i <= totalPages; i++) {
       const li = document.createElement('li');
       li.className = 'page-item';
-      li.innerHTML = `<a class="page-link blue-ghost" href="#">${i}</a>`;
+      li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
       paginationUl.appendChild(li);
     }
 
     function showPage(page) {
+      // Show posts for the selected page and hide others
       posts.forEach((post, index) => {
         post.style.display = (Math.floor(index / postsPerPage) === page - 1) ? 'block' : 'none';
       });
+
+      // Highlight the active page link
       pagination.querySelectorAll('.page-item').forEach((item, index) => {
         item.classList.toggle('active', index === page - 1);
       });
