@@ -28,7 +28,7 @@ When it comes to choosing a new smartphone, understanding the key features and h
 
 **Display:** One model boasts a high-resolution display with excellent brightness and color accuracy, perfect for multimedia consumption. The other features a display with vibrant colors and a high refresh rate, enhancing visual smoothness and interactivity.
 
-<img src="/leading-phones.jpg" alt="Leading Phones" title="Leading Phones" class="img-fluid">
+<img src="/phone-displays.jpg" alt="Leading Phones" title="Leading Phones" class="img-fluid">
 <!-- Image Prompt: Create an image comparing the camera features of two leading smartphones, highlighting key specifications and capabilities. -->
 
 **Camera Capabilities:** One device excels in low-light conditions with advanced features for video recording. The other offers high-resolution imaging and versatile shooting options, providing flexibility for different photography needs.
