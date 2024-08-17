@@ -4,8 +4,8 @@ title: "Unlocking Your Potential: Lessons from 'Mindset' by Carol Dweck"
 date: 2024-08-16
 categories: [Personal Development, Mindset]
 tags: [Growth Mindset, Self-Improvement, Success, Personal Growth, Psychology, Learning, Carol Dweck]
-author: Your Name
-author_url: https://yourwebsite.com
+author: Khaya Khumalo
+author_url: https://khayasoftware.github.io/
 ---
 
 ## Unlocking Your Potential: Lessons from "Mindset" by Carol Dweck

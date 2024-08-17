@@ -4,8 +4,8 @@ title: "How to Land Your First Software Engineering Job: Essential Tips for Aspi
 date: 2024-08-15
 categories: [Software Engineering, Career Development]
 tags: [software engineering, entry-level jobs, coding interviews, tech careers, resume tips, networking, React]
-author: John Doe
-author_url: https://yourwebsite.com/about
+author: Khaya Khumalo
+author_url: https://khayasoftware.github.io/
 ---
 
 ## How to Land Your First Software Engineering Job: Essential Tips for Aspiring Developers
