@@ -4,8 +4,8 @@ title: "Bootstrapping with AI: Top Free Tools for Startups"
 date: 2024-08-18
 categories: [AI, Startups]
 tags: [free AI tools, startup growth, bootstrapping, AI automation, marketing, productivity, customer engagement]
-author: John Doe
-author_url: https://www.johndoe.com
+author: Khaya Khumalo
+author_url: https://khayasoftware.github.io/
 ---
 
 ## Bootstrapping with AI: Top Free Tools for Startups
