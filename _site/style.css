@@ -684,8 +684,8 @@ body {
   border-color: #000;
 }
 
-/* .gig-container{
-  background-image: url("/gig-container.jpg");
-  background-size: cover;
-  background-position: center center;
-} */
+.gig-container{
+  background-image: url("/elephant.png");
+  background-repeat: no-repeat;
+  background-position: bottom right;
+}
