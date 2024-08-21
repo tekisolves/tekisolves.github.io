@@ -722,3 +722,47 @@ body {
   pointer-events: none; /* Ensure stars don’t interfere with interactions */
   z-index: 1; /* Make sure stars are above the background image */
 }
+
+/* General styling for the code container */
+.language-bash.highlighter-rouge {
+  font-family: 'Consolas', 'Courier New', monospace; /* Use a monospace font similar to Visual Studio */
+  background-color: #1e1e1e; /* Dark background color */
+  color: #d4d4d4; /* Default text color */
+  border-radius: 5px;
+  padding: 10px;
+  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+}
+
+/* Code block styling */
+.language-bash .highlight pre {
+  margin: 0;
+  padding: 0;
+  overflow: auto; /* Ensure the code block doesn't overflow */
+}
+
+/* Syntax highlighting for keywords */
+.language-bash .nb {
+  color: #569cd6; /* Visual Studio keyword color */
+}
+
+/* Syntax highlighting for strings */
+.language-bash .s {
+  color: #ce9178; /* Visual Studio string color */
+}
+
+/* Syntax highlighting for operators and punctuation */
+.language-bash .o {
+  color: #d4d4d4; /* Visual Studio operator color */
+}
+
+/* Syntax highlighting for comments */
+.language-bash .c {
+  color: #6a9955; /* Visual Studio comment color */
+}
+
+/* Syntax highlighting for numbers */
+.language-bash .m {
+  color: #b5cea8; /* Visual Studio number color */
+}
+
+/* Add additional syntax categories as needed */
