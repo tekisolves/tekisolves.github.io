@@ -1,4 +1,4 @@
-@import url('neo-latina-demo-FFP.ttf');
+/* @import url('neo-latina-demo-FFP.ttf'); */
 @import url('wmxyo.ttf');
 
 @font-face {
@@ -172,15 +172,16 @@ a:active {
   border-bottom: 4px solid #DAA520;
 }
 
-.navbar-custom {
+/* .navbar-custom {
   justify-content: center;
-}
+} */
 
 .navbar-brand {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  border-bottom: 4px solid #DAA520;
+  border-bottom: 4px solid #09a26f;
+}
+
+.inner-brand{
+  border-bottom: 4px solid #fff
 }
 
 .arrow_box {
@@ -764,5 +765,156 @@ body {
 .language-bash .m {
   color: #b5cea8; /* Visual Studio number color */
 }
+.diagonal-div {
+    background-color: black;
+    color: black;
+    padding: 40px;
+    position: absolute;
+    clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 100%);
+    margin-top: 20px;
+}
 
-/* Add additional syntax categories as needed */
+.title {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.border {
+    width: 50px;
+    height: 4px;
+    background-color: black;
+    margin-bottom: 20px;
+}
+
+.text {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .diagonal-div {
+        padding: 20px;
+        clip-path: polygon(0 10%, 100% 0%, 100% 100%, 0 100%);
+    }
+    .title {
+        font-size: 1.5rem;
+    }
+    .border {
+        width: 30px;
+        height: 3px;
+    }
+    .text {
+        font-size: 0.9rem;
+    }
+}
+
+.diagonal-div {
+  background-color: black;
+  color: #fff;
+  padding: 50px;
+  position: absolute;
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
+  margin-top: 20px;
+  transform: scaleX(-1); /* Horizontally flip the div */
+}
+
+.diagonal-div p{
+  text-align: left !important;
+  transform: scaleX(-1);
+}
+
+.title, .text, .border {
+  transform: scaleX(-1); /* Revert the flip for text and title */
+}
+
+.title {
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 23px;
+  text-align: left;
+}
+
+.border {
+  width: 50%;
+  height: 4px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+
+.text {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .diagonal-div {
+      padding: 20px;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+  }
+  .title {
+      font-size: 1.5rem;
+  }
+  .border {
+      width: 30px;
+      height: 3px;
+  }
+  .text {
+      font-size: 0.9rem;
+  }
+}
+
+p {
+  font-size: 1rem; /* 16px */
+  line-height: 1.6;
+  margin-bottom: 1.5rem; /* Add space between paragraphs */
+}
+
+.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+  color: rgb(217, 165, 32);
+}
+.navbar-light .navbar-nav .nav-link {
+  color: rgb(217, 165, 32);
+}
+
+.navbar-light .navbar-toggler {
+  /* color: #09a26f; */
+  border: none;
+  outline: none !important
+}
+
+.navbar-toggler-icon {
+  position: relative;
+  width: 30px;
+  height: 2px;
+  background-color: #09a26f; /* Middle bar color */
+  display: inline-block;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 2px;
+  background-color: white; /* Top and bottom bar color */
+  left: 0;
+  transition: all 0.3s;
+}
+
+.navbar-toggler-icon::before {
+  top: -8px;
+}
+
+.navbar-toggler-icon::after {
+  top: 8px;
+}
+
+div.collapse.show {
+  padding-top: 20px;
+}
+
+h1{
+  line-height: 1;
+}

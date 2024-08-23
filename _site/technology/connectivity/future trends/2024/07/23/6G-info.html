@@ -46,13 +46,30 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom p-2">
-    <a class="navbar-brand" href="http://localhost:4000">
-      <img src="/teki-blog-logo.png" alt="Teki Solves Logo"
-        style="height: 124px; z-index: 1000 !important;">
-    </a>
-    <a class="nav-link ml-auto" href="/blog">Blog</a>
-    <!-- <a class="nav-link ml-auto" href="/about">About Us</a>  -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-custom pt-2 pb-2">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="http://localhost:4000">
+        <div class="inner-brand">
+          <img src="/tekisolutions_b-50.png" alt="Teki Solves Logo"
+            style="margin-top: -45%; height: 100px;">
+          <section class="arrow_box"></section>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/blog">Blog</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
   <section class="arrow_box_white post-bg-ctrl">
