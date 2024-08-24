@@ -4,8 +4,8 @@ title: "Fail Forward: How to Embrace Failure and Use It as a Stepping Stone"
 date: 2024-08-23
 categories: [Entrepreneurship, Personal Development]
 tags: [failure, resilience, growth mindset, entrepreneurship, startup, success, motivation]
-author: Jane Doe
-author_url: https://janedoe.com
+author: Khaya Khumalo
+author_url: https://khayasoftware.github.io/
 ---
 
 ## Fail Forward: How to Embrace Failure and Use It as a Stepping Stone
