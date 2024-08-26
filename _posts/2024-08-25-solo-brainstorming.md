@@ -4,8 +4,8 @@ title: "Solo Brainstorming for Solopreneurs: Unleashing Creativity and Courage"
 date: 2024-08-25
 categories: [Solopreneurship, Creativity]
 tags: [solo brainstorming, solopreneur, positive mindset, AI tools, courage, innovation, failure, problem-solving]
-author: Your Name
-author_url: yourwebsite.com
+author: Khaya Khumalo
+author_url: https://khayasoftware.github.io/
 ---
 
 ## Solo Brainstorming for Solopreneurs: Unleashing Creativity and Courage
