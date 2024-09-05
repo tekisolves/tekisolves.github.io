@@ -20,21 +20,19 @@ enabled: true
       <div class="col-sm-12 col-md-6 col-lg-4">
         <div class="post post-card p-5 mb-4 text-left">
           <a href="{{ post.url }}" class="post-title-tooltip" title="{{ post.title }}">
-            <h3>
-              {{ post.title | truncate: 30 }} ...
-            </h3>
+            <h3>{{ post.title | truncate: 30 }} ...</h3>
             <p><b>{{ post.date | date: "%B %d, %Y" }}</b></p>
+          </a>
         </div>
-        </a>
       </div>
       {% endfor %}
-      <div class="col-xs-12 col-md-12 col-lg-12 always-display">
-        <!-- Add this section at the end of your blog posts section -->
-        <div id="pagination" class="text-center mt-4">
-          <ul class="pagination">
-            <!-- Pagination buttons will be added dynamically here -->
-          </ul>
-        </div>
+    </div>
+    <div class="col-xs-12 col-md-12 col-lg-12 always-display pt-5">
+      <!-- Center-aligned Pagination with Arrow Buttons -->
+      <div id="pagination" class="text-center mt-4">
+        <ul class="pagination d-flex justify-content-center flex-wrap">
+          <!-- Pagination buttons (left and right arrows) will be dynamically added here -->
+        </ul>
       </div>
     </div>
   </div>
@@ -42,63 +40,105 @@ enabled: true
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const postsPerPage = 6; // Number of posts to display per page
+    const postsPerPage = 6; // Configurable: number of posts per page
     const postsContainer = document.querySelector('.blog-board');
     const posts = Array.from(postsContainer.children);
     const totalPosts = posts.length;
     const totalPages = Math.ceil(totalPosts / postsPerPage);
-    const pagination = document.getElementById('pagination');
+    const paginationContainer = document.getElementById('pagination');
 
-    // Show or hide pagination based on the number of posts
-    if (totalPosts > postsPerPage) {
-      pagination.style.display = 'block';
-    } else {
-      pagination.style.display = 'none';
-    }
+    let currentPage = 1; // Default to the first page
 
-    // Create pagination buttons
-    const paginationUl = pagination.querySelector('ul') || document.createElement('ul');
-    paginationUl.className = 'pagination';
-    pagination.innerHTML = ''; // Clear existing content
-    pagination.appendChild(paginationUl);
+    /**
+     * Initializes the pagination system
+     */
+    const initializePagination = () => {
+      if (totalPosts > postsPerPage) {
+        paginationContainer.style.display = 'block';
+        createPaginationButtons();
+        showPage(currentPage);
+      } else {
+        paginationContainer.style.display = 'none'; // Hide pagination if unnecessary
+      }
+    };
 
-    for (let i = 1; i <= totalPages; i++) {
-      const li = document.createElement('li');
-      li.className = 'page-item';
-      li.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-      paginationUl.appendChild(li);
-    }
+    /**
+     * Dynamically creates left and right arrow buttons for pagination
+     */
+    const createPaginationButtons = () => {
+      const paginationUl = paginationContainer.querySelector('ul');
+      paginationUl.innerHTML = ''; // Clear existing buttons
 
-    function showPage(page) {
-      // Show posts for the selected page and hide others
+      // Left Arrow
+      const leftArrow = document.createElement('li');
+      leftArrow.className = 'page-item';
+      leftArrow.innerHTML = `<a class="page-link" href="#" data-page="prev">&laquo;</a>`;
+      paginationUl.appendChild(leftArrow);
+
+      // Right Arrow
+      const rightArrow = document.createElement('li');
+      rightArrow.className = 'page-item';
+      rightArrow.innerHTML = `<a class="page-link" href="#" data-page="next">&raquo;</a>`;
+      paginationUl.appendChild(rightArrow);
+
+      updateArrowVisibility();
+    };
+
+    /**
+     * Displays posts for the selected page and hides others
+     * @param {number} page - The page number to display
+     */
+    const showPage = (page) => {
       posts.forEach((post, index) => {
-        post.style.display = (Math.floor(index / postsPerPage) === page - 1) ? 'block' : 'none';
+        post.style.display = Math.floor(index / postsPerPage) === page - 1 ? 'block' : 'none';
       });
 
-      // Highlight the active page link
-      pagination.querySelectorAll('.page-item').forEach((item, index) => {
-        item.classList.toggle('active', index === page - 1);
-      });
-    }
+      updateArrowVisibility();
+    };
 
-    // Show the first page by default
-    showPage(1);
+    /**
+     * Updates the visibility of left and right arrows
+     */
+    const updateArrowVisibility = () => {
+      const leftArrow = paginationContainer.querySelector('li .page-link[data-page="prev"]');
+      const rightArrow = paginationContainer.querySelector('li .page-link[data-page="next"]');
 
-    // Add event listeners for pagination buttons
-    paginationUl.addEventListener('click', function (e) {
+      // Hide left arrow if on the first page
+      if (currentPage === 1) {
+        leftArrow.parentElement.style.display = 'none';
+      } else {
+        leftArrow.parentElement.style.display = 'inline-block';
+      }
+
+      // Hide right arrow if on the last page
+      if (currentPage === totalPages) {
+        rightArrow.parentElement.style.display = 'none';
+      } else {
+        rightArrow.parentElement.style.display = 'inline-block';
+      }
+    };
+
+    /**
+     * Handles the click event for pagination arrows
+     * @param {Event} e - The click event
+     */
+    const handlePageClick = (e) => {
       if (e.target.tagName === 'A') {
         e.preventDefault();
-        const page = parseInt(e.target.textContent);
-        showPage(page);
+        const targetPage = e.target.getAttribute('data-page');
+
+        if (targetPage === 'prev' && currentPage > 1) {
+          currentPage--;
+        } else if (targetPage === 'next' && currentPage < totalPages) {
+          currentPage++;
+        }
+
+        showPage(currentPage);
       }
-    });
+    };
+
+    // Initialize pagination on page load
+    paginationContainer.querySelector('ul').addEventListener('click', handlePageClick);
+    initializePagination();
   });
 </script>
-
-
-
-<!-- <section class="arrow_box black-diamond p-2"></section> -->
-
-<!-- <div class="triangle2"></div>
-<div class="triangle"></div>
-<div class="floating-div"></div> -->

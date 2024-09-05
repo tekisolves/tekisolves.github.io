@@ -180,7 +180,7 @@ a:active {
   border-bottom: 4px solid #09a26f;
 }
 
-.inner-brand{
+.inner-brand {
   border-bottom: 4px solid #fff
 }
 
@@ -592,7 +592,7 @@ body {
 
 .pagination a {
   text-decoration: none;
-  color: #000;
+  /* color: #000; */
   margin: 0 10px;
 }
 
@@ -691,22 +691,24 @@ body {
 }
 
 .gig-container {
-	background: linear-gradient(-45deg, #ffd700, #f48fb1, #66b2ff, #98fb98);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	/* height: 100vh; */
+  background: linear-gradient(-45deg, #ffd700, #f48fb1, #66b2ff, #98fb98);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  /* height: 100vh; */
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* .balack-harrier{
@@ -723,7 +725,8 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   height: 95vh;
-  position: relative; /* Ensure pseudo-element is positioned correctly */
+  position: relative;
+  /* Ensure pseudo-element is positioned correctly */
 }
 
 .black-harrier::before {
@@ -734,97 +737,115 @@ body {
   width: 100%;
   height: 100%;
   background: radial-gradient(circle, transparent 0%, transparent 90%, white 90%, transparent 100%);
-  background-size: 5px 5px; /* Adjust for star density */
+  background-size: 5px 5px;
+  /* Adjust for star density */
   background-repeat: repeat;
   background-position: 0 0;
-  opacity: 0.5; /* Adjust star visibility */
-  pointer-events: none; /* Ensure stars don’t interfere with interactions */
-  z-index: 1; /* Make sure stars are above the background image */
+  opacity: 0.5;
+  /* Adjust star visibility */
+  pointer-events: none;
+  /* Ensure stars don’t interfere with interactions */
+  z-index: 1;
+  /* Make sure stars are above the background image */
 }
 
 /* General styling for the code container */
 .language-bash.highlighter-rouge {
-  font-family: 'Consolas', 'Courier New', monospace; /* Use a monospace font similar to Visual Studio */
-  background-color: #1e1e1e; /* Dark background color */
-  color: #d4d4d4; /* Default text color */
+  font-family: 'Consolas', 'Courier New', monospace;
+  /* Use a monospace font similar to Visual Studio */
+  background-color: #1e1e1e;
+  /* Dark background color */
+  color: #d4d4d4;
+  /* Default text color */
   border-radius: 5px;
   padding: 10px;
-  overflow-x: auto; /* Enable horizontal scrolling if content overflows */
+  overflow-x: auto;
+  /* Enable horizontal scrolling if content overflows */
 }
 
 /* Code block styling */
 .language-bash .highlight pre {
   margin: 0;
   padding: 0;
-  overflow: auto; /* Ensure the code block doesn't overflow */
+  overflow: auto;
+  /* Ensure the code block doesn't overflow */
 }
 
 /* Syntax highlighting for keywords */
 .language-bash .nb {
-  color: #569cd6; /* Visual Studio keyword color */
+  color: #569cd6;
+  /* Visual Studio keyword color */
 }
 
 /* Syntax highlighting for strings */
 .language-bash .s {
-  color: #ce9178; /* Visual Studio string color */
+  color: #ce9178;
+  /* Visual Studio string color */
 }
 
 /* Syntax highlighting for operators and punctuation */
 .language-bash .o {
-  color: #d4d4d4; /* Visual Studio operator color */
+  color: #d4d4d4;
+  /* Visual Studio operator color */
 }
 
 /* Syntax highlighting for comments */
 .language-bash .c {
-  color: #6a9955; /* Visual Studio comment color */
+  color: #6a9955;
+  /* Visual Studio comment color */
 }
 
 /* Syntax highlighting for numbers */
 .language-bash .m {
-  color: #b5cea8; /* Visual Studio number color */
+  color: #b5cea8;
+  /* Visual Studio number color */
 }
+
 .diagonal-div {
-    background-color: black;
-    color: black;
-    padding: 40px;
-    position: absolute;
-    clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 100%);
-    margin-top: 20px;
+  background-color: black;
+  color: black;
+  padding: 40px;
+  position: absolute;
+  clip-path: polygon(0 20%, 100% 0%, 100% 100%, 0 100%);
+  margin-top: 20px;
 }
 
 .title {
-    color: white;
-    font-size: 2rem;
-    margin-bottom: 10px;
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
 .border {
-    width: 50px;
-    height: 4px;
-    background-color: black;
-    margin-bottom: 20px;
+  width: 50px;
+  height: 4px;
+  background-color: black;
+  margin-bottom: 20px;
 }
 
 .text {
-    font-size: 1rem;
-    line-height: 1.5;
+  font-size: 1rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 768px) {
-    .diagonal-div {
-        padding: 20px;
-        clip-path: polygon(0 10%, 100% 0%, 100% 100%, 0 100%);
-    }
-    .title {
-        font-size: 1.5rem;
-    }
-    .border {
-        width: 30px;
-        height: 3px;
-    }
-    .text {
-        font-size: 0.9rem;
-    }
+  .diagonal-div {
+    padding: 20px;
+    clip-path: polygon(0 10%, 100% 0%, 100% 100%, 0 100%);
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .border {
+    width: 30px;
+    height: 3px;
+  }
+
+  .text {
+    font-size: 0.9rem;
+  }
 }
 
 .diagonal-div {
@@ -834,16 +855,20 @@ body {
   position: absolute;
   clip-path: polygon(0 0, 100% 0, 100% 80%, 0% 100%);
   margin-top: 20px;
-  transform: scaleX(-1); /* Horizontally flip the div */
+  transform: scaleX(-1);
+  /* Horizontally flip the div */
 }
 
-.diagonal-div p{
+.diagonal-div p {
   text-align: left !important;
   transform: scaleX(-1);
 }
 
-.title, .text, .border {
-  transform: scaleX(-1); /* Revert the flip for text and title */
+.title,
+.text,
+.border {
+  transform: scaleX(-1);
+  /* Revert the flip for text and title */
 }
 
 .title {
@@ -868,30 +893,37 @@ body {
 
 @media (max-width: 768px) {
   .diagonal-div {
-      padding: 20px;
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+    padding: 20px;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
   }
+
   .title {
-      font-size: 1.5rem;
+    font-size: 1.5rem;
   }
+
   .border {
-      width: 30px;
-      height: 3px;
+    width: 30px;
+    height: 3px;
   }
+
   .text {
-      font-size: 0.9rem;
+    font-size: 0.9rem;
   }
 }
 
 p {
-  font-size: 1rem; /* 16px */
+  font-size: 1rem;
+  /* 16px */
   line-height: 1.6;
-  margin-bottom: 1.5rem; /* Add space between paragraphs */
+  margin-bottom: 1.5rem;
+  /* Add space between paragraphs */
 }
 
-.navbar-light .navbar-nav .nav-link:focus, .navbar-light .navbar-nav .nav-link:hover {
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
   color: rgb(217, 165, 32);
 }
+
 .navbar-light .navbar-nav .nav-link {
   color: rgb(217, 165, 32);
 }
@@ -906,7 +938,8 @@ p {
   position: relative;
   width: 30px;
   height: 2px;
-  background-color: #09a26f; /* Middle bar color */
+  background-color: #09a26f;
+  /* Middle bar color */
   display: inline-block;
 }
 
@@ -916,7 +949,8 @@ p {
   position: absolute;
   width: 30px;
   height: 2px;
-  background-color: white; /* Top and bottom bar color */
+  background-color: white;
+  /* Top and bottom bar color */
   left: 0;
   transition: all 0.3s;
 }
@@ -933,13 +967,31 @@ div.collapse.show {
   padding-top: 20px;
 }
 
-h1{
+h1 {
   line-height: 1;
 }
 
-.overlay-elephant{
+.overlay-elephant {
   background-image: url('/elephant.png');
   background-position: bottom right;
   background-repeat: no-repeat;
   background-size: auto;
+}
+
+.page-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  color: #fff !important;
+  cursor: pointer;
+  background-color: #7851A9;
+  border-radius: 0px;
+  font-size: 35px;
+}
+
+.page-link:hover {
+  color: #fff !important;
+  background-color: #000;
 }
