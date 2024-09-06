@@ -536,6 +536,11 @@ body {
   background-position: top right;
 }
 
+.white-diamond {
+  background-image: url('tekisolutions_pattern.png');
+  background-position: top right;
+}
+
 .navbar {
   z-index: 2;
 }
