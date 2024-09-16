@@ -508,7 +508,7 @@ body {
   font-family: "wmxyo", "Arial Bold", Gadget, sans-serif;
   background-color: transparent;
   border: solid 4px #000;
-  color: #000;
+  color: #fff;
   font-weight: bold;
 }
 
@@ -523,6 +523,44 @@ body {
 }
 
 .blue-ghost:hover a {
+  color: #fff;
+}
+
+.success-ghost {
+  font-family: "wmxyo", "Arial Bold", Gadget, sans-serif;
+  background-color: #00b274d9;
+  border: solid 4px #00b274d9;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.success-ghost a {
+  color: #fff !important;
+}
+
+.success-ghost:hover {
+  background-color: transparent;
+  color: #00b274d9 !important;
+  border: solid 4px #00b274d9;
+}
+
+.success-ghost:hover a {
+  color: #00b274d9;
+}
+
+.white-black-hover{
+  color: #000;
+}
+
+.white-black-hover a{
+  color: #000;
+}
+
+.white-black-hover:hover{
+  color: #fff;
+}
+
+.white-black-hover:hover a{
   color: #fff;
 }
 
@@ -1000,3 +1038,28 @@ h1 {
   color: #fff !important;
   background-color: #000;
 }
+
+.cookie-consent-banner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  z-index: 1000;
+  display: none;
+}
+
+/* .cookie-consent-banner button {
+  background-color: #4caf50;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+.cookie-consent-banner button:hover {
+  background-color: #45a049;
+} */

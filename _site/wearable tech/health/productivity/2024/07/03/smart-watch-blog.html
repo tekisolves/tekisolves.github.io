@@ -235,11 +235,38 @@
     </div>
   </footer>
 
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-consent-banner" class="cookie-consent-banner">
+    This website uses cookies to ensure you get the best experience on our website.
+    <button id="accept-cookies" class="success-ghost p-1 m-1">Accept</button>
+    <button id="decline-cookies" class="blue-ghost p-1 m-1">
+      Decline
+    </button>
+  </div>
+
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="https://s.skimresources.com/js/267239X1752464.skimlinks.js"></script>
-  <script type="text/javascript"> var infolinks_pid = 3425644; var infolinks_wsid = 0; </script> <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
+  <script type="text/javascript"> var infolinks_pid = 3425644; var infolinks_wsid = 0; </script>
+  <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      const cookieBanner = document.getElementById('cookie-consent-banner');
+      const acceptButton = document.getElementById('accept-cookies');
+
+      // Check if the user has already accepted cookies
+      if (!localStorage.getItem('cookiesAccepted')) {
+        cookieBanner.style.display = 'block';
+      }
+
+      acceptButton.addEventListener('click', () => {
+        localStorage.setItem('cookiesAccepted', 'true');
+        cookieBanner.style.display = 'none';
+      });
+    });
+  </script>
 
 </body>
 
