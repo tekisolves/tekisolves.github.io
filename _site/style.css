@@ -1093,7 +1093,7 @@ h1 {
 }
 
 .product-card:hover {
-  background: #fff;
+  background: #000;
   animation: none;
   border-color: #000;
   color: #000;
@@ -1103,6 +1103,10 @@ h1 {
   color: #000;
 }
 
-.product-card:hover a {
-  color: #000;
+.product-info h5{
+  min-height: 145px !important;
+}
+
+.product-info p{
+  min-height: 255px !important;
 }
