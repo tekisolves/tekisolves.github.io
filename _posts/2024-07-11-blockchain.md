@@ -11,8 +11,8 @@ tags:
   - Cryptocurrencies
   - Decentralization
   - Tech Explained
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 ## Decoding Blockchain with Pop Culture Magic

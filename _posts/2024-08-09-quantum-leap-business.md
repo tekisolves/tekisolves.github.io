@@ -4,8 +4,8 @@ title: "The Quantum Leap: How Quantum Computing is Revolutionizing Business"
 date: 2024-08-09
 categories: [Tech, Business, Quantum Computing]
 tags: [Quantum Computing, Business Innovation, Quantum Applications, Quantum Advantages, Quantum Challenges, Quantum Future]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Quantum Leap: How Quantum Computing is Revolutionizing Business

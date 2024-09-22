@@ -11,8 +11,8 @@ tags:
   - Health Tracking
   - Wearable Technology
   - Tech Innovations
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 ## Smart Rings: The Future of Wearable Tech

@@ -4,8 +4,8 @@ title: "AI-Driven Cybersecurity: Protecting the Future from Digital Threats"
 date: 2024-09-09
 categories: [Cybersecurity, AI]
 tags: [AI, Cybersecurity, Social Engineering, Phishing Detection, Threat Prevention, Predictive Analytics, Future of Security]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## AI-Driven Cybersecurity: Protecting the Future from Digital Threats

@@ -4,8 +4,8 @@ title: "Mindfulness and Meditation: The Path to Mental Clarity and Stress Reduct
 date: 2024-08-26
 categories: [Self-Development, Mental Health]
 tags: [Mindfulness, Meditation, Stress Reduction, Mental Clarity, Personal Growth, Well-being, Productivity]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Mindfulness and Meditation: The Path to Mental Clarity and Stress Reduction

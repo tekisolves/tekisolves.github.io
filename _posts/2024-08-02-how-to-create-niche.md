@@ -4,8 +4,8 @@ title: "Building Your Own Niche: A Cool Guide"
 date: 2024-08-02
 categories: [Business, Entrepreneurship, Marketing]
 tags: [niche marketing, small business, entrepreneurship, market research, business strategy]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Building Your Own Niche: A Cool Guide

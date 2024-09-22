@@ -4,8 +4,8 @@ title: "When Technology Fails: How to Make the Most of Unexpected Offline Time"
 date: 2024-09-03
 categories: [Productivity, Mental Health]
 tags: [digital detox, productivity, resilience, downtime, self-care, rest, recharge]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## When Technology Fails: How to Make the Most of Unexpected Offline Time

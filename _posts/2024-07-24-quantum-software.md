@@ -4,8 +4,8 @@ title: "Quantum Computing Software: The Future is Now!"
 date: 2024-07-24
 categories: [Quantum Computing, Technology, Software Development]
 tags: [Quantum Computing, Qiskit, Cirq, Q#, Quantum Algorithms, Software Development, SEO]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Quantum Computing Software: The Future is Now

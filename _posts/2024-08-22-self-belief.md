@@ -4,8 +4,8 @@ title: "The Power of Self-Belief: How to Conquer the Impossible"
 date: 2024-08-22
 categories: [Self-Improvement, Mindset]
 tags: [Self-Belief, Positivity, Personal Development, Motivation, Success, Resilience, Affirmations]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Power of Self-Belief: How to Conquer the Impossible

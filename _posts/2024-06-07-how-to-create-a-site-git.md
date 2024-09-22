@@ -4,8 +4,8 @@ title: "The Benefits of Having a Custom Website: Why Hiring a Freelancer is the 
 date: 2024-06-01
 categories: [Web Development, Freelance, Custom Websites]
 tags: [Custom Website, Freelancer, Web Development, SEO, Teki Solutions]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Benefits of Having a Custom Website: Why Hiring a Freelancer is the Smart Choice

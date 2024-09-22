@@ -4,8 +4,8 @@ title: "From Concept to Reality: Anime Gadgets That Became Real"
 date: 2024-08-12
 categories: [Tech, Anime]
 tags: [VR Headsets, AR Glasses, Exoskeletons, Smartwatches, Humanoid Robots, Anime Technology, Future Tech]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## From Concept to Reality: Anime Gadgets That Became Real

@@ -4,8 +4,8 @@ title: "Wearables vs. Implants: Why Wearables Are the Future of Personal Tech"
 date: 2024-08-05
 categories: [Tech, Gadgets, Health]
 tags: [wearables, implants, neuralink, technology, health tech]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Wearables vs. Implants: Why Wearables Are the Future of Personal Tech

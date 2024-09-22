@@ -11,8 +11,8 @@ tags:
   - Tech Innovation
   - Streaming Services
   - Gaming Trends
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 ## Cloud Gaming: The Future of Play

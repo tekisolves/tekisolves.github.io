@@ -4,8 +4,8 @@ title: "Mastering the Art of Brainstorming as an Entrepreneur"
 date: 2024-08-24
 categories: [Entrepreneurship, Personal Development]
 tags: [brainstorming, creativity, innovation, business growth, problem-solving, team collaboration, entrepreneurship]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Mastering the Art of Brainstorming as an Entrepreneur

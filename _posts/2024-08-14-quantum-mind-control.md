@@ -4,8 +4,8 @@ title: "What If Our Minds Could Influence Quantum Computers?"
 date: 2024-08-14
 categories: [Quantum Computing, Consciousness]
 tags: [Quantum Mechanics, Quantum Computing, Consciousness, Observer Effect, Future Tech, Mind Power, Technology]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## What If Our Minds Could Influence Quantum Computers?

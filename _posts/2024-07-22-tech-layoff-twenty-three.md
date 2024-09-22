@@ -4,8 +4,8 @@ title: "The Mass Layoffs of 2023 in Tech: A Deep Dive"
 date: 2024-07-22
 categories: [Tech Industry, Employment, Economics]
 tags: [Tech Layoffs, 2023 Layoffs, Technology, Employment Trends, Economic Impact]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Mass Layoffs of 2023 in Tech: A Deep Dive

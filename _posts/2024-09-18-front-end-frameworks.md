@@ -4,8 +4,8 @@ title: "State of Front-End Development in 2024: Trends, Tools, and Technologies"
 date: 2024-09-18
 categories: [Frontend Development, Web Technologies]
 tags: [Frontend Development, Trends 2024, React 18, WebAssembly, Vite, WebGPU, CSS]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## State of Front-End Development in 2024: Trends, Tools, and Technologies

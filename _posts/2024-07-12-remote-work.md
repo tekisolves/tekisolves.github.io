@@ -12,8 +12,8 @@ tags:
   - Tech Innovation
   - Hybrid Work
   - Productivity Tools
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 ## Remote Work Solutions: The Future of Work

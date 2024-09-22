@@ -4,8 +4,8 @@ title: "Thriving After Intel's Layoffs: Turning Challenges into Opportunities"
 date: 2024-08-04
 categories: [Career, Entrepreneurship, Tech]
 tags: [Intel layoffs, career change, entrepreneurship, self-employment, tech industry, resilience]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Thriving After Intel's Layoffs: Turning Challenges into Opportunities

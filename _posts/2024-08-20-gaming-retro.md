@@ -4,8 +4,8 @@ title: "Retro Gaming: Why Old-School Games Are Making a Comeback"
 date: 2024-08-20
 categories: [Gaming, Retro]
 tags: [retro gaming, nostalgia, indie games, pixel art, gaming culture, retro consoles, classic games]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Retro Gaming: Why Old-School Games Are Making a Comeback

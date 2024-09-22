@@ -4,8 +4,8 @@ title: "AI-Powered Innovation: How Artificial Intelligence is Shaping the Future
 date: 2024-08-19
 categories: [Innovation, Technology]
 tags: [AI, Product Development, Tech Trends, Startup Insights, Machine Learning]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## AI-Powered Innovation: How Artificial Intelligence is Shaping the Future of Product Development

@@ -4,8 +4,8 @@ title: "Migrating Your LAMP Stack to a Serverless Architecture"
 date: 2024-09-07
 categories: [Web Development, Cloud Computing]
 tags: [LAMP Stack, Serverless, Cloud Migration, Web Hosting, DevOps, Scalability, AWS Lambda]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Migrating Your LAMP Stack to a Serverless Architecture

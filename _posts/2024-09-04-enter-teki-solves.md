@@ -4,8 +4,8 @@ title: "Teki Solves: Keep It Simple, Problem Solved"
 date: 2024-09-04
 categories: [Announcement, Digital Products]
 tags: [Interview Prep, Freelancer Tools, Digital Art, Games, Tech Blog]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Teki Solves: Keep It Simple, Problem Solved

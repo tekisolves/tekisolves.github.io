@@ -4,8 +4,8 @@ title: "Mastering Solopreneur Productivity: Agile and Lean Strategies for Succes
 date: 2024-08-08
 categories: [Entrepreneurship, Productivity, Business Strategy]
 tags: [solopreneur, agile methodologies, lean practices, decision-making, productivity]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Mastering Solopreneur Productivity: Agile and Lean Strategies for Success

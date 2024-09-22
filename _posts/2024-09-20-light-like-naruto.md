@@ -4,8 +4,8 @@ title: "The Darker Side of Naruto: Exploring the Shadows Within"
 date: 2024-09-20
 categories: [Anime, Naruto]
 tags: [Naruto, Dark Themes, Uchiha, Warring States, Hidden Mist, Anime Analysis, Character Study]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Darker Side of Naruto: Exploring the Shadows Within

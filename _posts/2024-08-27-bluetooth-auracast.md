@@ -4,8 +4,8 @@ title: "The Future of Wireless Audio: How Bluetooth Auracast Will Transform Conn
 date: 2024-08-27
 categories: [Technology, Innovation]
 tags: [Bluetooth Auracast, Wireless Audio, Bluetooth LE Audio, Tech Trends, Multi-Device Connectivity, Future Tech, Audio Technology]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Future of Wireless Audio: How Bluetooth Auracast Will Transform Connectivity

@@ -4,8 +4,8 @@ title: "Microsoft Completes Acquisition of Activision Blizzard for $68.7 Billion
 date: 2024-07-26
 categories: [Tech News, Mergers and Acquisitions, Gaming Industry]
 tags: [Microsoft, Activision Blizzard, Acquisition, Gaming, Tech News, Teki Solutions]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Microsoft Completes Acquisition of Activision Blizzard for $68.7 Billion

@@ -4,8 +4,8 @@ title: "Could Hidden Advanced Civilizations Be Living Among Us?"
 date: 2024-07-20
 categories: [Speculation, Fun, Mystery]
 tags: [Hidden Civilizations, Advanced Technology, Conspiracy Theories, Mystery, Speculation]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Could Hidden Advanced Civilizations Be Living Among Us?

@@ -4,8 +4,8 @@ title: "Low-Code/No-Code Revolution: Democratizing Software Development"
 date: 2024-07-28
 categories: [Tech Trends, Software Development]
 tags: [Low-Code, No-Code, Software Development, Citizen Development, Enterprise Applications, Mobile Apps, Web Development, IoT, Automation]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Low-Code/No-Code Revolution: Democratizing Software Development

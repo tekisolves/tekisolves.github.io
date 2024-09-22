@@ -4,8 +4,8 @@ title: "From Idea to Launch: How to Bootstrap a SaaS Business in 2024"
 date: 2024-09-17
 categories: [SaaS, Bootstrapping]
 tags: [startups, SaaS, entrepreneurship, product development, bootstrapping, business strategy, tech]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## From Idea to Launch: How to Bootstrap a SaaS Business in 2024

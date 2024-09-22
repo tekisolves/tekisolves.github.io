@@ -4,8 +4,8 @@ title: "Tech-Infused Positive Affirmations: Empower Your Mind and Career"
 date: 2024-08-13
 categories: [Technology, Personal Development]
 tags: [Positive Affirmations, Tech Mindset, Innovation, Growth Mindset, Lifelong Learning, Tech Industry, Motivation]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Tech-Infused Positive Affirmations: Empower Your Mind and Career

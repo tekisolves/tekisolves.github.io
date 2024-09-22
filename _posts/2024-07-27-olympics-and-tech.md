@@ -4,8 +4,8 @@ title: "Paris 2024: A Cultural Extravaganza Beyond the Olympics"
 date: 2024-07-27
 categories: [Cultural Events, Olympics, Paris]
 tags: [Paris 2024, Olympics, Cultural Events, Art Exhibition, Culinary Festival, Cosplay, Virtual Reality, French Culture, Anime]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Paris 2024: A Cultural Extravaganza Beyond the Olympics

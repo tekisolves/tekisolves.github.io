@@ -4,8 +4,8 @@ title: "Human Compassion and Common Sense: Challenging Neo-Imperialism in the Di
 date: 2024-07-18
 categories: [Ethics, Sustainable Development, Social Justice]
 tags: [Diamonds, Neo-Imperialism, Ethical Sourcing, Community Development, Sustainability]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Human Compassion and Common Sense: Challenging Neo-Imperialism in the Diamond Industry

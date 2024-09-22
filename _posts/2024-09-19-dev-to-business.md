@@ -4,8 +4,8 @@ title: "5 Proven Ways to Monetize Your Website in 2024: A Developer’s Guide"
 date: 2024-09-19
 categories: [Tech, Business]
 tags: [monetization, affiliate marketing, SaaS, digital products, freelance, developer income, passive income]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## 5 Proven Ways to Monetize Your Website in 2024: A Developer’s Guide

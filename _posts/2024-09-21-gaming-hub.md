@@ -4,8 +4,8 @@ title: "Welcome to the Gaming Hub: Exploring How Web Gaming Shapes Tech Innovati
 date: 2024-09-21
 categories: [Gaming, Tech Innovation]
 tags: [gaming trends, tech innovation, VR gaming, cloud gaming, web gaming, game development, future of tech]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Welcome to the Gaming Hub: Exploring How Web Gaming Shapes Tech Innovation

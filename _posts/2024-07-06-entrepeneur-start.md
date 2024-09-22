@@ -4,8 +4,8 @@ title: "How to Get Your First Injection of Cash as an Entrepreneur (Without Trad
 date: 2024-07-06
 categories: [Entrepreneurship, Funding, Business Tips]
 tags: [Funding, Startup, Business, Entrepreneurship, Creative Solutions]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 image: first-injection-of-cash.png
 ---
 

@@ -4,8 +4,8 @@ title: "The Reality of Overnight Success: It Can Happen to You"
 date: 2024-08-06
 categories: [Tech, Success, Entrepreneurship]
 tags: [overnight success, tech startups, innovation, market readiness, divine favor]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Reality of Overnight Success: It Can Happen to You

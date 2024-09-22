@@ -4,8 +4,8 @@ title: "Mental Health and Wellness in Entrepreneurship: Tips to Conquer the Unco
 date: 2024-08-29
 categories: [Entrepreneurship, Wellness]
 tags: [mental health, entrepreneurship, wellness tips, burnout, mindfulness, work-life balance]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Mental Health and Wellness in Entrepreneurship: Tips to Conquer the Unconquerable

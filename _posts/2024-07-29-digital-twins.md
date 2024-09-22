@@ -4,8 +4,8 @@ title: "What Are Digital Twins? A Simple Guide"
 date: 2024-07-29
 categories: [Tech, Innovation, Digital Twins]
 tags: [Digital Twins, Virtual Models, Data, Simulation, AI, Machine Learning, IoT, Industry 4.0, Predictive Maintenance, Optimization]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## What Are Digital Twins? A Simple Guide

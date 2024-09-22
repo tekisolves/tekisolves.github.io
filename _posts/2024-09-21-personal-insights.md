@@ -4,8 +4,8 @@ title: "Personal Insights: A Journey Through Technology and Life"
 date: 2024-09-21
 categories: [Personal Insights, Technology]
 tags: [Personal Growth, Technology, Life Lessons, Creativity, Innovation]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Personal Insights: A Journey Through Technology and Life

@@ -4,8 +4,8 @@ title: "iPhone 15 vs. Samsung Galaxy S24: Which Smartphone Offers the Best Value
 date: 2024-08-10
 categories: [Smartphones, Technology]
 tags: [Smartphone Comparison, Tech Reviews, 2024 Gadgets, Mobile Technology, Consumer Electronics]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## iPhone 15 vs. Samsung Galaxy S24: Which Smartphone Offers the Best Value for 2024?

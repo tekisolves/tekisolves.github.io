@@ -4,8 +4,8 @@ title: "Microsoft's Recent Outage: How CrowdStrike Saved the Day"
 date: 2024-07-25
 categories: [Cybersecurity, Technology, Outages]
 tags: [Microsoft Outage, CrowdStrike, Cybersecurity, Incident Response, Technology]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Introduction

@@ -4,8 +4,8 @@ title: "Code to Calm: A Tech Founder's Guide to Mental Wellness"
 date: 2024-07-01
 categories: [Tech, Mental Health, Productivity]
 tags: [Mental Wellness, Tech Entrepreneurs, Stress Management, Work-Life Balance]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 meta: "Discover actionable strategies for tech entrepreneurs to manage stress and cultivate mental wellness in the fast-paced startup world."
 ---
 

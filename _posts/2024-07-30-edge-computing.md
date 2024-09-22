@@ -4,8 +4,8 @@ title: "Edge Computing: The Cyberpunk Revolution is Here"
 date: 2024-07-30
 categories: [Tech, Innovation, Edge Computing]
 tags: [Edge Computing, Technology, Cyberpunk, IoT, Smart Cities, 5G, AI, Future Tech]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Edge Computing: The Cyberpunk Revolution is Here

@@ -4,8 +4,8 @@ title: "AI for Everyone: How Artificial Intelligence is Transforming Business"
 date: 2024-07-31
 categories: [Tech, Business, AI]
 tags: [AI in business, artificial intelligence, machine learning, natural language processing, AI applications, AI benefits, AI challenges, AI future]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## AI for Everyone: How Artificial Intelligence is Transforming Business

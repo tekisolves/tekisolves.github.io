@@ -4,8 +4,8 @@ title: "How to Initiate a Git Repository and Link It to a Remote Repository"
 date: 2024-08-21
 categories: [Git, Version Control, Software Development]
 tags: [Git, GitHub, Version Control, Software Engineering, Remote Repository, Beginner Guide, Programming]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## How to Initiate a Git Repository and Link It to a Remote Repository

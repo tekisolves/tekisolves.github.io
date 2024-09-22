@@ -4,8 +4,8 @@ title: "How to Become a Software Developer with No Money"
 date: 2024-09-16
 categories: [Tech, Career]
 tags: [software development, free resources, coding, tech education, developer, beginner, tech career]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## How to Become a Software Developer with No Money

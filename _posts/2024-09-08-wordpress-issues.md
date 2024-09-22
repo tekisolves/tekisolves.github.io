@@ -4,8 +4,8 @@ title: "Most Searched PHP and WordPress Issues in 2024: How to Identify and Fix 
 date: 2024-09-08
 categories: [Web Development, PHP, WordPress]
 tags: [PHP, WordPress, Troubleshooting, Web Development, Site Optimization, Common Errors, Solutions]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Most Searched PHP and WordPress Issues in 2024: How to Identify and Fix Them

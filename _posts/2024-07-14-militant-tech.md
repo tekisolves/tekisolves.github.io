@@ -12,8 +12,8 @@ tags:
   - AR
   - VR
   - Exoskeletons
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 ## Military Wearable Tech: An Engaging Overview

@@ -4,8 +4,8 @@ title: "The Evolution of Shonen Heroes: From Goku to Today’s Icons"
 date: 2024-09-19
 categories: [Anime, Entertainment]
 tags: [Shonen, anime, evolution, Goku, Luffy, Naruto, anime heroes, character development, popular culture]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Evolution of Shonen Heroes: From Goku to Today’s Icons

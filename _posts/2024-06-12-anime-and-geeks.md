@@ -4,8 +4,8 @@ title: "Anime Alchemy: Tech Inspo for the Modern Geek"
 date: 2024-06-12
 categories: [Anime, Technology, Inspiration]
 tags: [Anime, Technology, Innovation, Teki Solutions]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Anime Alchemy: Tech Inspo for the Modern Geek

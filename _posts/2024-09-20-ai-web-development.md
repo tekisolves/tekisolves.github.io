@@ -4,8 +4,8 @@ title: "How AI is Changing Web Development: The Impact of AI-Powered Code Genera
 date: 2024-09-20
 categories: [AI, Web Development]
 tags: [AI, Code Generation, Web Development, Automation, GitHub Copilot, Coding Efficiency, Tech Trends]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## How AI is Changing Web Development: The Impact of AI-Powered Code Generation

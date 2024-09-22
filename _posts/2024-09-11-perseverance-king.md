@@ -4,8 +4,8 @@ title: "The Power of Perseverance: How to Keep Moving Forward Against All Odds"
 date: 2024-09-11
 categories: [Inspiration, Growth]
 tags: [perseverance, overcoming challenges, growth, resilience, success, mindset, empowerment]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Power of Perseverance: How to Keep Moving Forward Against All Odds

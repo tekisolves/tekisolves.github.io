@@ -4,8 +4,8 @@ title: "Optimizing LAMP Stack for Speed: Techniques to Boost Website Performance
 date: 2024-09-06
 categories: [Web Optimization, LAMP Stack]
 tags: [Apache, MySQL, PHP, Web Speed, SEO, CDN, HTTP Requests]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Optimizing LAMP Stack for Speed: Techniques to Boost Website Performance

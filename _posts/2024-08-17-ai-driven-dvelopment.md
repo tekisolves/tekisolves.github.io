@@ -4,8 +4,8 @@ title: "Embracing AI-Driven Development: A Quick Guide for Software Engineers"
 date: 2024-08-17
 categories: [AI, Software Development]
 tags: [AI-driven development, software engineering, AI tools, job security, automation, GitHub Copilot, Tabnine]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Embracing AI-Driven Development: A Quick Guide for Software Engineers

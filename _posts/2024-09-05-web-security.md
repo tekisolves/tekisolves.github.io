@@ -4,8 +4,8 @@ title: "Modern Web Security Practices for Your LAMP Stack Website"
 date: 2024-09-05
 categories: [Web Security, LAMP Stack]
 tags: [HTTPS, Content Security Policy, SameSite Cookies, MySQL Security, Data Sanitization, Security Audits]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Modern Web Security Practices for Your LAMP Stack Website

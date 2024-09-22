@@ -10,8 +10,8 @@ tags:
   - Donald Trump
   - Space Exploration
   - Historical Parallels
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 ## Echoes of the Past: Trump’s Turbulent Times and Space Exploration

@@ -4,8 +4,8 @@ title: "The Evolution of Shonen Heroes: From Tradition to Transformation"
 date: 2024-09-18
 categories: [Anime, Shonen]
 tags: [Shonen Heroes, Character Evolution, Anime Trends, Diversity in Anime, Female Protagonists, Modern Storytelling, Iconic Characters]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Evolution of Shonen Heroes: From Tradition to Transformation

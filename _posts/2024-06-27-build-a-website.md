@@ -11,8 +11,8 @@ tags:
   - Beginner Friendly
   - DIY Website
   - Teki Solves
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 <img src="/web-provvider.jpg" alt="Image of woman learning to build a website" title="Image of woman learning to build a website" class="img-fluid">

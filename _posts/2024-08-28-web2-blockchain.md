@@ -4,8 +4,8 @@ title: "Understanding Blockchain and Web3: Opportunities for Entrepreneurs"
 date: 2024-08-28
 categories: [Technology, Entrepreneurship]
 tags: [Blockchain, Web3, NFTs, Startups, Innovation, Tech Trends]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Understanding Blockchain and Web3: Opportunities for Entrepreneurs

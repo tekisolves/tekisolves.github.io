@@ -12,8 +12,8 @@ tags:
   - 5G
   - Wearable Tech
   - VR
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 ## Harnessing Emerging Technologies for Personal Growth in 2024

@@ -4,8 +4,8 @@ title: "How to Set Up a Local Development Environment for a React Application"
 date: 2024-08-07
 categories: [Tech, Development, React]
 tags: [React, Create React App, JavaScript, Development Environment, Frontend]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## How to Set Up a Local Development Environment for a React Application

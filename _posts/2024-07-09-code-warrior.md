@@ -12,8 +12,8 @@ tags:
   - Language Agnostic
   - Coding Skills
   - Mastery
-author: Khaya Khumalo
-author_url: "https://khayasoftware.github.io/"
+author: Teki Solves
+author_url: "https://tekisolves.github.io/"
 ---
 
 ## Why Your Tech Stack is Your Superpower 

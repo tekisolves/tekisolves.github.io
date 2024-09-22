@@ -4,8 +4,8 @@ title: "Naruto and Tech Devs: Ninjas of the Cyber World"
 date: 2024-07-07
 categories: [Technology, Coding, Inspiration]
 tags: [Naruto, Coding, Tech Development, Innovation]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## Naruto and Tech Devs: Ninjas of the Cyber World

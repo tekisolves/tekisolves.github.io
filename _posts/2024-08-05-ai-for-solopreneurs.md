@@ -4,8 +4,8 @@ title: "AI Tools for Solopreneurs: Boosting Productivity and Innovation"
 date: 2024-08-03
 categories: [Business, Entrepreneurship, AI]
 tags: [AI tools, solopreneurs, productivity, innovation, automation]
-author: Khaya Khumalo
-author_url: https://khayasoftware.github.io/
+author: Teki Solves
+author_url: https://tekisolves.github.io/
 ---
 
 ## AI Tools for Solopreneurs: Boosting Productivity and Innovation
