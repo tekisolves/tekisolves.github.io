@@ -16,7 +16,7 @@ title: Product List
             <div class="col-md-4 mb-4"> <!-- Use col-md-4 for 3 columns on medium and larger screens -->
                 <div class="product-card">
                     <img src="{{ product.image_url | default: 'https://via.placeholder.com/150' }}"
-                        alt="{{ product.name }}">
+                        alt="{{ product.name }}" class="img-fluid">
                     <h3><a href="{{ product.link }}">{{ product.name }}</a></h3>
                     <p class="proudct-description">{{ product.description }}</p>
                     <p class="rate">{{ product.rating | default: '★★★★☆' }}</p>
