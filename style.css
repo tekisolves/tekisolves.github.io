@@ -1060,53 +1060,107 @@ h1 {
   display: none;
 }
 
-/* .cookie-consent-banner button {
-  background-color: #4caf50;
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  cursor: pointer;
-  margin-left: 15px;
-}
-
-.cookie-consent-banner button:hover {
-  background-color: #45a049;
-} */
-
 .product-card {
-  background: linear-gradient(-45deg, #ffd700, #f48fb1, #66b2ff, #98fb98);
-  background-size: 400% 400%;
-  animation: gradient 15s ease infinite;
-  /* height: 100vh; */
-  border: 4px solid #ffd700;
-}
-
-.product-card a {
-  color: #fff;
-}
-
-.product-card .fas {
-  position: absolute;
-  top: 10px;
-  right: 26px;
-  color: #ffd700;
+  background-color: #fff; /* Light background for a clean look */
+  border: 4px solid #000; /* Thin, neutral gray border for sharp definition */
+  padding: 20px; /* Padding for breathing space */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left; /* Left-align for a more professional feel */
+  margin: 20px 0; /* Margin around the card */
 }
 
 .product-card:hover {
-  background: #000;
-  animation: none;
-  border-color: #000;
-  color: #000;
+  transform: translateY(-10px); /* Lift effect on hover for a more interactive feel */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  border: 4px solid #009763;
 }
 
-.product-card:hover .fas {
-  color: #000;
+.product-card img {
+  width: 100%; /* Full width image */
+  height: auto; /* Maintain aspect ratio */
+  margin-bottom: 20px; /* Space between image and text */
 }
 
-/* .product-info h5{
-  min-height: 145px !important;
+.product-card h3 {
+  color: #111111; /* Darker color for contrast */
+  margin: 10px 0 15px; /* More defined spacing around heading */
+  min-height: 60px;
 }
 
-.product-info p{
-  min-height: 255px !important;
-} */
+.product-card p {
+  color: #555555; /* Softer gray for description */
+  font-size: 1.1em; /* Slightly larger font for readability */
+  line-height: 1.6; /* Increase line height for readability */
+  margin-bottom: 20px; /* Space below paragraph */
+}
+
+.product-card .proudct-description{
+  min-height: 120px;
+}
+
+.product-card .rate {
+  font-size: 1.4em; /* Slightly larger font for the rating */
+  color: #f4b400; /* Bold gold color for rating */
+  margin-bottom: 15px; /* Space between rating and button */
+}
+
+.product-card a{
+  color: #7851A9;
+}
+
+.product-card a:hover{
+  color: #7951a9b1;
+}
+
+.product-card .buy-now {
+  background-color: #009763; /* Bright blue background for CTA */
+  color: #ffffff; /* White text for contrast */
+  padding: 12px 20px; /* Slightly larger padding for prominence */
+  border: none; /* No border */
+  text-transform: uppercase; /* Make text stand out */
+  cursor: pointer; /* Pointer cursor */
+  transition: background-color 0.3s ease; /* Smooth transition */
+  font-weight: bold; /* Bold text for emphasis */
+  display: block;
+  text-align: center;
+}
+
+.product-card .buy-now:hover {
+  background-color: #009762c6; /* Darker blue on hover */
+  color: #fff;
+}
+
+.arrow_box_white_w {
+  position: relative;
+  /* background: #ffff; */
+  /* background: url('blog-bg.png') no-repeat center center; */
+  border-bottom: 4px solid #fff;
+}
+
+.arrow_box_white_w:after,
+.arrow_box_white_w:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: "";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.arrow_box_white_w:after {
+  border-color: rgba(0, 0, 0, 0);
+  border-top-color: transparent;
+  border-width: 30px;
+  margin-left: -30px;
+}
+
+.arrow_box_white_w:before {
+  border-color: rgba(255, 215, 0, 0);
+  border-top-color: #fff;
+  border-width: 36px;
+  margin-left: -36px;
+}

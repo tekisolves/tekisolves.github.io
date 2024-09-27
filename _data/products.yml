@@ -1,0 +1,53 @@
+- name: Microsoft Office 365
+  description: Microsoft 365 Personal | 12-Month Subscription | 1 User | 1TB OneDrive
+  link: "https://www.amazon.com/Microsoft-Personal-12-month-subscription-Auto-renewal/dp/B07F3TQ6DQ?crid=NC0UM8032XEB&dib=eyJ2IjoiMSJ9.8MA5hj9Ubcvzp5OiVtgMIZdC-YooggeZdjfnhJWXaARu4ifoofhYvbVCUALsNEqpY-CYzfTFUebv0sWx0kK4eoW3SketVABojdniO8ROaPxiNxiguU3VcgBrA47G6f-y_OCuxl1pRkTdOv6WAqidvEfnYuJOyNqluz2tAWsr1HAb418cmFs3Xre2yXZYnB1FKIHFIYUpglhRmV0Um4gnTPllEqz8tUmQ1evVhDYknQE.MRZKI1096Z01PIQMhIVd5Wuwm-2NFWTZmM8hcIuKlKQ&dib_tag=se&keywords=microsoft+office+365&qid=1727434736&sprefix=Microsoft+Office+365%2Caps%2C170&sr=8-2&linkCode=ll1&tag=tekisolves-20&linkId=5c19283359a76ae532ee557d58ad6104&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/office365.jpg"
+  rating: "★★★★☆"
+
+- name: Adobe Creative
+  description: Adobe Creative Cloud All-in-One for Dummies | 7 Books in 1 | Learn Design
+  link: "https://www.amazon.com/Adobe-Creative-Cloud-All-Dummies/dp/1119420407?crid=2SG7X309JT8ON&dib=eyJ2IjoiMSJ9.b5KuDOrGaK8DhFENN_bRFpdX0dhJEpYP0SJfEzLf3D28rqJBZywtxg5Z4wpt76WpJ448yIj1J9T1GI76JDJaE6XsN4YJeCV2ekohAckCioE4_u2ttMVniM6kszCWdO2fAaNBmadO6PoZg1UQk0WAeDPUpfhRR_zbarjgC-KW_cZ6_iD4veLOGm-2DykwoKjcOktUZly6FGjSfsjjfnjqcEaKD80wBO0Q4cYkQOjglK0.Tt5JX_xX20OtSqKx-rgPUaAWrNg9Eae7DoHt_Ik06A8&dib_tag=se&keywords=adobe+creative+cloud&qid=1727435415&sprefix=Adobe+Creative+Cloud%2Caps%2C340&sr=8-1&linkCode=ll1&tag=tekisolves-20&linkId=efa3e4617f62adc02ea17b05c1c8fbd9&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/creative-cloud.jpg"
+  rating: "★★★★☆"
+
+- name: Norton 360
+  description: Norton 360 Platinum 2024 | 20 Devices | VPN, Cloud Backup, Dark Web Monitoring
+  link: "https://www.amazon.com/EXCLUSIVE-Norton-360-Platinum-Subscription/dp/B07VGCN1K2?crid=107JVHAIU92BU&dib=eyJ2IjoiMSJ9.m1rWpwvBYVM41MFMj24sZ1eqJDbZjwCynzJHU12SMRIrezYJPTy8nGoWuFRxkuvfas1PdIw913V_IYyQW3sjz_-hG92mwzggUCKANQMVfIp-u8o9XMTdQyRKOHfd7wyS8acRth1EJxeU_YYC9RRXWpEpNwBiJRPEV4aUP4lHKCPizMPeIN5VKqXFXSRm5M5COU17zxFvMZyqz83_0prdtADaN93vWWK01AbvLbGk8lo.-Xz-UuYaIGJdeDd8GYL5M4tG3hBmnGVQhnOlUj4qly8&dib_tag=se&keywords=norton+360&qid=1727435776&sprefix=Norton+360%2Caps%2C269&sr=8-4&linkCode=ll1&tag=tekisolves-20&linkId=1a696df85a09b28c7ffe5c7711953e44&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/norton.jpg"
+  rating: "★★★★☆"
+
+- name: McAfee Protection
+  description: McAfee Total Protection 2024 | 3 Devices | 15-Month Subscription | VPN, Antivirus
+  link: "https://www.amazon.com/McAfee-Protection-Subscription-Antivirus-Monitoring/dp/B0BZ2K72LD?crid=2E6KLBFI4U3CY&dib=eyJ2IjoiMSJ9.y2dX5sL_kH2_-wnxhDmzXHrR9gsxCTu6RTL7DFw6y4qG1-NO52qvBhqsp5MzLdif0D7Ew8BwRhzdZjS7n9KnhYpc5T2qhQ90qSjOgMRo_tsWgzwSPTqUyIkr3WTi0DuECx1NbKjOnQSvVbI-30XwJ49mk7Hes3Vm25_nOEt1P94fiBQL9rvsRKf-nv3938GZDs4XNUAZJqkP0gJQEIFQFIg-clm2I_Mr2oPwPGTZg8k.JcE1rMosvKGW89zIGoxcMVGCO9zirUeBmWLoKssyJkA&dib_tag=se&keywords=McAfee%2BTotal%2BProtection&qid=1727436321&sprefix=mcafee%2Btotal%2Bprotection%2Caps%2C299&sr=8-1&th=1&linkCode=ll1&tag=tekisolves-20&linkId=cc1ddc4d9cddac5fa9297cb024d84e5e&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/mcafee.jpg"
+  rating: "★★★★☆"
+
+- name: QuickBooks Tutorial
+  description: QuickBooks Online for Beginners | Step-by-Step Guide to Master QBO
+  link: "https://www.amazon.com/QuickBooks-Online-Beginners-Step-Step/dp/B0DCK48DFR?crid=2Q0XRIX7R521J&dib=eyJ2IjoiMSJ9.HUSxoe62Tqg-Yc-XbLPuc2vzlsLrBIxw6LJRIX_UwnRvfh0sYoP2dfLSxVneaostT6AnA9ng9CEtrXcUUmWFztgv_Sfe6EsNHSe2H87OGm8_7bx5Z8jzYQECJgOjDWkwX9BITSoQRUqP5-2ulKSt7_GuUHqGdMj38Qi8-1ClujUoBMZLrOBy4u1PsM7vyu8GoSBUO0D0BPhpORVOVwOON_szT1Ko9jaU91WzPVmBUE8._06rFJmBnifaed1EWF3SPEHY4IyV72PNig9wjTEpNv8&dib_tag=se&keywords=QuickBooks&qid=1727436770&sprefix=quickbooks%2Caps%2C314&sr=8-2&linkCode=ll1&tag=tekisolves-20&linkId=b968b01c95f7e65e4369b05e29dc7714&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/quickbooks.jpg"
+  rating: "★★★★★"
+
+- name: TurboTax
+  description: TurboTax Home & Business 2023 | Tax Software for Self-Employed
+  link: "https://www.amazon.com/TurboTax-Business-Software-Exclusive-Download/dp/B0CLC5MKTP?crid=2LWO1PP9Q80RZ&dib=eyJ2IjoiMSJ9.FssQ53yGSqJsS90K01adCohZEdwHkb0T3XrLWVkG080TJHhvtjcO3fZPreXwqIXtSljL80rFsB4lqxA3KFG6wO0ooymfUSJOCfaOEuEK47uqrE3UIltBkGjEPkcSZcuoSRBeEc1k9s6ZD56_ZHh6UpfAS2HnbMCn7JPxsz6sesAFVGp4sV-bY2npC4yQfTFHrjovzMabxBsRXdFILkTNi2rkkW1cnmUQLtxRKAf3PUw.cW1NXDIC9H7Ti4-ggD-DTrYLjWrjoKP6R1eoPsr86Po&dib_tag=se&keywords=TurboTax&qid=1727437069&sprefix=turbotax%2Caps%2C301&sr=8-2&linkCode=ll1&tag=tekisolves-20&linkId=b0609a4900dc4b44c269b5b750f369ac&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/turbotax.jpg"
+  rating: "★★★★☆"
+
+- name: CorelDRAW
+  description: CorelDRAW Graphics Suite 2021 | Graphic Design Software | PC Disc
+  link: "https://www.amazon.com/CorelDRAW-Professionals-Vector-Illustration-Image-Editing-Exclusive-ParticleShop-Brush-Pack/dp/B08WBMSC7T?crid=187M4M0GNG52H&dib=eyJ2IjoiMSJ9.d1Mq6afaBzvIwT5MDttUCWwSO1hWTPDxolkSEYBsgRw5HPBGkCRqk8Xel-74oW8pz35enpmR8IBaaYcV691LIfbJwaml4XMdTeZK4pZ8yp4vS_ITluQq6Teszl8rNpgDc-7fkIH6KAc87odBL06Mg9DUcvnS-WbgfZAYJN1rEeuQZAp7CP6eYO8qHi6dArRLFsDP71sLYCdAhNNzHcpcKJnjavyumcuXYICbsS0Z5Z8.Su9U5LQidGp14rgXKb3e6avtVXifwbPxMjKBnp8O3v0&dib_tag=se&keywords=CorelDRAW&qid=1727437328&sprefix=coreldraw%2Caps%2C314&sr=8-1&th=1&linkCode=ll1&tag=tekisolves-20&linkId=103f04d9eaec4ece8b5ef6502ccfdf80&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/coreldraw.jpg"
+  rating: "★★★★☆"
+  
+- name: Rosetta Stone
+  description: Rosetta Stone Unlimited Languages | Lifetime Access to 24 Languages
+  link: "https://www.amazon.com/Rosetta-Stone-UNLIMITED-Languages-Activation/dp/B082DZBFP7?crid=1SO7QRKZTUOI9&dib=eyJ2IjoiMSJ9.p6hVQ6KusC0iw_7-AtxoeMP8tcWuFheyNjPzFwW-Avy-URdhTO9JQ1Q5Esp2--tKEwJ_R4c2e_4mex7zb3ptUYt8rKec7nUdUyXkQWmtML0fnw3ID8oidQWwTiocRQRwIdod798lt8s2wMe5FKA6UbH1mEId_I6D_bA5PFdo6hjyXHLETFHFNW4cDaKcqkyWofbiIGBTKXJQRGiSyfz3G2qYLHZE_KuPEZI-hxwfAlQ.DCtqCAUX6eZTZC7p2kwOoLT_dVlaNwx_IGtlU_lSyDc&dib_tag=se&keywords=rosetta%2Bstone&qid=1727437515&sprefix=Rosetta%2BStone%2Caps%2C319&sr=8-1&th=1&linkCode=ll1&tag=tekisolves-20&linkId=878f4bdab7af08d7355d38aa6f5f4c91&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/rosetta-stone.jpg"
+  rating: "★★★★☆"
+  
+- name: Microsoft Windows 11
+  description: Microsoft OEM System Builder | Windows 11 Pro for New Systems | Authorized
+  link: "https://www.amazon.com/Microsoft-Wind%D0%BEws-Pro-OEM-DVD/dp/B09MYBD79G?crid=2RMN2ZGK2QRPD&dib=eyJ2IjoiMSJ9._1MPUOsQTzvbAEg64_2CZ5dkEk_1_vwFNvb5d8tdtu70jm9-FFqm08BqpQVBmxEu966efVW6J5oiU559r2_1wIJTrzvlEjxjQzEjPvi6BGWRrzzfcEhoFGmerg3tWHbUd4DQeqYMGgXdH5oAbVdDEbXZ3OA24AjSrPsOro7Hovy80kJzpNy25JEU42SoQ_Cj2HedHxiG1-hVDBVY0D4F_5dlmrKoPO1RfDbMa6wvLUk.AwyHmgnAkMBHMdbI7Nuy3Cql7yCo3W06nuGopGBQ_uM&dib_tag=se&keywords=microsoft%2Bwindows%2B11%2Bpro&qid=1727438144&sprefix=Microsoft%2BWindows%2B11%2BPro%2Caps%2C305&sr=8-1&th=1&linkCode=ll1&tag=tekisolves-20&linkId=3a6637c96a014bfde0dca99e560daeea&language=en_US&ref_=as_li_ss_tl"
+  image_url: "/win11.jpg"
+  rating: "★★★★☆"

@@ -1,0 +1,33 @@
+---
+layout: default
+title: Product List
+---
+
+<section class="arrow_box_white">
+    <div id="product-list" class="container">
+        <div class="row p-5">
+            <div class="col-md-12 col-xs-12 col-lg-12">
+                <h1 class="big-title pb-4" style="color: #000;">Top Software on Amazon</h1>
+            </div>
+        </div>
+        <div class="row">
+            {% assign products = site.data.products %}
+            {% for product in products %}
+            <div class="col-md-4 mb-4"> <!-- Use col-md-4 for 3 columns on medium and larger screens -->
+                <div class="product-card">
+                    <img src="{{ product.image_url | default: 'https://via.placeholder.com/150' }}"
+                        alt="{{ product.name }}">
+                    <h3><a href="{{ product.link }}">{{ product.name }}</a></h3>
+                    <p class="proudct-description">{{ product.description }}</p>
+                    <p class="rate">{{ product.rating | default: '★★★★☆' }}</p>
+                    <a href="{{ product.link }}" target="_blank" class="buy-now">Buy Now</a>
+                </div>
+            </div>
+
+            {% if forloop.index % 3 == 0 or forloop.last %}
+            <!-- Close the row if we've reached the end of the row or the last item -->
+            {% endif %}
+            {% endfor %}
+        </div> <!-- Close row -->
+    </div> <!-- Close container -->
+</section>
