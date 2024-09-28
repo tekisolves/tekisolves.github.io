@@ -2,7 +2,19 @@
 <html lang="en">
 
 <head>
-  <script src="/assets/scripts/cookie-consent.js"></script>
+  <!-- <script src="/assets/scripts/cookie-consent.js"></script> -->
+  <script>
+    // Check for consent and load GA only if consent is already granted
+    if (localStorage.getItem('cookieConsent') === 'accepted') {
+      var scriptTag = document.createElement('script');
+      scriptTag.src = 'https://www.googletagmanager.com/gtag/js?id=UA-265858191-1'; // Your GA ID
+      document.head.appendChild(scriptTag);
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-265858191-1');
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Begin Jekyll SEO tag v2.8.0 -->
@@ -340,63 +352,25 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- <script>
-    const consentCookieName = 'analytics_consent';
-    const cookieConsentBanner = document.getElementById('cookie-consent-banner');
-
-    // Function to check if the consent cookie exists
-    function checkConsentCookie() {
-      const cookies = document.cookie.split(';');
-      for (let cookie of cookies) {
-        if (cookie.trim().startsWith(`${consentCookieName}=`)) {
-          return cookie.trim().split('=')[1] === 'true'; // Return true if consent was given
-        }
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie-consent@2.3.1/js-cookie-consent.min.js"></script>
+  <script>
+    jsCookieConsent.init({
+      message: 'We use cookies to track usage.',
+      acceptText: 'Accept',
+      declineText: 'Decline',
+      policyURL: '/privacy-policy',
+      onAccept: function() {
+        // Load Google Analytics after consent
+        var scriptTag = document.createElement('script');
+        scriptTag.src = 'https://www.googletagmanager.com/gtag/js?id=UA-265858191-1';
+        document.head.appendChild(scriptTag);
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-265858191-1');
       }
-      return false; // No consent found
-    }
-
-    // Function to set the consent cookie
-    function setConsentCookie(value) {
-      const expirationDays = 365; // Cookie expiration set to 1 year
-      const date = new Date();
-      date.setTime(date.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
-      const expires = "expires=" + date.toUTCString();
-      document.cookie = `${consentCookieName}=${value}; ${expires}; path=/`;
-    }
-
-    // Function to add Google Analytics script
-    function addGoogleAnalytics() {
-      var scriptTag = document.createElement('script');
-      scriptTag.async = true;
-      scriptTag.src = 'https://www.googletagmanager.com/gtag/js?id=G-8NWH600XP9';
-      document.head.appendChild(scriptTag);
-
-      window.dataLayer = window.dataLayer || [];
-      window.gtag = function () { dataLayer.push(arguments); };
-      gtag('js', new Date());
-      gtag('config', 'G-8NWH600XP9');
-    }
-
-    // If user has already consented, load Google Analytics immediately
-    if (checkConsentCookie()) {
-      addGoogleAnalytics();
-    } else {
-      // Show the consent banner if no prior consent was given
-      cookieConsentBanner.style.display = 'block';
-
-      // Handle 'Accept' button click
-      document.getElementById('accept-cookies').addEventListener('click', function () {
-        setConsentCookie('true'); // Set consent cookie as true
-        location.reload(); // Reload the page after user consents
-      });
-
-      // Handle 'Decline' button click
-      document.getElementById('decline-cookies').addEventListener('click', function () {
-        setConsentCookie('false'); // Set consent cookie as false
-        cookieConsentBanner.style.display = 'none'; // Hide the banner
-      });
-    }
-  </script> -->
+    });
+  </script>
 
 </body>
 
