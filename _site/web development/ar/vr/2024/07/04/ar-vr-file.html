@@ -359,24 +359,29 @@ Incorporating AR/VR on your website can significantly enhance user engagement an
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+  <!-- Load js-cookie-consent library -->
   <script src="https://cdn.jsdelivr.net/npm/js-cookie-consent@2.3.1/js-cookie-consent.min.js"></script>
+
   <script>
-    jsCookieConsent.init({
-      message: 'We use cookies to track usage.',
-      acceptText: 'Accept',
-      declineText: 'Decline',
-      policyURL: '/privacy-policy',
-      onAccept: function() {
-        // Load Google Analytics after consent
-        var scriptTag = document.createElement('script');
-        scriptTag.src = 'https://www.googletagmanager.com/gtag/js?id=UA-265858191-1';
-        document.head.appendChild(scriptTag);
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'UA-265858191-1');
-      }
-    });
+    // Ensure everything runs after the library and page have fully loaded
+    window.onload = function () {
+      jsCookieConsent.init({
+        message: 'We use cookies to track usage.',
+        acceptText: 'Accept',
+        declineText: 'Decline',
+        policyURL: '/privacy-policy',
+        onAccept: function () {
+          // Load Google Analytics after consent
+          var scriptTag = document.createElement('script');
+          scriptTag.src = 'https://www.googletagmanager.com/gtag/js?id=UA-265858191-1';
+          document.head.appendChild(scriptTag);
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'UA-265858191-1'); // Your GA ID
+        }
+      });
+    };
   </script>
 
 </body>
