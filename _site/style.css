@@ -1210,6 +1210,7 @@ h1 {
   text-decoration: none; /* Remove underline */
   display: block; /* Full width for easy clicking */
   transition: background-color 0.2s; /* Smooth background color change */
+  font-family: "wmxyo", "Arial Bold", Gadget, sans-serif;
 }
 
 .dropdown-menu a:hover {
