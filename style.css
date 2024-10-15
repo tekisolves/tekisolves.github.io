@@ -1168,3 +1168,56 @@ h1 {
 /* .product-card{
   cursor: pointer;
 } */
+
+.pure_button{
+  background-color: transparent;
+  color: #fff;
+  border: solid 4px #fff;
+  font-family: "wmxyo", "Arial Bold", Gadget, sans-serif;
+  font-weight: bold;
+}
+
+.pure_button:hover{
+  color: #000;
+  background-color: #fff;
+  border-color: #000;
+}
+
+#idea{
+  border-bottom: solid 4px #fff;
+  color: #fff;
+}
+
+.dropdown-menu {
+  display: none; /* Hidden by default */
+  position: absolute;
+  background-color: rgba(20, 20, 20, 0.9); /* Semi-transparent dark background */
+  border-radius: 8px; /* Slightly rounded corners */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+  z-index: 1000; /* Ensures dropdown is above other elements */
+  padding: 10px 0; /* Padding for spacing */
+  transition: opacity 0.2s ease-in-out; /* Smooth transition for visibility */
+}
+
+.dropdown-menu.show {
+  display: block; /* Show when triggered */
+  opacity: 1; /* Fully opaque */
+}
+
+.dropdown-menu a {
+  color: #E0E0E0; /* Light gray text for contrast */
+  padding: 12px 20px; /* Ample clickable area */
+  text-decoration: none; /* Remove underline */
+  display: block; /* Full width for easy clicking */
+  transition: background-color 0.2s; /* Smooth background color change */
+}
+
+.dropdown-menu a:hover {
+  background-color: rgba(255, 255, 255, 0.1); /* Subtle hover effect */
+  color: #FFD700; /* Gold color on hover for elegance */
+}
+
+.dropdown-menu a:focus {
+  outline: none; /* Remove default outline */
+  background-color: rgba(255, 255, 255, 0.2); /* Highlight on focus */
+}
