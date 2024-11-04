@@ -2,23 +2,7 @@
 
 <head>
   <script src="/assets/scripts/cookie-consent.js"></script>
-  <script>
-    function loadGoogleAnalytics() {
-      var scriptTag = document.createElement('script');
-      scriptTag.src = 'https://www.googletagmanager.com/gtag/js?id=UA-265858191-1'; // Your GA ID
-      document.head.appendChild(scriptTag);
-  
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'UA-265858191-1');
-    }
-  
-    // Check for consent and load GA if consent is accepted
-    if (localStorage.getItem('cookieConsentTS') === 'accepted') {
-      loadGoogleAnalytics();
-    }
-  </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Begin Jekyll SEO tag v2.8.0 -->
@@ -359,6 +343,20 @@ Deku’s story is one of vulnerability, where he starts with no powers but gains
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script>
+    // Check for consent and load GA only if consent is already granted
+    if (localStorage.getItem('cookieConsentTSolves1') === 'accepted') {
+      $('<script>', {
+        src: 'https://www.googletagmanager.com/gtag/js?id=UA-265858191-1',
+        async: true
+      }).appendTo('head');
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'UA-265858191-1');
+    }
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

@@ -1,0 +1,80 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0d0d0d;
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s ease-in-out; /* Smooth background transition */
+}
+
+.slider-container {
+    position: relative;
+    width: 80%;
+    max-width: 800px;
+}
+
+.image-box {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+}
+
+.image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: clip-path 0.3s ease-in-out;
+}
+
+.image1 {
+    background-image: url(bg.jpg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.image2 {
+    clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+    background-image: url(bg.jpg);
+}
+
+/* Slider Styling */
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    margin-top: 20px;
+    height: 8px;
+    background: purple;
+    border-radius: 10px;
+    outline: none;
+}
+
+/* Style the thumb (the slider "ball") */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: gold;
+    border: 4px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: gold;
+    border: 4px solid black;
+    border-radius: 50%;
+    cursor: pointer;
+}
