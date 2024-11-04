@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Accept cookies
   acceptButton.addEventListener('click', function () {
+    location.reload();
     localStorage.setItem('cookieConsentTSolves1', 'accepted');
     cookieBanner.style.display = 'none';
     //loadGoogleAnalytics();
