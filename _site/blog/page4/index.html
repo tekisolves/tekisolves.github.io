@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-  <script>
+  <!-- Google tag (gtag.js) -->
+  <!-- <script>
     // Check for consent and load GA only if consent is already granted
     if (localStorage.getItem('cookieConsentTSolves1') === 'accepted') {
       // Load the Google Analytics script
@@ -13,16 +14,17 @@
   
       })(window,document,'script','dataLayer','G-8NWH600XP9');
     }
-  </script>
-  <!-- Google tag (gtag.js) -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-8NWH600XP9"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-8NWH600XP9');
   </script> -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8NWH600XP9"></script>
+  <script>
+    if (localStorage.getItem('cookieConsentTSolves1') === 'accepted') {
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'G-8NWH600XP9');
+    }
+  </script>
   <script src="/assets/scripts/cookie-consent.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -152,6 +154,19 @@
       
       
       <div class="col-sm-12 col-md-6 col-lg-4">
+        <a href="/gaming/anime/tech/2024/11/04/come-back-kid.html" class="post-title-tooltip" title="Why I Chose the Niche of Game Development, Gaming, and Anime">
+          <div class="post post-card p-5 mb-4 text-left">
+            <h3>
+              <b>
+                Why I Chose the Niche of Ga...
+              </b>
+            </h3>
+            <p><b>November 04, 2024</b></p>
+          </div>
+        </a>
+      </div>
+      
+      <div class="col-sm-12 col-md-6 col-lg-4">
         <a href="/game%20design/storytelling/2024/10/17/how-to-create-narrative.html" class="post-title-tooltip" title="How to Tell a Story Through Game Design">
           <div class="post post-card p-5 mb-4 text-left">
             <h3>
@@ -173,19 +188,6 @@
               </b>
             </h3>
             <p><b>October 16, 2024</b></p>
-          </div>
-        </a>
-      </div>
-      
-      <div class="col-sm-12 col-md-6 col-lg-4">
-        <a href="/brawlhalla/game%20characters/2024/10/12/red-raptor.html" class="post-title-tooltip" title="Lessons from Red Raptor: The Hero of Brawlhalla">
-          <div class="post post-card p-5 mb-4 text-left">
-            <h3>
-              <b>
-                Lessons from Red Raptor: Th...
-              </b>
-            </h3>
-            <p><b>October 12, 2024</b></p>
           </div>
         </a>
       </div>
