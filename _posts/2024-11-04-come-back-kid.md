@@ -33,7 +33,8 @@ My fascination with technology, gaming, and anime has been lifelong. I see gamin
 
 **Crafting My Path with Purpose:** Whether coding or crafting stories, game development gives me a platform to make a meaningful impact. It's my way of merging creativity with technology to help others who find purpose and inspiration in these worlds.
 
-<img src="/Leonardo_Anime_XL_The_Black_African_man_faces_the_viewer_with_2.jpg" alt="Leonardo_Anime_XL_The_Black_African_man_faces_the_viewer_with_2" title="Leonardo_Anime_XL_The_Black_African_man_faces_the_viewer_with_2" class="img-fluid">
+<img src="/Leonardo_Anime_XL_The_Black_African_man_faces_the_viewer_with_2.jpg" 
+alt="Leonardo_Anime_XL_The_Black_African_man_faces_the_viewer_with_2" title="Leonardo_Anime_XL_The_Black_African_man_faces_the_viewer_with_2" class="img-fluid">
 <!-- Image Prompt: The Black African man faces the viewer with a confident smile, wearing his black tracksuit with green and gold accents. Behind him, a futuristic city glows in purple and green, creating an atmosphere of community and optimism. This image symbolizes his commitment to connecting with readers and sharing his journey. -->
 
 ## Overcoming Challenges: Keys to Success in Game Development, Gaming, and Anime
