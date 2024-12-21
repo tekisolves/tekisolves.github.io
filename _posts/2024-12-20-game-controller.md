@@ -31,7 +31,7 @@ In high-stakes multiplayer games, every millisecond matters. A responsive contro
 Experience every jump, attack, and interaction with precision. The right controller immerses you in the story, making every action feel seamless.
 
 <!-- Image Prompt: A gamer celebrating victory with a confident smirk, holding the controller triumphantly. The text overlay reads: "The right gear changes the game." -->
-<img src="/Leonardo_Anime_XL_A_black_African_gamer_celebrating_victory_wi_0" alt="Victorious gamer" title="Victorious gamer" class="img-fluid">
+<img src="/Leonardo_Anime_XL_A_black_African_gamer_celebrating_victory_wi_0.jpg" alt="Victorious gamer" title="Victorious gamer" class="img-fluid">
 
 **Application 3: Casual Couch Gaming with Friends**  
 Comfortable, ergonomic controllers ensure hours of fun without fatigue, making even casual sessions more enjoyable.
