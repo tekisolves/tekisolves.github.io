@@ -1,12 +1,11 @@
 ---
 layout: post  
 title: "The Future of AI in Game Design: How AI-Generated Assets Are Changing the Game"  
-date: 2024-01-03  
+date: 2025-01-03  
 categories: [Game Development, AI, Design]  
 tags: [AI-generated assets, game development, digital art, backgrounds, game design tools, 2024 trends, creative tools]  
 author: Khaya Khumalo  
-author_url: https://teki.solves  
-
+author_url: https://tekisolves.github.io/
 ---
 
 ## The Future of AI in Game Design: How AI-Generated Assets Are Changing the Game
