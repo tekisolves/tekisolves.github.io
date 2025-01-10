@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Unleash the Legend: Black Myth: Wukong - PlayStation 5"
-date: 2025-01-04
+date: 2025-01-10
 categories: [Gaming, Game Reviews]
 tags: [Black Myth Wukong, PlayStation 5, Chinese Mythology, Game Reviews, Action-Adventure, Video Games, Pre-order]
 author: Teki Solves

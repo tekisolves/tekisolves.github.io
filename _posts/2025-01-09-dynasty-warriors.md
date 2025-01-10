@@ -32,7 +32,6 @@ Pre-order your physical copy and unlock the exclusive **Protagonist’s DLC cost
 
 These vibrant outfits are a must-have for fans looking to stand out on the battlefield!  
 
-### Image Prompt:  
 <!--Visualize an epic battlefield scene with thousands of soldiers clashing amidst a vibrant, ancient landscape. A “nameless hero,” dressed in the striking *Garb of the Azure Bird*, leads the charge with a gleaming sword raised high. Surrounding them are dynamic scenes of chaos and heroism—warriors breaking through enemy lines, fiery explosions, and banners waving in the wind. The aesthetic should match the sakuga-style with high detail and energy, fitting the grandeur of DYNASTY WARRIORS.-->
 <img src="/dynaty.jpg" alt="dynasty" title="dynasty" class="img-fluid">
 
