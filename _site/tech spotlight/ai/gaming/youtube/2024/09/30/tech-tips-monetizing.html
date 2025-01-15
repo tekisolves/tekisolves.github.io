@@ -57,6 +57,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Nova+Mono&display=swap" rel="stylesheet">
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- MailerLite Universal -->
+  <script>
+    (function (w, d, e, u, f, l, n) {
+      w[f] = w[f] || function () {
+        (w[f].q = w[f].q || [])
+        .push(arguments);
+      }, l = d.createElement(e), l.async = 1, l.src = u,
+      n = d.getElementsByTagName(e)[0], n.parentNode.insertBefore(l, n);
+    })
+      (window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+    ml('account', '1280311');
+  </script>
+  <!-- End MailerLite Universal -->
 </head>
 
 <body>
@@ -100,6 +113,7 @@
   </nav>
 
   <section class="gig-container p-2"></section>
+  <button class="ml-onclick-form" onclick="ml('show', 'VdZwiw', true)">Click here to show form</button>
 
   <section class="arrow_box_white post-bg-ctrl">
     <div class="container">
@@ -384,8 +398,7 @@ Keep it simple, problem solved.
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://s.skimresources.com/js/275776X1761837.skimlinks.js"></script>
-
+  <!-- <script type="text/javascript" src="https://s.skimresources.com/js/275776X1761837.skimlinks.js"></script> -->
 </body>
 
 </html>
