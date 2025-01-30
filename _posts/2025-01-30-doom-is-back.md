@@ -45,6 +45,8 @@ DOOM has always pushed the limits of FPS combat, and *DOOM: The Dark Ages* is se
 
 With its **medieval setting, brutal combat, and large-scale warfare**, *DOOM: The Dark Ages* is shaping up to be one of the most ambitious entries in the franchise. **Mark your calendars for May 15, 2025**, and get ready to unleash hell like never before.
 
+To fully immerse yourself in the action-packed world of *DOOM: The Dark Ages* when it releases, you'll need the right tools to unlock all the game has to offer. If you're a PlayStation player, consider picking up a **$10 PlayStation Store Gift Card** [here](https://amzn.to/3PWEkUT). With this card, you can easily access the latest games, add-ons, and PlayStation Plus subscriptions, ensuring you're ready to dive into the brutal medieval world of *DOOM* and beyond. Perfect for expanding your gaming library and getting the most out of your PlayStation experience.
+
 **Keywords:** DOOM The Dark Ages, DOOM Slayer, DOOM Prequel, Bethesda, FPS Games, Xbox Game Pass
 
 **Tags:** #DOOM #Gaming #FPS #Bethesda #Xbox #PlayStation #PC
