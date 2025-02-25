@@ -23,11 +23,11 @@ The latest GTA trailer has just dropped, and it's already setting the gaming wor
 
 This trailer isn’t just hype—it's a signal that the GTA franchise is about to take gaming to the next level. Whether you’re a long-time fan or new to the series, the excitement is real, and the buzz is contagious.
 
-## TTB: Your Go-To Source for Gaming & Anime Breakdowns
+<!-- ## TTB: Your Go-To Source for Gaming & Anime Breakdowns
 
-At TTB, we’re all about diving deep into the details. We regularly break down trailers, reviews, and hidden gems in gaming and anime, delivering insights that spark conversations and build communities. If you're into fresh perspectives and engaging content, join us and stay ahead of the curve.
+At TTB, we’re all about diving deep into the details. We regularly break down trailers, reviews, and hidden gems in gaming and anime, delivering insights that spark conversations and build communities. If you're into fresh perspectives and engaging content, join us and stay ahead of the curve. -->
 
-**Check out more at:** [Teki Solves](https://tekisolves.github.io)
+<!-- **Check out more at:** [Teki Solves](https://tekisolves.github.io) -->
 
 ---
 
