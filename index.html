@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8NWH600XP9"></script>
+    <script>
+        if (localStorage.getItem('cookieConsentTSolves1') === 'accepted') {
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'G-8NWH600XP9');
+        }
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teki Solves | Digital Products for Developers & Founders</title>
+    <meta name="description"
+        content="Teki Solves creates simple, sharp, and useful digital products for developers and founders — guides, cheat sheets, and templates. Get early access now.">
+    <meta name="keywords"
+        content="digital products for developers, startup tools, developer guides, cheat sheets, templates, Teki Solves">
+    <meta name="robots" content="index, follow">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <!-- All Custom Styles -->
+    <link href="style.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" style="border-bottom:2px solid #00ff88;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Teki Solves</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#">
+                            Analytics&nbsp;&nbsp;
+                            <input class="form-check-input" type="checkbox" id="cookieToggle">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <video autoplay muted loop id="bg-video" poster="background-teki.png">
+        <source src="cityscape-bg.mp4" type="video/mp4">
+        <img src="background-teki.png" alt="Cityscape background for Teki Solves digital products">
+    </video>
+
+    <div class="content-teki overlay">
+        <img src="tekisolutions_b-50.png" alt="Teki Solves Logo - Digital Products for Developers" class="mx-4"
+            width="120">
+
+        <h1>Digital Products for Developers & Founders</h1>
+        <h2>Guides, cheat sheets, and templates that save time and help you move faster.</h2>
+
+        <p class="mb-3">Join early and get exclusive access to simple, sharp, and useful tools.</p>
+
+        <form action="https://formspree.io/f/xbjnvagd" method="POST" class="w-100" style="max-width: 400px;">
+            <div class="mb-3">
+                <input name="name" type="text" class="form-control teki-text-box" id="name"
+                    placeholder="Enter your name" required>
+            </div>
+            <div class="mb-3">
+                <input name="email" type="email" class="form-control teki-text-box" id="email"
+                    placeholder="Enter your email" required>
+            </div>
+            <div class="mb-3">
+                <select name="interest" class="form-control" aria-label="Choose your interest">
+                    <option>What do you want most?</option>
+                    <option>Guides</option>
+                    <option>Cheat Sheets</option>
+                    <option>Templates</option>
+                </select>
+            </div>
+            <div class="mb-3" style="text-align:left!important;">
+                <input type="checkbox" id="consent" name="consent" required>
+                <label for="consent">I consent to having Teki Solves collect my data via this form.</label>
+                <p><a href="/privacy-policy.html" target="_blank">View our Privacy Policy</a></p>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6LfRgvEpAAAAAFGfzTbkAOGk4rU5T4K1rP5dMYC9"></div>
+            <button type="submit" class="btn btn-primary w-100">Get Early Access</button>
+        </form>
+
+        <!-- Social Media Row -->
+        <div class="social-links">
+            <a href="https://x.com/tekisolves" target="_blank" aria-label="X"><i class="bi bi-twitter"></i></a>
+            <!-- <a href="https://instagram.com/tekisolves" target="_blank" aria-label="Instagram"><i
+                    class="bi bi-instagram"></i></a>
+            <a href="https://www.tiktok.com/@tekisolves" target="_blank" aria-label="LinkedIn"><i
+                    class="bi bi-tiktok"></i></a> -->
+        </div>
+
+        <footer>
+            Keep it simple, problem solved.
+        </footer>
+    </div>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner">
+        We use cookies for analytics to improve your experience.
+        <button id="accept-cookies" class="btn-accept">Accept</button>
+        <button id="decline-cookies" class="btn-decline">Decline</button>
+    </div>
+
+    <script src="cookie-consent.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
