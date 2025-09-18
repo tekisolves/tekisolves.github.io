@@ -344,3 +344,11 @@ ul {
     background-color: #111;
     color: #fff;
 }
+
+footer {
+    margin-top: 60px;
+    padding: 20px;
+    background-color: #000;
+    text-align: center;
+    color: #888;
+}
