@@ -67,7 +67,7 @@ h2 {
 }
 
 footer {
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
     font-size: 0.9rem;
     color: #aaa;
 }
@@ -359,9 +359,12 @@ ul {
 }
 
 footer {
-    margin-top: 60px;
     padding: 20px;
     background-color: #000;
-    text-align: center;
+    text-align: left;
     color: #888;
+}
+
+footer ul{
+    margin: 0 !important;
 }
