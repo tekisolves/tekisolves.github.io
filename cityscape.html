@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Teki Solves Cyberpunk City — Neon Streaks</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+    <script>
+        // Scene
+        const scene = new THREE.Scene();
+
+        // Camera
+        const camera = new THREE.PerspectiveCamera(
+            75, window.innerWidth / window.innerHeight, 0.1, 1000
+        );
+        camera.position.set(0, 8, 20);
+
+        // Renderer
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio || 1);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Teki Solves neon palette (black buildings, neon streaks)
+        const neonColors = [
+            0x00ff66, // green
+            0xffd700, // gold
+            0x800080, // purple
+            0xff0000, // red
+            0xffffff  // white
+        ];
+
+        // Grid settings
+        const gridSize = 6;  // number of buildings per row/column
+        const spacing = 2.5; // distance between buildings
+
+        // Reusable materials for building base (dark)
+        const baseColor = 0x050505; // near-black so neon pops
+        const baseMaterial = new THREE.MeshStandardMaterial({
+            color: baseColor,
+            metalness: 0.7,
+            roughness: 0.35
+        });
+
+        // Create buildings with neon edge streaks
+        for (let x = -gridSize / 2; x < gridSize / 2; x++) {
+            for (let z = -gridSize / 2; z < gridSize / 2; z++) {
+                const height = Math.random() * 5 + 1;
+                const geometry = new THREE.BoxGeometry(1.2, height, 1.2);
+
+                // Base building mesh (black)
+                const building = new THREE.Mesh(geometry, baseMaterial);
+                building.position.x = x * spacing;
+                building.position.z = z * spacing;
+                building.position.y = height / 2;
+                scene.add(building);
+
+                // Neon streak color chosen per-building
+                const color = neonColors[Math.floor(Math.random() * neonColors.length)];
+
+                // Create edges geometry for streaks
+                const edges = new THREE.EdgesGeometry(geometry);
+
+                // Line material with additive blending for glow-like effect.
+                // Note: linewidth is not reliably supported across browsers, but kept for intent.
+                const lineMaterial = new THREE.LineBasicMaterial({
+                    color: color,
+                    transparent: true,
+                    opacity: 0.95,
+                    linewidth: 2,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const lineSegments = new THREE.LineSegments(edges, lineMaterial);
+
+                // Slightly scale the line segments so streaks appear as a halo on the edges
+                lineSegments.scale.multiplyScalar(1.002); // tiny offset to avoid z-fighting
+                lineSegments.position.copy(building.position);
+                scene.add(lineSegments);
+
+                // Optional: add a thin, tall glowing panel to one face for variety (subtle)
+                if (Math.random() < 0.25) {
+                    const panelGeom = new THREE.PlaneGeometry(0.4, height * 0.6);
+                    const panelMat = new THREE.MeshBasicMaterial({
+                        color: color,
+                        transparent: true,
+                        opacity: 0.12,
+                        blending: THREE.AdditiveBlending,
+                        side: THREE.DoubleSide
+                    });
+                    const panel = new THREE.Mesh(panelGeom, panelMat);
+                    panel.position.set(building.position.x, building.position.y + (height * 0.05), building.position.z + 0.61);
+                    scene.add(panel);
+                }
+            }
+        }
+
+        // Lights
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.25);
+        scene.add(ambientLight);
+
+        // a soft colored point light to give neon ambience
+        const pointLight = new THREE.PointLight(0x00ff66, 1.6, 60);
+        pointLight.position.set(10, 20, 10);
+        scene.add(pointLight);
+
+        // subtle fill from opposite side (cool feel)
+        const pointLight2 = new THREE.PointLight(0x800080, 0.6, 50);
+        pointLight2.position.set(-12, 16, -8);
+        scene.add(pointLight2);
+
+        // Texture loader
+        const textureLoader = new THREE.TextureLoader();
+        const moonTexture = textureLoader.load('moon.jpg'); // replace with your texture path
+
+        // Cyberpunk moon
+        const moonGeometry = new THREE.SphereGeometry(5, 32, 32);
+        const moonMaterial = new THREE.MeshStandardMaterial({
+            map: moonTexture,
+            emissive: 0xaaaaff,     // soft bluish glow
+            emissiveIntensity: 1.2,
+            roughness: 0.9,
+            metalness: 0.1
+        });
+        const moon = new THREE.Mesh(moonGeometry, moonMaterial);
+        moon.position.set(-15, 25, -40); // up and behind the skyline
+        scene.add(moon);
+
+        // Subtle moonlight
+        const moonLight = new THREE.PointLight(0xaaaaff, 0.35, 200);
+        moonLight.position.copy(moon.position);
+        scene.add(moonLight);
+
+
+        // Animation loop (no camera rotation — buildings have neon streaks)
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+
+</html>

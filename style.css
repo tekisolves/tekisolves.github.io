@@ -228,6 +228,7 @@ select option:hover {
 
 a {
     color: #00ff88;
+    text-decoration: none !important;
 }
 
 a:hover {

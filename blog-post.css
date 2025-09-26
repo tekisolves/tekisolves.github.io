@@ -1,0 +1,105 @@
+/* =========================
+   Blog Foundation Styles
+   ========================= */
+
+/* Blog Post Container */
+.blog-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 4rem 1.5rem;
+}
+
+/* Post Header */
+.post-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.post-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 0.5rem;
+}
+
+.post-meta {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.post-hero {
+    margin-top: 2rem;
+    border-radius: 12px;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.15);
+}
+
+/* Content */
+.blog-post section {
+    margin-bottom: 2.5rem;
+}
+
+.blog-post h2 {
+    font-size: 1.6rem;
+    color: #00ffe0;
+    margin-bottom: 1rem;
+    border-left: 3px solid #00ffe0;
+    padding-left: 0.75rem;
+}
+
+.blog-post p {
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    color: #e6e6e6;
+}
+
+.blog-post ul {
+    padding-left: 1.25rem;
+}
+
+.blog-post li {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+/* CTA Section */
+.cta {
+    background: linear-gradient(135deg, rgba(0, 255, 224, 0.1), rgba(0, 0, 0, 0.6));
+    padding: 2rem;
+    border: 1px solid rgba(0, 255, 224, 0.3);
+    border-radius: 0px;
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.cta p {
+    font-size: 1.1rem;
+    color: #fff;
+}
+
+.cta a {
+    color: #00ffe0;
+    font-weight: 600;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.cta a:hover {
+    color: #66fff0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .post-header h1 {
+        font-size: 2rem;
+    }
+
+    .blog-post {
+        padding: 2rem 1rem;
+    }
+
+    .blog-post h2 {
+        font-size: 1.3rem;
+    }
+}
