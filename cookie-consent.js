@@ -71,11 +71,11 @@ declineBtn.addEventListener('click', () => {
 cookieToggle.addEventListener('change', () => {
     if (cookieToggle.checked) {
         setConsent('accepted');
-        cookieToggleLabel.textContent = "Disable Analytics Cookies";
+        // cookieToggleLabel.textContent = "Disable Analytics Cookies";
         alert("Cookies accepted and analytics enabled.");
     } else {
         setConsent('declined');
-        cookieToggleLabel.textContent = "Enable Analytics Cookies";
+        // cookieToggleLabel.textContent = "Enable Analytics Cookies";
         alert("Cookies declined.");
     }
 });
