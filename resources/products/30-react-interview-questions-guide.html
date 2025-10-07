@@ -354,6 +354,51 @@
         <button id="decline-cookies" class="btn-decline">Decline</button>
     </div>
 
+    <section id="cta-form" class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="bg-dark p-4 rounded-3 shadow-lg">
+                    <h2 class="text-center text-white mb-4">Get Early Access</h2>
+                    <form action="https://formspree.io/f/xbjnvagd" method="POST" class="row g-3">
+                        <div class="col-md-4">
+                            <input name="name" type="text"
+                                class="form-control form-control-lg border-0 bg-black text-white"
+                                placeholder="Your Name" required>
+                        </div>
+                        <div class="col-md-4">
+                            <input name="email" type="email"
+                                class="form-control form-control-lg border-0 bg-black text-white"
+                                placeholder="Your Email" required>
+                        </div>
+                        <div class="col-md-3">
+                            <select name="interest" class="form-select form-select-lg border-0 bg-black text-white">
+                                <option selected>Interest</option>
+                                <option value="Guides">Guides</option>
+                                <option value="Cheat Sheets">Cheat Sheets</option>
+                                <option value="Templates">Templates</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="consent" name="consent" required>
+                                <label class="form-check-label text-white" for="consent">I consent to data
+                                    collection.</label>
+                            </div>
+                            <p class="text-center mt-2">
+                                <a href="/privacy-policy.html" target="_blank"
+                                    class="text-decoration-none text-light">View Privacy Policy</a>
+                            </p>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <div class="g-recaptcha" data-sitekey="6LfRgvEpAAAAAFGfzTbkAOGk4rU5T4K1rP5dMYC9"></div>
+                            <button type="submit" class="btn btn-lg btn-outline-light w-100">Get Early Access</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="site-footer bg-dark text-light py-4">
         <div class="container">
             <div class="row">
@@ -365,8 +410,7 @@
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a class="footer-link" href="../../index.html">Home</a></li>
-                        <li><a class="footer-link"
-                                href="beginner-software-engineering-roadmap-guide-2025.html">Beginner
+                        <li><a class="footer-link" href="beginner-software-engineering-roadmap-guide-2025.html">Beginner
                                 Coding Guide</a></li>
                         <li><a class="footer-link" href="30-react-interview-questions-guide.html">30
                                 Rreact Interview Questions Guide</a></li>
