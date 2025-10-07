@@ -369,3 +369,314 @@ footer {
 footer ul{
     margin: 0 !important;
 }
+
+/* ============================================
+   Add-on Enhancements (Non-destructive)
+   ============================================ */
+
+/* Smooth scroll for better feel */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Slight fade-in on load for a more polished entry */
+body {
+  opacity: 0;
+  animation: fadeInBody 0.8s ease-in forwards;
+}
+
+@keyframes fadeInBody {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Glow hover for links and buttons without breaking base colors */
+a, .btn-primary, #cookie-banner .btn-accept, #cookie-banner .btn-decline {
+  transition: all 0.25s ease-in-out !important;
+}
+
+a:hover, .btn-primary:hover, #cookie-banner .btn-accept:hover, #cookie-banner .btn-decline:hover {
+  filter: drop-shadow(0 0 6px rgba(0, 255, 136, 0.5));
+}
+
+/* Subtle background glow under cookie banner */
+#cookie-banner {
+  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/* Smooth button press animation */
+button, .btn, .btn-primary {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:active, .btn:active {
+  transform: scale(0.97);
+}
+
+/* Minor layout safety for mobile viewports */
+@media (max-width: 768px) {
+  #cookie-banner {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  form .form-control, form select {
+    width: 90%;
+  }
+}
+
+/* Modern subtle scrollbar (optional aesthetic touch) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: #00ff88;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00cc6a;
+}
+
+/* REACT LANDING PAGE STYLES (30-react-interview-questions-guide.html)
+    
+    FOCUS: Modern design trends (deep glow, smooth transitions, rounded corners) 
+    while amplifying the Teki Solves Cyber/Hacker aesthetic.
+*/
+
+/* --- Variables (Consistent Teki Solves Palette) --- */
+:root {
+    --color-primary-dark: #0d0d0d;
+    --color-highlight-green: #00ff88; /* Neon Primary */
+    --color-highlight-gold: #ffd700; /* Neon Accent */
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Exo', sans-serif;
+    --border-radius-lg: 12px;
+}
+
+/* --- Keyframes for Subtle Neon Pulse --- */
+@keyframes neon-pulse {
+    0%, 100% {
+        box-shadow: 0 0 10px var(--color-highlight-green);
+    }
+    50% {
+        box-shadow: 0 0 20px var(--color-highlight-green), 0 0 5px var(--color-highlight-green);
+    }
+}
+
+/* --- Hero Section & Typography --- */
+.hero {
+    padding-top: 140px;
+    padding-bottom: 100px;
+    background-color: var(--color-primary-dark);
+}
+
+.hero-title {
+    font-family: var(--font-heading);
+    font-size: 3.5rem; 
+    font-weight: 700;
+    color: #ffffff;
+    /* Intense neon text shadow */
+    text-shadow: 0 0 10px var(--color-highlight-green), 0 0 20px rgba(0, 255, 136, 0.4);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: var(--color-highlight-gold); /* Using gold accent for secondary title */
+    margin-bottom: 2rem;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: #bdbdbd; /* Lighter text for readability */
+}
+
+/* Responsive adjustment for titles */
+@media (max-width: 767px) {
+    .hero-title {
+        font-size: 2.7rem;
+    }
+    .hero-subtitle {
+        font-size: 1.4rem;
+    }
+}
+
+.hero img {
+    max-width: 100%;
+    border-radius: var(--border-radius-lg);
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); /* Strong gold/yellow glow */
+    transition: transform 0.4s ease;
+}
+
+.hero img:hover {
+    transform: perspective(1000px) rotateY(5deg) scale(1.03); /* Subtle 3D tilt/lift effect */
+}
+
+
+/* --- Primary CTA Button (High Conversion) --- */
+.btn-gold {
+    padding: 18px 45px;
+    font-size: 1.25rem;
+    border-radius: 6px; /* Override kickstart's 0px for a modern look */
+    letter-spacing: 1px;
+    /* Deep gold background, dark text */
+    background: var(--color-highlight-gold);
+    color: #000;
+    font-weight: 800;
+    border: none;
+    
+    /* Modern shadow effect (subtle lift) */
+    box-shadow: 0 10px 25px rgba(255, 215, 0, 0.4);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-gold:hover {
+    background-color: #ffc928; /* Slightly lighter on hover */
+    transform: translateY(-4px); /* Larger lift */
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.6), 0 0 10px rgba(255, 255, 255, 0.5); /* Stronger glow + highlight */
+}
+
+.final-cta-btn {
+    margin-top: 50px;
+}
+
+
+/* --- Section Styling & Headers --- */
+.section-title {
+    font-family: var(--font-heading);
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 50px;
+    font-size: 2rem;
+    padding-bottom: 10px;
+    
+    /* Modern: Underline is a light neon gradient line */
+    border-bottom: 3px solid transparent;
+    border-image: linear-gradient(to right, transparent 20%, var(--color-highlight-green), transparent 80%);
+    border-image-slice: 1;
+}
+
+/* Credibility Section (Slight background variance) */
+.credibility-section {
+    background-color: #151515;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.credibility-section .lead {
+    font-weight: 400;
+    font-size: 1.25rem;
+    color: #ccc;
+}
+
+
+/* --- Feature Boxes (Glass & Glow Effect) --- */
+.feature-box {
+    background-color: rgba(30, 30, 30, 0.7); /* Slightly transparent background */
+    padding: 30px;
+    border-radius: var(--border-radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* Subtle Glassmorphism effect */
+    backdrop-filter: blur(2px); 
+    -webkit-backdrop-filter: blur(2px);
+    
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.feature-box:hover {
+    border-color: var(--color-highlight-green);
+    box-shadow: 0 0 25px rgba(0, 255, 136, 0.5); /* Stronger green glow on hover */
+    background-color: rgba(30, 30, 30, 0.9);
+}
+
+.feature-box h3 {
+    color: var(--color-highlight-green);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+}
+
+.checklist {
+    list-style: none;
+    padding-left: 0;
+}
+
+.checklist li {
+    margin-bottom: 12px;
+    color: #e0e0e0;
+    font-family: var(--font-body);
+}
+
+.checkmark {
+    color: var(--color-highlight-gold); /* Gold checkmarks for better contrast */
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-right: 10px;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.7);
+}
+
+
+/* --- Urgency Section (Dark, Focused Contrast) --- */
+.urgency-section {
+    background-color: #080808;
+    border-top: 1px solid var(--color-highlight-green);
+    border-bottom: 1px solid var(--color-highlight-green);
+}
+
+.urgency-section .lead {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+
+/* --- FAQ Accordion (Intensified Cyber Look) --- */
+.faq-section {
+    background-color: #111;
+    padding: 50px 0;
+}
+
+.accordion-item {
+    background-color: #1e1e1e;
+    border: 2px solid #333; /* Thicker border */
+    margin-bottom: 15px;
+    border-radius: 8px; /* Slightly rounded */
+}
+
+.accordion-button {
+    background-color: #1e1e1e !important;
+    color: #ffffff !important;
+    font-weight: 600;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    transition: all 0.2s ease;
+}
+
+.accordion-button:not(.collapsed) {
+    color: var(--color-highlight-gold) !important;
+    background-color: #2a2a2a !important;
+    box-shadow: none;
+    border-bottom: 1px solid var(--color-highlight-green);
+    animation: neon-pulse 1.5s infinite alternate; /* Subtle pulse when active */
+}
+
+.accordion-body {
+    background-color: #111;
+    color: #ccc;
+    border-top: 1px solid #3d3d3d;
+}
+
+/* --- Footer Link Glow --- */
+.footer-link:hover {
+    color: var(--color-highlight-green);
+    text-shadow: 0 0 5px rgba(0, 255, 136, 0.8);
+}
