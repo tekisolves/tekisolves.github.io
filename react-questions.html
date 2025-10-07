@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Top 30 React JS Interview Questions & Answers PDF Guide (2025 Edition)</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- GLOBAL / PRINT ---------- */
+    @page {
+      size: A4;
+      margin: 25mm 18mm 18mm 18mm;
+    }
+
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f9fbff;
+      color: #11151c;
+      font-family: 'Exo 2', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    :root {
+      --bg: #f9fbff;
+      --muted: #4a5c74;
+      --accent-green: #008c4a;
+      --accent-cyan: #007b8f;
+      --accent-purple: #5a3bcf;
+      --title-yellow: #c28b00;
+    }
+
+    /* ---------- STRUCTURE ---------- */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .cover {
+      page-break-after: always;
+      height: calc(297mm - 56mm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, #ffffff 0%, #f0f4ff 100%);
+    }
+
+    .cover img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* ---------- TITLES ---------- */
+    .title {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--title-yellow);
+      text-align: center;
+      margin: 10px 0 18px;
+      letter-spacing: 0.5px;
+      font-size: 20px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-size: 13px;
+    }
+
+    /* ---------- Q/A CARDS ---------- */
+    .qa {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(242, 245, 252, 0.8));
+      border-left: 4px solid rgba(0, 140, 74, 0.3);
+      padding: 14px 18px;
+      margin: 12px 0;
+      border-radius: 6px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      color: #1a1e25;
+      page-break-inside: avoid;
+    }
+
+    .q {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent-green);
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .a {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .code {
+      font-family: 'Courier New', Courier, monospace;
+      background: rgba(0, 0, 0, 0);
+      padding: 2px 6px;
+      border-radius: 4px;
+      border-color: #008c4a;
+      color: #000;
+      font-size: 12px;
+    }
+
+    /* ---------- BONUS ---------- */
+    aside {
+      margin-top: 20px;
+      page-break-inside: avoid;
+    }
+
+    aside div {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent-purple);
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    aside ul {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      margin-top: 28px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 11px;
+      page-break-inside: avoid;
+    }
+
+    .footer a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @media (max-width:700px) {
+      .container {
+        padding: 12px;
+      }
+
+      .title {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ---------- COVER ---------- -->
+  <section class="cover">
+    <img src="react-questions-cover.png" alt="React Interview Cover" />
+  </section>
+
+  <!-- ---------- MAIN CONTENT ---------- -->
+  <main class="container">
+    <header>
+      <div class="title">Top 30 React JS Interview Questions & Answers PDF Guide (2025 Edition)</div>
+      <div class="subtitle">Top 30 Most-Asked React JS Interview Questions — concise answers for fast interview prep</div>
+    </header>
+
+    <article>
+      <section class="qa">
+        <div class="q">1) What is React?</div>
+        <div class="a">React is a JavaScript library for building user interfaces using a component-based architecture and state-driven rendering patterns.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">2) What are the main features of React?</div>
+        <div class="a">Declarative UI, component-based structure, virtual DOM diffing for efficient updates, and one-way (unidirectional) data flow.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">3) What is JSX?</div>
+        <div class="a">JSX is a syntax extension that lets developers write HTML-like markup inside JavaScript; it compiles to <span class="code">React.createElement</span> calls.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">4) What is the Virtual DOM?</div>
+        <div class="a">A lightweight in-memory representation of the DOM that React diffs to compute minimal real DOM updates for better performance.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">5) What are components in React?</div>
+        <div class="a">Reusable building blocks that encapsulate UI structure, behavior, and styling; applications are composed by nesting components.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">6) Difference between functional and class components?</div>
+        <div class="a">Functional components are functions using hooks for state and side effects; class components use lifecycle methods and <span class="code">this</span>, and are less common in new code.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">7) What are props?</div>
+        <div class="a">Props are read-only inputs passed from parent to child components to configure rendering and behavior.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">8) What is state?</div>
+        <div class="a">State is component-owned mutable data that determines rendering; updating state schedules a re-render.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">9) What is the purpose of <span class="code">useState</span>?</div>
+        <div class="a"><span class="code">useState</span> creates state variables in functional components and returns a setter to update them and trigger re-renders.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">10) What is the <span class="code">useEffect</span> hook used for?</div>
+        <div class="a"><span class="code">useEffect</span> runs side effects (data fetches, subscriptions, DOM updates); the dependency array controls when it executes.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">11) What is the Context API?</div>
+        <div class="a">Context allows sharing values (theme, auth, locale) across the component tree without prop drilling, via Provider and <span class="code">useContext</span>.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">12) What are keys in React lists?</div>
+        <div class="a">Keys are stable identifiers that help React track list items between renders to minimize DOM changes; avoid using array indices when order can change.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">13) What is prop drilling?</div>
+        <div class="a">Prop drilling is passing props through many component layers; Context or state libraries often replace it for deep trees.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">14) What are controlled components?</div>
+        <div class="a">Form inputs whose values are driven by React state; components update state on change and read the value from state.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">15) What are uncontrolled components?</div>
+        <div class="a">Form inputs that manage their own internal DOM state; refs are used to read values when needed.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">16) What is the <span class="code">useRef</span> hook?</div>
+        <div class="a"><span class="code">useRef</span> returns a mutable object with a <span class="code">.current</span> property; use it for DOM nodes or persisted mutable values across renders.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">17) What are higher-order components (HOCs)?</div>
+        <div class="a">HOCs are functions that take a component and return a new component with added behavior or props; hooks often replace HOCs in modern patterns.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">18) What is the purpose of <span class="code">React.memo</span>?</div>
+        <div class="a"><span class="code">React.memo</span> memoizes a functional component to skip re-renders when props are shallowly equal; useful for performance when used correctly.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">19) What is the <span class="code">useCallback</span> hook?</div>
+        <div class="a"><span class="code">useCallback</span> returns a stable function reference that only changes when dependencies change, helping avoid unnecessary child re-renders.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">20) What is the <span class="code">useMemo</span> hook?</div>
+        <div class="a"><span class="code">useMemo</span> memoizes an expensive computed value and recomputes it only when dependencies change.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">21) What is the purpose of <span class="code">React.lazy</span>?</div>
+        <div class="a"><span class="code">React.lazy</span> enables dynamic import of components for code-splitting; use with <span class="code">Suspense</span> to show fallbacks while loading.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">22) What are React Fragments?</div>
+        <div class="a">Fragments let components return multiple children without adding extra DOM nodes using <span class="code">&lt;&gt;&lt;/&gt;</span> or <span class="code">&lt;React.Fragment&gt;</span>.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">23) What is <span class="code">useReducer</span>?</div>
+        <div class="a"><span class="code">useReducer</span> manages complex state logic with a reducer function and is preferable when next state depends on previous state or multiple sub-values exist.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">24) Difference: <span class="code">componentDidMount</span> vs <span class="code">componentDidUpdate</span>?</div>
+        <div class="a"><span class="code">componentDidMount</span> runs once after initial render; <span class="code">componentDidUpdate</span> runs after updates. In functional components, <span class="code">useEffect</span> replicates both with dependency control.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">25) What is the purpose of <span class="code">shouldComponentUpdate</span>?</div>
+        <div class="a"><span class="code">shouldComponentUpdate</span> lets class components skip renders by returning false; <span class="code">PureComponent</span> and <span class="code">React.memo</span> perform shallow comparisons automatically.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">26) What are error boundaries?</div>
+        <div class="a">Error boundaries are components that catch render-time errors in their child tree to log errors and render a fallback UI; implemented via lifecycle methods in class components.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">27) What is the <span class="code">forwardRef</span> function?</div>
+        <div class="a"><span class="code">forwardRef</span> passes a ref from a parent through a component to a child DOM node, enabling parent-level control of child DOM elements.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">28) What is the purpose of <span class="code">React.StrictMode</span>?</div>
+        <div class="a"><span class="code">React.StrictMode</span> is a development-only helper that highlights unsafe lifecycles, legacy APIs, and other side effects to encourage best practices.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">29) Difference between CSR and SSR?</div>
+        <div class="a">Client-side rendering (CSR) renders in the browser after JS loads; server-side rendering (SSR) renders HTML on the server for faster first paint and better SEO for public pages.</div>
+      </section>
+
+      <section class="qa">
+        <div class="q">30) What are React Portals?</div>
+        <div class="a">Portals render children into a DOM node outside the parent hierarchy and are ideal for modals, tooltips, and overlays to avoid z-index and stacking issues.</div>
+      </section>
+    </article>
+
+    <aside>
+      <div>Bonus: Interview-ready add-ons</div>
+      <ul>
+        <li>Performance: memoization, avoid inline objects, code-split with React.lazy/Suspense.</li>
+        <li>Patterns: lift state, build custom hooks, use Context judiciously.</li>
+        <li>Practice: create a small feature using useReducer + Context and profile with React Profiler.</li>
+      </ul>
+    </aside>
+
+    <footer class="footer">
+      <div>© Teki Solves — Not for redistribution.</div>
+      <div>Test these questions: <a href="https://tekitestbot-github-io-wb8m.vercel.app/">tekitestbot</a></div>
+    </footer>
+  </main>
+</body>
+
+</html>
