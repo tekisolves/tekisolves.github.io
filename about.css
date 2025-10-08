@@ -1,0 +1,65 @@
+/* about.css – lightweight custom styling for About page */
+.lead .text-muted{
+    color: #fff !important;
+}
+
+.text-accent {
+  color: #ffc928 !important;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border-radius: 12px !important;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #ffc928, #baa156);
+  border: none;
+  color: #052422;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  opacity: .9;
+}
+
+.btn-outline-light {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+.cover-img{
+    background-image: url('running-man.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cover-img h1{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cover-img a{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.cover-img p{
+    background-color: rgba(0, 0, 0, 0.5);
+}

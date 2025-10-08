@@ -48,10 +48,10 @@ function updateToggleLabel() {
     const consent = getConsent();
     if (consent === 'accepted') {
         cookieToggle.checked = true;
-        cookieToggleLabel.textContent = "Disable Analytics Cookies";
+        //cookieToggleLabel.textContent = "Disable Analytics Cookies";
     } else {
         cookieToggle.checked = false;
-        cookieToggleLabel.textContent = "Enable Analytics Cookies";
+        //cookieToggleLabel.textContent = "Enable Analytics Cookies";
     }
 }
 
