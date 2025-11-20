@@ -7,6 +7,38 @@ body {
     padding: 0;
 }
 
+/* Headings use Orbitron */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+li,
+blockquote,
+span {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Paragraphs and general text use Exo */
+p {
+    font-family: 'Exo', sans-serif;
+}
+
+.btn-cta {
+    text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
+        1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+}
+
+/* Optional subtle highlight class for breaking text visually */
+.highlight-text {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
 #bg-video {
     position: fixed;
     top: 0;
@@ -91,9 +123,6 @@ footer {
 form .form-control,
 form select,
 form input[type="checkbox"]+label,
-form button {
-    font-family: 'Orbitron', sans-serif;
-}
 
 /* Inputs & Selects */
 form .form-control,
@@ -257,7 +286,6 @@ ul {
     width: 100%;
     background: rgba(0, 0, 0, 0.9);
     color: #fff;
-    font-family: 'Orbitron', sans-serif;
     display: none;
     /* show with JS */
     z-index: 1000;
@@ -332,7 +360,6 @@ ul {
 }
 
 .form-check-label {
-    font-family: 'Orbitron', sans-serif;
     color: #ccc;
     /* muted text */
     margin-left: 0.5rem;
@@ -494,7 +521,6 @@ button:active,
 }
 
 .hero-title {
-    font-family: var(--font-heading);
     font-size: 3.5rem;
     font-weight: 700;
     color: #ffffff;
@@ -505,7 +531,6 @@ button:active,
 }
 
 .hero-subtitle {
-    font-family: var(--font-body);
     font-weight: 600;
     font-size: 1.8rem;
     color: var(--color-highlight-gold);
@@ -578,7 +603,6 @@ button:active,
 
 /* --- Section Styling & Headers --- */
 .section-title {
-    font-family: var(--font-heading);
     text-align: center;
     color: #ffffff;
     margin-bottom: 50px;
@@ -629,7 +653,6 @@ button:active,
 
 .feature-box h3 {
     color: var(--color-highlight-green);
-    font-family: var(--font-body);
     font-weight: 700;
     font-size: 1.3rem;
     margin-bottom: 15px;
@@ -643,7 +666,6 @@ button:active,
 .checklist li {
     margin-bottom: 12px;
     color: #e0e0e0;
-    font-family: var(--font-body);
 }
 
 .checkmark {
@@ -688,7 +710,6 @@ button:active,
     background-color: #1e1e1e !important;
     color: #ffffff !important;
     font-weight: 600;
-    font-family: var(--font-body);
     font-size: 1.05rem;
     transition: all 0.2s ease;
 }
@@ -782,7 +803,6 @@ button:active,
     border: 1px solid rgba(212, 175, 55, 0.08);
     border-radius: var(--ec-radius);
     outline: none;
-    font-family: inherit;
     font-size: 1rem;
     transition: box-shadow var(--ec-transition), border-color var(--ec-transition), transform var(--ec-transition);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
@@ -1043,7 +1063,6 @@ h1,
 h2,
 h3,
 h4 {
-    font-family: 'Orbitron', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -1077,7 +1096,6 @@ h4 {
 
 .hero-ctas .btn {
     margin-right: 1rem;
-    font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     font-weight: 700;
 }
@@ -1152,7 +1170,6 @@ h4 {
 }
 
 .post-title {
-    font-family: 'Orbitron', sans-serif;
     font-size: 1.25rem;
     color: #ffd700;
     margin-bottom: 0.75rem;
@@ -1225,7 +1242,6 @@ h4 {
 }
 
 .hero-title {
-    font-family: 'Orbitron', sans-serif;
     font-size: 3.5rem;
     font-weight: 700;
     color: #ffffff;
@@ -1236,7 +1252,6 @@ h4 {
 }
 
 .hero-subtitle {
-    font-family: 'Exo', sans-serif;
     font-weight: 600;
     font-size: 1.8rem;
     color: var(--color-highlight-gold);
@@ -1309,7 +1324,6 @@ h4 {
 
 /* --- Section Styling & Headers --- */
 .section-title {
-    font-family: 'Orbitron', sans-serif;
     text-align: center;
     color: #ffffff;
     margin-bottom: 50px;
@@ -1360,7 +1374,6 @@ h4 {
 
 .feature-box h3 {
     color: var(--color-highlight-green);
-    font-family: 'Exo', sans-serif;
     font-weight: 700;
     font-size: 1.3rem;
     margin-bottom: 15px;
@@ -1374,7 +1387,6 @@ h4 {
 .checklist li {
     margin-bottom: 12px;
     color: #e0e0e0;
-    font-family: 'Exo', sans-serif;
 }
 
 .checkmark {
@@ -1419,7 +1431,6 @@ h4 {
     background-color: #1e1e1e !important;
     color: #ffffff !important;
     font-weight: 600;
-    font-family: 'Exo', sans-serif;
     font-size: 1.05rem;
     transition: all 0.2s ease;
 }
@@ -1446,16 +1457,8 @@ h4 {
 }
 
 body {
-    /* font-family: 'Exo', sans-serif; */
     background-color: #0d0d0d;
     color: #f5f5f5;
-}
-
-h1,
-h2,
-h3,
-.hero-title {
-    font-family: 'Orbitron', sans-serif;
 }
 
 .navbar {
