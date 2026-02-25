@@ -1,0 +1,24 @@
+# _config.yml for portfolYOU (key edits only)
+
+title: "Teki Solves | Dev Cheat Sheets & Roadmaps"
+description: "Practical cheat sheets and roadmaps for beginner developers to land their first job faster."
+url: "https://tekisolve.github.io"  # your github.io
+baseurl: ""
+
+# Social (add yours)
+twitter_username: tekisolves
+tiktok: tekisolves
+instagram: tekisolves
+github_username: tekisolves  # from your brand
+email: tekisolutions2@gmail.com
+github_link: ""
+
+# Build settings
+# theme: portfolYOU
+plugins:
+  - jekyll-feed
+
+author:
+  image: "/assets/img/tekisolutions_b-50.png" # Path to your image
+  name: "Teki Solves"
+  description: "Practical cheat sheets and roadmaps for beginner developers to land their first job"
