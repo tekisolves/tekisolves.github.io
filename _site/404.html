@@ -5,6 +5,24 @@
 <html lang="en">
 
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  if (localStorage.getItem("analytics-consent") === "true") {
+
+    const s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=G-8NWH600XP9";
+    document.head.prepend(s);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-8NWH600XP9');
+
+  }
+});
+</script>
 
   
   

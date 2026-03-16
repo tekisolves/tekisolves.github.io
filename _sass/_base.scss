@@ -1,9 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+// html {
+//   padding-left: calc(100vw - 100%);
+// }
+
 html {
-  padding-left: calc(100vw - 100%);
+  scroll-behavior: smooth;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .badge {
@@ -12,6 +21,7 @@ body {
 
 .bg-light,
 .badge-light {
+
   &,
   * {
     color: $text-black !important;
@@ -20,8 +30,62 @@ body {
 
 .bg-dark,
 .badge-dark {
+
   &,
   * {
     color: $text-white !important;
   }
+}
+
+.analytics-control {
+  display: flex;
+  align-items: center;
+}
+
+.analytics-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.analytics-switch input {
+  display: none;
+}
+
+/* Toggle track */
+.slider {
+  width: 36px;
+  height: 18px;
+  background: #d1d5db;
+  border-radius: 999px;
+  position: relative;
+  transition: background 0.2s ease;
+}
+
+/* Toggle knob */
+.slider::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s ease;
+}
+
+/* Checked state */
+.analytics-switch input:checked+.slider {
+  background: #2563eb;
+}
+
+.analytics-switch input:checked+.slider::before {
+  transform: translateX(18px);
+}
+
+a, a:visited, a:hover, a:active {
+  text-align: none!important;
 }

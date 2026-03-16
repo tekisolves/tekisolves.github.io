@@ -18,6 +18,14 @@ github_link: ""
 plugins:
   - jekyll-feed
 
+analytics:
+  enabled: true
+  provider: "google" # or "plausible"
+  google:
+    tracking_id: "G-8NWH600XP9" # replace with your Google Analytics tracking ID
+  plausible:
+    domain: "tekisolves.github.io" # replace with your Plausible Analytics domain
+
 author:
   image: "/assets/img/tekisolutions_b-50.png" # Path to your image
   name: "Teki Solves"

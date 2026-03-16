@@ -7,7 +7,6 @@
 -->
 
 <html lang="en" class="h-100">
-
 {% include head.html %}
 
 <body class="h-100 d-flex flex-column">
@@ -18,12 +17,92 @@
   </main>
   {% include footer.html %}
 
-  {% include analytics.html %}
+  <div id="analytics-container"></div>
+
   {% include scripts.html %}
 
   {%- if site.buymeacoffee.enabled == true -%}
-    <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js" data-id="{{ site.buymeacoffee.username }}" data-description="{{ site.buymeacoffee.description }}" data-message="{{ site.buymeacoffee.message }}" data-color="{{ site.buymeacoffee.color }}" data-position="Right" data-x_margin="16" data-y_margin="16"></script>
+  <script data-name="BMC-Widget" data-cfasync="false" src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+    data-id="{{ site.buymeacoffee.username }}" data-description="{{ site.buymeacoffee.description }}"
+    data-message="{{ site.buymeacoffee.message }}" data-color="{{ site.buymeacoffee.color }}" data-position="Right"
+    data-x_margin="16" data-y_margin="16"></script>
   {%- endif -%}
+  <div id="cookie-banner"
+    style="position:fixed;bottom:0;left:0;right:0;background:#111;color:#fff;padding:15px;text-align:center;display:none;">
+    This site uses analytics.
+    <button onclick="acceptAnalytics()">Accept</button>
+    <button onclick="declineAnalytics()">Decline</button>
+  </div>
+  <script>
+    const SIX_MONTHS = 15552000000; // ms
+
+    function setConsent(value) {
+      localStorage.setItem("analytics-consent", value);
+      localStorage.setItem("analytics-consent-expiry", Date.now() + SIX_MONTHS);
+    }
+
+    function getConsent() {
+      const consent = localStorage.getItem("analytics-consent");
+      const expiry = localStorage.getItem("analytics-consent-expiry");
+
+      if (!expiry || Date.now() > expiry) {
+        localStorage.removeItem("analytics-consent");
+        localStorage.removeItem("analytics-consent-expiry");
+        return null;
+      }
+
+      return consent;
+    }
+
+    function loadAnalytics() {
+      const template = document.getElementById("analytics-template");
+      const container = document.getElementById("analytics-container");
+      container.innerHTML = template.innerHTML;
+      location.reload();
+    }
+
+    function acceptAnalytics() {
+      setConsent("true");
+      document.getElementById("cookie-banner").style.display = "none";
+      loadAnalytics();
+    }
+
+    function declineAnalytics() {
+      setConsent("false");
+      document.getElementById("cookie-banner").style.display = "none";
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const consent = getConsent();
+
+      if (consent === "true") {
+        loadAnalytics();
+      } else if (!consent) {
+        document.getElementById("cookie-banner").style.display = "block";
+      }
+    });
+
+    const toggle = document.getElementById("analyticsToggle");
+
+    const consent = getConsent();
+
+    if (consent === "true") {
+      toggle.checked = true;
+    }
+
+    toggle.addEventListener("change", function () {
+
+      if (this.checked) {
+        setConsent("true");
+        loadAnalytics();
+      } else {
+        setConsent("false");
+        location.reload();
+      }
+
+    });
+  </script>
+
 </body>
 
 </html>
