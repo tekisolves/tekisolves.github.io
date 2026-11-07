@@ -1,0 +1,29 @@
+[
+  {
+    "id": "retro-arsenal",
+    "name": "Retro Arsenal",
+    "slug": "retro-arsenal.html",
+    "category": "Game assets",
+    "status": "available",
+    "shortDescription": "Stylized retro-futurist 2D weapon assets for indie game developers.",
+    "problemSolved": "A game developer can build gameplay but may not want to spend hours creating every art asset. Retro Arsenal gives you visuals that fit together so you can keep moving on the game.",
+    "audience": "Indie developers working on stylized 2D projects, including sci-fi, futuristic action, dystopian or arcade-style games where the visual language fits.",
+    "price": null,
+    "currency": null,
+    "formats": ["Transparent PNG", "SVG source", "Atlas + JSON metadata"],
+    "includedItems": [
+      "15 sprites: 5 weapon types across 3 tiers",
+      "Consistent silhouettes across the set",
+      "Pivots / action points",
+      "1024 × 1024 transparent PNGs",
+      "SVG source files",
+      "An atlas and JSON metadata"
+    ],
+    "requirements": null,
+    "licenceSummary": null,
+    "store": "itch.io",
+    "storeUrl": "https://tekisolves.itch.io/retro-arsenal-sci-fi-weapon-sprites",
+    "previewImages": ["assets/retro-arsenal-preview-dark.png", "assets/retro-arsenal-preview-light.png"],
+    "relatedProductIds": []
+  }
+]
