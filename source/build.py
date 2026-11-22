@@ -61,7 +61,9 @@ def page_url(path):
 def canon(path):
     return f'<link rel="canonical" href="{page_url(path)}">' if SITE_URL else ""
 
-def shell(path, title, desc, body, current="", robots="index, follow", og_image="", head_extra=""):
+DEFAULT_OG_IMAGE = "assets/og-retro-arsenal.png"   # share image for pages that don't set their own
+
+def shell(path, title, desc, body, current="", robots="index, follow", og_image=DEFAULT_OG_IMAGE, head_extra=""):
     og = f'<meta property="og:url" content="{page_url(path)}">' if SITE_URL else ""
     if og_image and SITE_URL:
         og += f'<meta property="og:image" content="{SITE_URL}/{og_image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">'
@@ -80,7 +82,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <meta name="description" content="{esc(desc)}">
 <meta name="robots" content="{robots}">
 <meta name="theme-color" content="#101311">
-{canon(path)}
+{"" if "noindex" in robots else canon(path)}
 <meta property="og:type" content="website"><meta property="og:site_name" content="Teki Solves">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{og}
 <link rel="icon" type="image/png" href="assets/favicon.png">
