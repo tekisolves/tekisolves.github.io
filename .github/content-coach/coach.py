@@ -78,8 +78,18 @@ def pick(kind, day):
 
 
 def is_done(task):
+    """Done = the file exists. A blog post still marked 'draft: true' doesn't count yet."""
     p = task.get("done_when")
-    return bool(p) and os.path.exists(os.path.join(REPO, p))
+    if not p:
+        return False
+    full = os.path.join(REPO, p)
+    if not os.path.exists(full):
+        return False
+    if full.endswith(".md"):
+        head = open(full, encoding="utf-8").read().split("---")[:2]
+        if any(line.strip().lower() in ("draft: true", "draft: yes") for line in "".join(head).splitlines()):
+            return False
+    return True
 
 
 def load(path, default):

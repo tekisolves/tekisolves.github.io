@@ -56,7 +56,7 @@ def diamond_line():
 
 # ---------- shared shell ----------
 def page_url(path):
-    return f'{SITE_URL}/{"" if path == "index.html" else path}'
+    return f'{SITE_URL}/{path[:-len("index.html")] if path.endswith("index.html") else path}'
 
 def canon(path):
     return f'<link rel="canonical" href="{page_url(path)}">' if SITE_URL else ""
@@ -64,11 +64,11 @@ def canon(path):
 DEFAULT_OG_IMAGE = "assets/og-retro-arsenal.png"   # share image for pages that don't set their own
 ITCH_PROFILE = "https://tekisolves.itch.io"
 
-def shell(path, title, desc, body, current="", robots="index, follow", og_image=DEFAULT_OG_IMAGE, head_extra=""):
+def shell(path, title, desc, body, current="", robots="index, follow", og_image=DEFAULT_OG_IMAGE, head_extra="", og_type="website"):
     og = f'<meta property="og:url" content="{page_url(path)}">' if SITE_URL else ""
     if og_image and SITE_URL:
         og += f'<meta property="og:image" content="{SITE_URL}/{og_image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">'
-    nav = [("products.html","Products"),("about.html","About"),("contact.html","Contact")]
+    nav = [("products.html","Products"),("blog/","Blog"),("about.html","About"),("contact.html","Contact")]
     cur = ' aria-current="page"'
     desk = "".join(f'<a href="{h}"{cur if h==current else ""}>{t}</a>' for h,t in nav)
     mob = "".join(f'<a href="{h}">{t}</a>' for h,t in nav)
@@ -88,12 +88,13 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <meta name="robots" content="{robots}">
 <meta name="theme-color" content="#101311">
 {"" if "noindex" in robots else canon(path)}
-<meta property="og:type" content="website"><meta property="og:site_name" content="Teki Solves">
+<meta property="og:type" content="{og_type}"><meta property="og:site_name" content="Teki Solves">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{og}
 <link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<link rel="alternate" type="application/rss+xml" title="Teki Solves blog" href="blog/feed.xml">
 <script>document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('consent','default',{{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'}});</script>
 <script type="application/ld+json">{org}</script>
 {head_extra}
@@ -115,7 +116,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
   <div class="wrap footer-inner">
     <div><a class="brand" href="index.html" aria-label="Teki Solves home"><span class="brand-mark"><img src="assets/logo-diamond.png" alt="Teki Solves logo" width="26" height="26"></span><span class="brand-text">TEKI / SOLVES</span></a>
     <p class="mono" style="margin-top:1rem;font-size:.72rem;letter-spacing:.14em;color:var(--gold)">KEEP IT SIMPLE, PROBLEM SOLVED.</p></div>
-    <div class="footer-links"><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="{ITCH_PROFILE}" target="_blank" rel="noopener">Teki Solves on itch.io</a><button class="footer-link cookie-settings-trigger" type="button">Cookie Settings</button></div>
+    <div class="footer-links"><a href="products.html">Products</a><a href="blog/">Blog</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="{ITCH_PROFILE}" target="_blank" rel="noopener">Teki Solves on itch.io</a><button class="footer-link cookie-settings-trigger" type="button">Cookie Settings</button></div>
     <div class="footer-meta"><a href="mailto:{EMAIL}" style="text-decoration:none">{EMAIL}</a><span>© 2026 Teki Solves</span></div>
   </div>
 </footer>
@@ -515,6 +516,142 @@ def not_found():
 <section class="page-hero"><div class="wrap"><span class="eyebrow">404</span><h1 style="margin-top:1rem">That page wandered off.</h1>
 <p class="lede">Let’s get you somewhere useful.</p><p style="margin-top:1.6rem"><a class="btn btn-primary" href="products.html">Explore products</a></p></div></section>''', robots="noindex")
 
+# ---------- blog ----------
+# Posts are Markdown files in source/blog/<slug>.md with a small header:
+#   ---
+#   title: How to ...            (the <h1>)
+#   seo_title: Short title       (optional, for Google tabs and results, under 60 characters)
+#   description: One or two sentences for Google (50-160 characters)
+#   date: 2026-12-06             (first published)
+#   updated: 2026-12-06          (change this whenever you improve the post)
+#   draft: true                  (drafts are never published; delete the line to publish)
+#   image: assets/blog/x.webp    (optional share image, 1200x630)
+#   image_alt: What the image shows
+#   made: How this post was made (shown at the end, honest note)
+#   ---
+# Preview drafts locally with:  BLOG_DRAFTS=1 TEKI_EMAIL=... python3 build.py
+import datetime, markdown as md_lib
+
+BLOG_DIR = os.path.join(HERE, "blog")
+AUTHOR = {"name": "Khaya Khumalo",
+          "bio": "Self-taught senior full-stack engineer with 10+ years of experience, including Meta and Accenture. "
+                 "I make game assets and small, useful digital products at Teki Solves."}
+
+def read_post(path):
+    raw = open(path, encoding="utf-8").read()
+    meta, body = {}, raw
+    m = re.match(r"---\s*\n(.*?)\n---\s*\n(.*)", raw, re.S)
+    if m:
+        for line in m.group(1).splitlines():
+            if ":" in line:
+                k, v = line.split(":", 1)
+                meta[k.strip()] = v.strip()
+        body = m.group(2)
+    meta["slug"] = os.path.splitext(os.path.basename(path))[0]
+    meta["draft"] = meta.get("draft", "").lower() in ("true", "yes", "1")
+    meta.setdefault("updated", meta.get("date", ""))
+    conv = md_lib.Markdown(extensions=["fenced_code", "tables", "toc", "attr_list"],
+                           extension_configs={"toc": {"permalink": False}})
+    meta["html"] = conv.convert(body)
+    meta["toc"] = conv.toc_tokens
+    words = len(re.findall(r"\w+", body))
+    meta["minutes"] = max(1, round(words / 220))
+    return meta
+
+def blog_posts():
+    if not os.path.isdir(BLOG_DIR):
+        return []
+    show_drafts = os.environ.get("BLOG_DRAFTS") == "1"
+    posts = [read_post(os.path.join(BLOG_DIR, f)) for f in sorted(os.listdir(BLOG_DIR)) if f.endswith(".md")]
+    return sorted([p for p in posts if show_drafts or not p["draft"]], key=lambda p: p["date"], reverse=True)
+
+def nice_date(d):
+    return datetime.date.fromisoformat(d).strftime("%-d %B %Y")
+
+def post_page(p):
+    path = f'blog/{p["slug"]}/index.html'
+    url = page_url(path)
+    image = p.get("image") or DEFAULT_OG_IMAGE
+    schema = [{
+        "@context": "https://schema.org", "@type": "BlogPosting",
+        "headline": p["title"], "description": p["description"],
+        "datePublished": p["date"], "dateModified": p["updated"],
+        "author": {"@type": "Person", "name": AUTHOR["name"], "url": f"{SITE_URL}/about.html"},
+        "publisher": {"@type": "Organization", "name": "Teki Solves", "logo": {"@type": "ImageObject", "url": f"{SITE_URL}/assets/logo-diamond.png"}},
+        "image": f"{SITE_URL}/{image}", "mainEntityOfPage": url, "url": url},
+        {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Blog", "item": f"{SITE_URL}/blog/"},
+            {"@type": "ListItem", "position": 2, "name": p["title"], "item": url}]}]
+    head = "".join(f'<script type="application/ld+json">{json.dumps(x, ensure_ascii=False)}</script>' for x in schema)
+    head += f'<meta property="article:published_time" content="{p["date"]}"><meta property="article:modified_time" content="{p["updated"]}"><meta name="author" content="{esc(AUTHOR["name"])}">'
+    updated = f' · Updated <time datetime="{p["updated"]}">{nice_date(p["updated"])}</time>' if p["updated"] != p["date"] else ""
+    toc = "".join(f'<li><a href="#{t["id"]}">{esc(t["name"])}</a></li>' for t in p["toc"] if t["level"] == 2) if p["toc"] else ""
+    toc_html = f'<nav class="post-toc" aria-label="On this page"><p class="eyebrow">On this page</p><ol>{toc}</ol></nav>' if toc else ""
+    made = f'<p class="note made-note"><strong>How this post was made:</strong> {esc(p["made"])}</p>' if p.get("made") else ""
+    draft = '<p class="draft-flag">DRAFT, not published</p>' if p["draft"] else ""
+    body = f'''
+<article class="post">
+<header class="page-hero post-hero">
+  <div class="wrap post-wrap">
+    {draft}<p class="crumbs"><a href="blog/">Blog</a> / Tutorial</p>
+    <h1>{esc(p["title"])}</h1>
+    <p class="lede">{esc(p["description"])}</p>
+    <p class="post-meta">By <a href="about.html">{esc(AUTHOR["name"])}</a> · <time datetime="{p["date"]}">{nice_date(p["date"])}</time>{updated} · {p["minutes"]} min read</p>
+  </div>
+</header>
+<div class="band"><div class="wrap post-wrap">
+  {toc_html}
+  <div class="post-body">{p["html"]}</div>
+  {made}
+  <aside class="author-box" aria-label="About the author"><p class="eyebrow">Written by</p><p><strong>{esc(AUTHOR["name"])}</strong>. {esc(AUTHOR["bio"])}</p></aside>
+  <p style="margin-top:2rem"><a class="link-arrow" href="blog/">← All posts</a></p>
+</div></div>
+</article>'''
+    robots = "noindex" if p["draft"] else "index, follow"
+    return path, shell(path, p.get("seo_title") or f'{p["title"]} | Teki Solves', p["description"], body, current="blog/",
+                       robots=robots, og_image=image, head_extra=head, og_type="article")
+
+def blog_index(posts):
+    path = "blog/index.html"
+    if posts:
+        items = "".join(f'''<article class="post-card reveal">
+  <p class="post-meta"><time datetime="{p["date"]}">{nice_date(p["date"])}</time> · {p["minutes"]} min read</p>
+  <h2><a href="blog/{p["slug"]}/">{esc(p["title"])}</a></h2>
+  <p>{esc(p["description"])}</p>
+  <span class="card-cta" aria-hidden="true">Read it →</span>
+</article>''' for p in posts)
+    else:
+        items = '''<div class="post-card"><h2>First post lands in early December</h2>
+  <p>A hands-on Phaser 4 tutorial: loading a texture atlas and lining weapons up properly, with a free sample to follow along with.</p></div>'''
+    body = f'''
+<section class="page-hero">
+  <div class="wrap post-wrap">
+    <span class="eyebrow">The Teki Solves blog</span>
+    <h1 style="margin-top:1rem">Practical game dev notes.</h1>
+    <p class="lede">Tutorials and build notes for indie developers, written from real work: what worked, what broke, and the code to skip the trial and error.</p>
+  </div>
+</section>
+<section class="band band-cream"><div class="wrap post-wrap post-list">{items}</div></section>'''
+    head = f'<script type="application/ld+json">{json.dumps({"@context": "https://schema.org", "@type": "Blog", "name": "Teki Solves blog", "url": f"{SITE_URL}/blog/", "publisher": {"@type": "Organization", "name": "Teki Solves"}})}</script>'
+    return path, shell(path, "Game dev tutorials and build notes | Teki Solves blog",
+        "Practical game dev tutorials for indie developers: Phaser, Godot, sprites and texture atlases, written from real projects.",
+        body, current="blog/", head_extra=head)
+
+def blog_feed(posts):
+    items = "".join(f'''<item><title>{esc(p["title"])}</title><link>{SITE_URL}/blog/{p["slug"]}/</link><guid>{SITE_URL}/blog/{p["slug"]}/</guid>
+<pubDate>{datetime.date.fromisoformat(p["date"]).strftime("%a, %d %b %Y 09:00:00 +0000")}</pubDate><description>{esc(p["description"])}</description></item>''' for p in posts if not p["draft"])
+    return f'''<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Teki Solves blog</title><link>{SITE_URL}/blog/</link>
+<description>Practical game dev tutorials and build notes.</description><language>en</language>{items}</channel></rss>'''
+
+def relocate(page, path):
+    """Pages in sub-folders: make relative links point back to the site root."""
+    depth = path.count("/")
+    if not depth:
+        return page
+    up = "../" * depth
+    return re.sub(r'(\s(?:href|src|poster|srcset)=")(?!https?:|//|#|mailto:|tel:|data:|/)([^"]*)"',
+                  lambda m: f'{m.group(1)}{up}{m.group(2)}"', page)
+
 # ---------- write ----------
 if os.path.exists(OUT):
     shutil.rmtree(OUT)
@@ -534,18 +671,29 @@ for src, title in (("privacy-policy.html", "Privacy Policy"), ("cookie-policy.ht
         open(os.path.join(OUT, src), "w", encoding="utf-8").write(s)
 for p in products:
     pages[p["slug"]] = product_page(p)
+posts = blog_posts()
+for p in posts:
+    path, content = post_page(p)
+    pages[path] = content
+path, content = blog_index(posts)
+pages[path] = content
 for name, content in pages.items():
-    open(os.path.join(OUT, name), "w", encoding="utf-8").write(content)
+    os.makedirs(os.path.dirname(os.path.join(OUT, name)), exist_ok=True)
+    open(os.path.join(OUT, name), "w", encoding="utf-8").write(relocate(content, name))
+open(os.path.join(OUT, "blog", "feed.xml"), "w", encoding="utf-8").write(blog_feed(posts))
 
 for f in os.listdir(HERE):   # IndexNow key file (public by design), used by the SEO bot after each deploy
     if re.fullmatch(r"[0-9a-f]{32}\.txt", f):
         shutil.copy(os.path.join(HERE, f), OUT)
 
-public = sorted(n for n in os.listdir(OUT) if n.endswith(".html") and n != "404.html")   # includes copied legal pages
+public = sorted(os.path.relpath(os.path.join(r, f), OUT).replace(os.sep, "/")   # includes copied legal pages and the blog
+                for r, _, fs in os.walk(OUT) for f in fs if f.endswith(".html") and f != "404.html")
+drafts = {f'blog/{p["slug"]}/index.html' for p in posts if p["draft"]}
+public = [n for n in public if n not in drafts]
 if SITE_URL:
-    import datetime
     today = datetime.date.today().isoformat()
-    urls = "".join(f"<url><loc>{SITE_URL}/{'' if n == 'index.html' else n}</loc><lastmod>{today}</lastmod></url>" for n in public)
+    lastmod = {f'blog/{p["slug"]}/index.html': p["updated"] for p in posts}
+    urls = "".join(f"<url><loc>{page_url(n)}</loc><lastmod>{lastmod.get(n, today)}</lastmod></url>" for n in public)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
 open(os.path.join(OUT, "robots.txt"), "w").write("User-agent: *\nAllow: /\n" + (f"Sitemap: {SITE_URL}/sitemap.xml\n" if SITE_URL else ""))
 print("Built", len(pages), "pages ->", OUT)

@@ -1,0 +1,148 @@
+{
+ "frames": {
+  "weapon_laser_pistol_t1_scrap.png": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 1024,
+    "h": 1024
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 1024,
+    "h": 1024
+   },
+   "sourceSize": {
+    "w": 1024,
+    "h": 1024
+   },
+   "pivot": {
+    "x": 0.3789,
+    "y": 0.4287
+   },
+   "custom": {
+    "category": "weapon",
+    "item": "laser_pistol",
+    "weapon_type": "gun",
+    "tier": 1,
+    "tier_name": "Scrap",
+    "muzzle_px": {
+     "x": 900,
+     "y": 442
+    },
+    "pivot_px": {
+     "x": 388,
+     "y": 585
+    },
+    "facing": "right"
+   }
+  },
+  "weapon_laser_pistol_t2_military.png": {
+   "frame": {
+    "x": 1024,
+    "y": 0,
+    "w": 1024,
+    "h": 1024
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 1024,
+    "h": 1024
+   },
+   "sourceSize": {
+    "w": 1024,
+    "h": 1024
+   },
+   "pivot": {
+    "x": 0.3789,
+    "y": 0.4287
+   },
+   "custom": {
+    "category": "weapon",
+    "item": "laser_pistol",
+    "weapon_type": "gun",
+    "tier": 2,
+    "tier_name": "Military",
+    "muzzle_px": {
+     "x": 900,
+     "y": 442
+    },
+    "pivot_px": {
+     "x": 388,
+     "y": 585
+    },
+    "facing": "right"
+   }
+  },
+  "weapon_laser_pistol_t3_prototype.png": {
+   "frame": {
+    "x": 2048,
+    "y": 0,
+    "w": 1024,
+    "h": 1024
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 1024,
+    "h": 1024
+   },
+   "sourceSize": {
+    "w": 1024,
+    "h": 1024
+   },
+   "pivot": {
+    "x": 0.3789,
+    "y": 0.4287
+   },
+   "custom": {
+    "category": "weapon",
+    "item": "laser_pistol",
+    "weapon_type": "gun",
+    "tier": 3,
+    "tier_name": "Prototype",
+    "muzzle_px": {
+     "x": 900,
+     "y": 442
+    },
+    "pivot_px": {
+     "x": 388,
+     "y": 585
+    },
+    "facing": "right"
+   }
+  }
+ },
+ "meta": {
+  "app": "Retro Arsenal free sample",
+  "version": "0.3",
+  "image": "retro_arsenal_sample.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 3072,
+   "h": 1024
+  },
+  "scale": "1"
+ },
+ "conventions": {
+  "canvas_px": "1024x1024 per sprite",
+  "facing": "right (mirror in engine for left)",
+  "view": "orthographic side profile",
+  "pivot": "hand hold-point (guns/blade) or thumb-rest (grenade); identical across a weapon's 3 tiers so tiers are drop-in swappable at runtime",
+  "pivot_normalised": "frames[].pivot - origin bottom-left, 0..1 (x,y), Unity convention",
+  "pivot_px_top_left": "custom.pivot_px - same point, top-left pixel origin",
+  "muzzle_px": "custom.muzzle_px, top-left pixel origin, meaning depends on custom.weapon_type: 'gun' = projectile spawn point; 'blade' = blade tip / hit-effect point; 'grenade' = pin-ring / release point. Identical across a weapon's 3 tiers.",
+  "suggested_pixels_per_unit": 256,
+  "naming": "weapon_laser_<type>_<tier>.png, e.g. weapon_laser_rifle_t2_military.png",
+  "background": "transparent, straight alpha, no baked shadow/glow",
+  "tiers": "t1_scrap (salvaged), t2_military (issued), t3_prototype (experimental) - same silhouette per weapon across all 3 tiers"
+ }
+}
