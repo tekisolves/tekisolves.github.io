@@ -258,6 +258,16 @@ def home():
   </div>
 </section>
 
+<section class="guardian" aria-labelledby="guardian-h">
+  <div class="guardian-art"><img src="assets/guardian.webp" srcset="assets/guardian-1200.webp 1200w, assets/guardian.webp 1920w" sizes="100vw" alt="The Teki Solves guardian, an armoured figure standing under a full moon" width="1920" height="1080" loading="lazy" decoding="async"><span class="guardian-scan" aria-hidden="true"></span></div>
+  <div class="wrap guardian-copy reveal">
+    <span class="eyebrow" style="color:var(--lime)">The Solver</span>
+    <h2 id="guardian-h">Every problem has a way through.</h2>
+    <p>That’s the whole job: find what’s in your way, build the fix and keep it simple. It’s the same mindset behind every product here.</p>
+    <p class="tagline">Keep it simple, problem solved.</p>
+  </div>
+</section>
+
 <section class="band band-cream" aria-labelledby="why-h">
   <div class="wrap cols">
     <div class="reveal stack"><span class="eyebrow">Why Teki Solves</span><h2 id="why-h">Made with purpose. Built with care.</h2></div>
@@ -513,8 +523,8 @@ def legal(src, out, current_title):
 
 def not_found():
     return shell("404.html", "Page not found — Teki Solves", "That page could not be found.", '''
-<section class="page-hero"><div class="wrap"><span class="eyebrow">404</span><h1 style="margin-top:1rem">That page wandered off.</h1>
-<p class="lede">Let’s get you somewhere useful.</p><p style="margin-top:1.6rem"><a class="btn btn-primary" href="products.html">Explore products</a></p></div></section>''', robots="noindex")
+<section class="page-hero page-hero-lost"><div class="wrap"><span class="eyebrow">404</span><h1 style="margin-top:1rem">That page wandered off.</h1>
+<p class="lede">Even the Solver takes a wrong turn sometimes. Let’s get you somewhere useful.</p><p style="margin-top:1.6rem"><a class="btn btn-primary" href="products.html">Explore products</a></p></div></section>''', robots="noindex")
 
 # ---------- blog ----------
 # Posts are Markdown files in source/blog/<slug>.md with a small header:

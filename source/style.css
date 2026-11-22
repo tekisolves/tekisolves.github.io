@@ -295,3 +295,27 @@ details.faq p{margin-top:.7rem;color:var(--muted);max-width:40rem}
 .post-card p{margin-top:.6rem}
 .post-card .post-meta{color:var(--ink-muted);margin-top:0}
 .post-card .card-cta{display:inline-block;margin-top:.9rem;font:500 .78rem/1 var(--mono);color:var(--ink)}
+
+/* guardian: the Teki Solves Solver, used as a recurring theme */
+.guardian{position:relative;min-height:clamp(520px,82vh,780px);display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);isolation:isolate}
+.guardian-art{position:absolute;inset:-5% 0;z-index:-2}
+.guardian-art img{width:100%;height:100%;object-fit:cover;object-position:62% 2%;transform:translate3d(0,var(--py,0px),0) scale(1.06);will-change:transform}
+.guardian::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(16,19,17,.97) 0%,rgba(16,19,17,.86) 32%,rgba(16,19,17,.25) 60%,transparent 78%),linear-gradient(0deg,var(--bg),transparent 22%),linear-gradient(180deg,var(--bg),transparent 7%)}
+.guardian::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background-image:linear-gradient(rgba(244,243,237,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(244,243,237,.05) 1px,transparent 1px);background-size:56px 56px}
+.guardian-copy{position:relative;display:grid;gap:1.1rem;padding-block:4rem}
+.guardian-copy h2{max-width:13ch}
+.guardian-copy p{max-width:30rem;color:var(--muted)}
+.guardian-copy .tagline{color:var(--gold)}
+.guardian-scan{position:absolute;left:0;right:0;top:10%;height:2px;background:linear-gradient(90deg,transparent 30%,rgba(178,221,49,.7) 70%,transparent);box-shadow:0 0 18px rgba(178,221,49,.45);opacity:.55;animation:guardian-scan 8s var(--ease) infinite}
+@keyframes guardian-scan{0%{top:12%;opacity:0}10%{opacity:.55}90%{opacity:.55}100%{top:88%;opacity:0}}
+@media(max-width:700px){
+  .guardian{align-items:flex-end;min-height:640px}
+  .guardian-art img{object-position:58% 18%}
+  .guardian::before{background:linear-gradient(0deg,var(--bg) 0%,rgba(16,19,17,.92) 38%,rgba(16,19,17,.2) 70%,transparent),linear-gradient(180deg,var(--bg),transparent 14%)}
+}
+/* the Solver watches over every page header */
+.page-hero{position:relative;overflow:hidden;isolation:isolate}
+.page-hero::after{content:"";position:absolute;z-index:-1;right:-8%;top:-15%;width:min(64vw,820px);aspect-ratio:16/9;background:url(assets/guardian-1200.webp) 62% 22%/cover no-repeat;opacity:.14;filter:saturate(.8);-webkit-mask-image:radial-gradient(closest-side,#000 35%,transparent);mask-image:radial-gradient(closest-side,#000 35%,transparent);pointer-events:none}
+.page-hero-lost::after{opacity:.5;top:-5%}
+@media(max-width:700px){.page-hero::after{width:110vw;right:-40%;opacity:.1}.page-hero-lost::after{opacity:.3}}
+@media(prefers-reduced-motion:reduce){.guardian-scan{animation:none;display:none}.guardian-art img{transform:scale(1.06)}}

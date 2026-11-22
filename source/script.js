@@ -158,3 +158,19 @@
     form.addEventListener('focusin', () => { if (!form.dataset.started) { form.dataset.started = '1'; track('lead_form_start', {}); } }, { once: false });
   }
 })();
+
+/* guardian parallax (skipped for reduced motion) */
+(() => {
+  const band = document.querySelector('.guardian');
+  if (!band || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const img = band.querySelector('img');
+  let ticking = false;
+  const update = () => {
+    const r = band.getBoundingClientRect();
+    const p = (r.top + r.height / 2 - innerHeight / 2) / innerHeight;
+    img.style.setProperty('--py', (p * -48).toFixed(1) + 'px');
+    ticking = false;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  update();
+})();
