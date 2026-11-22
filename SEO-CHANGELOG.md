@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-22 19:48 UTC: Content coach: email reminders for blog posts (PR #8)
+
+- (no details in the commit message)
+- Areas changed: Automation (build, deploy, checks)
+- SEO check after deploy: 8 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-22 18:43 UTC: SEO fixes from the Seobility audit (PR #7)
 
 - (no details in the commit message)
