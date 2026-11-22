@@ -1,15 +1,34 @@
-# Teki Solves site (lean build)
+# Teki Solves site
 
-site/    ready to deploy static files (open index.html to preview)
-source/  build.py + products.json + style.css + script.js + assets
+The live site is built from `source/` and published automatically by GitHub Actions
+(`.github/workflows/deploy.yml`) on every push to `main`.
 
-Rebuild after edits (Termux):  cd source && LEGACY_DIR=/path/to/old-site python3 build.py   -> writes source/dist
+```
+source/   build.py + products.json + style.css + script.js + assets  (edit these)
+```
 
-Before launch
-- Set SITE_URL in build.py (enables canonical, og:url, sitemap.xml)
-- Add real previews: assets/retro-arsenal-preview-dark.png and -light.png (the arch art stands in until then)
-- Verify Retro Arsenal package details, price, licence, store URL against the live itch.io page
-- Verify GA4 ID in script.js (G-8V28F53XS9)
-- Contact form: same endpoint, field names and payload as the old site. "Services" removed from the dropdown.
-- Privacy and cookie policy text is carried over unchanged; it still mentions services, so review it
-- Terms, Refund Policy and Licensing pages are not built (no invented legal wording)
+The HTML files at the repo root are the old hand-published build. Once Pages is set to
+"GitHub Actions" they are no longer served, but `build.py` still copies the privacy and
+cookie policy pages from them, so keep those two.
+
+## One-time setup
+
+1. Settings > Secrets and variables > Actions > **New repository secret**:
+   `TEKI_EMAIL` = the contact email shown on the site.
+2. Settings > Pages > Build and deployment > **Source: GitHub Actions**.
+
+## Local preview (Termux)
+
+```
+cd source && TEKI_EMAIL=you@example.com python3 build.py   # writes source/dist
+```
+
+## Editing products
+
+Everything about a product lives in `source/products.json`: price, included items,
+licence summary, engine notes and image paths. Images go in `source/assets/`.
+
+## Still to do
+
+- Privacy and cookie policy text still mentions services; review it.
+- Terms, Refund Policy and Licensing pages are not built (no invented legal wording).
