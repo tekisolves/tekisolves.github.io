@@ -62,6 +62,7 @@ def canon(path):
     return f'<link rel="canonical" href="{page_url(path)}">' if SITE_URL else ""
 
 DEFAULT_OG_IMAGE = "assets/og-retro-arsenal.png"   # share image for pages that don't set their own
+ITCH_PROFILE = "https://tekisolves.itch.io"
 
 def shell(path, title, desc, body, current="", robots="index, follow", og_image=DEFAULT_OG_IMAGE, head_extra=""):
     og = f'<meta property="og:url" content="{page_url(path)}">' if SITE_URL else ""
@@ -71,8 +72,12 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
     cur = ' aria-current="page"'
     desk = "".join(f'<a href="{h}"{cur if h==current else ""}>{t}</a>' for h,t in nav)
     mob = "".join(f'<a href="{h}">{t}</a>' for h,t in nav)
-    org = json.dumps({"@context":"https://schema.org","@type":"Organization","name":"Teki Solves",
-        "description":"An independent digital product shop and creative workshop making practical digital products that solve real problems."})
+    org_data = {"@context":"https://schema.org","@type":"Organization","name":"Teki Solves",
+        "description":"An independent digital product shop and creative workshop making practical digital products that solve real problems.",
+        "sameAs":[ITCH_PROFILE]}
+    if SITE_URL:
+        org_data.update(url=SITE_URL + "/", logo=f"{SITE_URL}/assets/logo-diamond.png")
+    org = json.dumps(org_data)
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -85,7 +90,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 {"" if "noindex" in robots else canon(path)}
 <meta property="og:type" content="website"><meta property="og:site_name" content="Teki Solves">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{og}
-<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -97,7 +102,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html" aria-label="Teki Solves home"><span class="brand-mark"><img src="assets/logo-diamond.png" alt="" width="26" height="26"></span><span class="brand-text">TEKI / SOLVES</span></a>
+    <a class="brand" href="index.html" aria-label="Teki Solves home"><span class="brand-mark"><img src="assets/logo-diamond.png" alt="Teki Solves logo" width="26" height="26"></span><span class="brand-text">TEKI / SOLVES</span></a>
     <nav class="nav" aria-label="Main">{desk}<a class="btn btn-primary btn-sm" href="products.html">Explore products</a></nav>
     <button class="menu-btn" id="menuButton" aria-expanded="false" aria-controls="mobileNav" aria-label="Open navigation"><span></span><span></span></button>
   </div>
@@ -108,9 +113,9 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 </main>
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <div><a class="brand" href="index.html"><span class="brand-mark"><img src="assets/logo-diamond.png" alt="" width="26" height="26"></span><span class="brand-text">TEKI / SOLVES</span></a>
+    <div><a class="brand" href="index.html" aria-label="Teki Solves home"><span class="brand-mark"><img src="assets/logo-diamond.png" alt="Teki Solves logo" width="26" height="26"></span><span class="brand-text">TEKI / SOLVES</span></a>
     <p class="mono" style="margin-top:1rem;font-size:.72rem;letter-spacing:.14em;color:var(--gold)">KEEP IT SIMPLE, PROBLEM SOLVED.</p></div>
-    <div class="footer-links"><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><button class="footer-link cookie-settings-trigger" type="button">Cookie Settings</button></div>
+    <div class="footer-links"><a href="products.html">Products</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="{ITCH_PROFILE}" target="_blank" rel="noopener">Teki Solves on itch.io</a><button class="footer-link cookie-settings-trigger" type="button">Cookie Settings</button></div>
     <div class="footer-meta"><a href="mailto:{EMAIL}" style="text-decoration:none">{EMAIL}</a><span>© 2026 Teki Solves</span></div>
   </div>
 </footer>
@@ -136,6 +141,12 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 '''
 
 # ---------- components ----------
+def website_schema():
+    if not SITE_URL:
+        return ""
+    data = {"@context": "https://schema.org", "@type": "WebSite", "name": "Teki Solves", "url": SITE_URL + "/"}
+    return f'<script type="application/ld+json">{json.dumps(data)}</script>'
+
 def product_visual(p, cls="product-visual"):
     img = p.get("cardImage") or (p["previewImages"][0] if p.get("previewImages") else "")
     inner = f'<img src="{img}" alt="{esc(p["name"])}: Laser Pistol, prototype tier" width="800" height="600" loading="lazy">' if img and has(img) else arch_svg("pc"+p["id"][:3], cls="")
@@ -177,11 +188,11 @@ def home():
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Digital products • Creative tools • Practical solutions</span>
-      <h1>Good ideas deserve <span>useful solutions.</span></h1>
-      <p>Teki Solves is a digital product shop and creative workshop making thoughtful things for people who build, learn and create.</p>
-      <p>From game assets to software tools and learning resources, every product starts with a simple question: what problem can we help solve?</p>
+      <h1>Useful digital products, <span>starting with game assets.</span></h1>
+      <p>Teki Solves is a digital product shop and creative workshop making useful things for people who build, learn and create.</p>
+      <p>Right now that means game assets for indie developers, starting with {esc(p["name"])}. Every product starts with a simple question: what problem can we help solve?</p>
       <p class="tagline">Keep it simple, problem solved.</p>
-      <div class="hero-actions"><a class="btn btn-primary" href="products.html">Explore products</a></div>
+      <div class="hero-actions"><a class="btn btn-primary" href="products.html#catalogue">Browse game assets</a></div>
     </div>
     <div class="hero-art">{arch_svg("h")}<a class="chip" href="{p["slug"]}"><i></i>Now on itch.io: {esc(p["name"])}</a></div>
   </div>
@@ -205,7 +216,7 @@ def home():
     <p>Useful digital creations for building, learning and making.</p>
     <p>Every product should have a clear purpose. Browse what’s available, see what’s included and decide what fits your project.</p></div>
     <div class="product-grid">{cards}</div>
-    <p style="margin-top:2rem"><a class="btn btn-dark" href="products.html">Explore all products</a></p>
+    <p style="margin-top:2rem"><a class="btn btn-dark" href="products.html">See the full catalogue</a></p>
   </div>
 </section>
 
@@ -274,22 +285,22 @@ def home():
       <h2 id="final-h">Got something to make?</h2>
       <p>Find a useful starting point, discover something new or tell us what problem you’re trying to solve.</p>
       <p class="tagline">Keep it simple, problem solved.</p>
-      <div class="cta-actions"><a class="btn btn-primary" href="products.html">Explore products</a><a class="link-arrow" href="contact.html">Tell us what you need</a></div>
+      <div class="cta-actions"><a class="btn btn-primary" href="{p["storeUrl"]}" target="_blank" rel="noopener" data-store-link data-store="{p["store"]}" data-product-id="{p["id"]}" data-product-name="{esc(p["name"])}">Get {esc(p["name"])} on {p["store"]} <span aria-hidden="true">↗</span></a><a class="link-arrow" href="contact.html">Send us an idea</a></div>
     </div>
   </div>
 </section>
-''', current="")
+''', current="", head_extra=website_schema())
 
 def products_page():
     cards = "".join(product_card(x) for x in live_products())
-    return shell("products.html", "Products — Teki Solves",
-        "Browse digital products made to help you build, learn and create. Every Teki Solves product has a purpose.", f'''
+    return shell("products.html", "Game assets and digital products — Teki Solves",
+        "Browse game assets and digital products made to help you build, learn and create, starting with Retro Arsenal: 15 retro sci-fi weapon sprites.", f'''
 <section class="page-hero">
   <div class="wrap">
     <span class="eyebrow">The Teki Solves catalogue</span>
-    <h1 style="margin-top:1rem">Find your next useful thing.</h1>
-    <p class="lede">Browse digital products made to help you build, learn and create. From game assets to practical technical resources, every product has a purpose.</p>
-    <p style="margin-top:1.6rem"><a class="btn btn-primary" href="#catalogue">Explore products</a></p>
+    <h1 style="margin-top:1rem">Game assets and useful digital products.</h1>
+    <p class="lede">Browse game assets and digital products made to help you build, learn and create. Every product has a purpose.</p>
+    <p style="margin-top:1.6rem"><a class="btn btn-primary" href="#catalogue">Jump to the catalogue</a></p>
   </div>
 </section>
 <section class="band band-cream" id="catalogue" aria-labelledby="cat-game">
@@ -418,7 +429,7 @@ def product_page(p):
 ''', current="products.html", og_image=p.get("ogImage",""), head_extra=head_extra)
 
 def about():
-    return shell("about.html", "About — Teki Solves",
+    return shell("about.html", "About Teki Solves — an independent digital product shop",
         "Teki Solves is an independent digital product shop and creative workshop built around a simple idea: useful things should solve real problems.", '''
 <section class="page-hero">
   <div class="wrap">
@@ -448,7 +459,7 @@ def about():
   <div class="reveal stack"><span class="eyebrow">Where we’re going</span><h2>Technology, design and storytelling belong together.</h2></div>
   <div class="prose reveal d1"><p>Digital products are our current focus. Over time, Teki Solves aims to explore a wider creative space where technology, design and storytelling meet, including games, creative arts and hardware innovation as resources allow.</p></div>
 </div></section>
-<section class="band"><div class="wrap"><div class="section-head reveal"><h2>See what we’re making.</h2><p><a class="btn btn-primary" href="products.html">Explore products</a></p></div></div></section>
+<section class="band"><div class="wrap"><div class="section-head reveal"><h2>See what we’re making.</h2><p><a class="btn btn-primary" href="products.html">See the products</a></p></div></div></section>
 ''', current="about.html")
 
 def contact():
@@ -517,7 +528,10 @@ for src, title in (("privacy-policy.html", "Privacy Policy"), ("cookie-policy.ht
     if os.path.exists(os.path.join(LEGACY, src)):
         pages[src] = legal(src, src, title)
     elif os.path.exists(os.path.join(HERE, "..", src)):   # no legacy source: keep the page that's already live
-        shutil.copy(os.path.join(HERE, "..", src), os.path.join(OUT, src))
+        s = open(os.path.join(HERE, "..", src), encoding="utf-8").read()
+        if SITE_URL and 'rel="canonical"' not in s:   # add the SEO tags the old copy lacks
+            s = s.replace("</head>", f'{canon(src)}<meta property="og:url" content="{page_url(src)}"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">\n</head>', 1)
+        open(os.path.join(OUT, src), "w", encoding="utf-8").write(s)
 for p in products:
     pages[p["slug"]] = product_page(p)
 for name, content in pages.items():
