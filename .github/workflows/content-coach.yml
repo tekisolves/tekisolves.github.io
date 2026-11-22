@@ -1,0 +1,48 @@
+name: Content coach
+
+# Every evening: checks the blog plan (.github/content-coach/plan.json) and,
+# if today matters (session night, 2 days out, ship day, overdue, or a post just
+# went live), sends one short email. Quiet days send nothing.
+# A post counts as done when its file exists in the repo. No AI, no cost.
+# Uses the same secrets as the SEO bot: TEKI_EMAIL and GMAIL_APP_PASSWORD.
+
+on:
+  schedule:
+    - cron: "7 18 * * *"   # 18:07 UTC = 6pm Irish time in winter, 7pm in summer
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Send today's email now, even if one already went"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write   # to remember what shipped (.github/content-coach/state.json)
+
+concurrency:
+  group: content-coach
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check the plan, email if today matters
+        env:
+          TZ: Europe/Dublin
+          TEKI_EMAIL: ${{ secrets.TEKI_EMAIL }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 .github/content-coach/coach.py run ${{ inputs.test && '--test' || '' }}
+      - name: Save state
+        run: |
+          git config user.name "content-coach"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/content-coach/state.json
+          git diff --cached --quiet && exit 0
+          git commit -m "content-coach: update state [skip ci]"
+          for i in 1 2 3; do git pull --rebase -q && git push && exit 0; sleep 5; done
+          exit 1
