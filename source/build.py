@@ -5,8 +5,10 @@ Edit products in products.json, copy in the page functions below, set SITE_URL o
 """
 import json, os, re, shutil, html
 
-SITE_URL = ""          # e.g. "https://tekisolves.com" -- leave empty until final; canonical/OG url/sitemap are skipped while empty
-EMAIL = "tekisolutions2@gmail.com"
+SITE_URL = "https://tekisolves.github.io"   # change if you move to a custom domain
+EMAIL = os.environ.get("TEKI_EMAIL", "")   # set before building:  TEKI_EMAIL=you@example.com python3 build.py
+if not EMAIL:
+    raise SystemExit("Set TEKI_EMAIL first, e.g.  TEKI_EMAIL=you@example.com python3 build.py")
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, "dist")
 LEGACY = os.environ.get("LEGACY_DIR", os.path.join(HERE, "..", "Teki-Solves-Landing-Page-main"))
@@ -56,8 +58,10 @@ def diamond_line():
 def canon(path):
     return f'<link rel="canonical" href="{SITE_URL}/{path}">' if SITE_URL else ""
 
-def shell(path, title, desc, body, current="", robots="index, follow"):
+def shell(path, title, desc, body, current="", robots="index, follow", og_image="", head_extra=""):
     og = f'<meta property="og:url" content="{SITE_URL}/{path}">' if SITE_URL else ""
+    if og_image and SITE_URL:
+        og += f'<meta property="og:image" content="{SITE_URL}/{og_image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">'
     nav = [("products.html","Products"),("about.html","About"),("contact.html","Contact")]
     cur = ' aria-current="page"'
     desk = "".join(f'<a href="{h}"{cur if h==current else ""}>{t}</a>' for h,t in nav)
@@ -82,6 +86,7 @@ def shell(path, title, desc, body, current="", robots="index, follow"):
 <link rel="stylesheet" href="style.css">
 <script>document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('consent','default',{{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'}});</script>
 <script type="application/ld+json">{org}</script>
+{head_extra}
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -127,9 +132,19 @@ def shell(path, title, desc, body, current="", robots="index, follow"):
 
 # ---------- components ----------
 def product_visual(p, cls="product-visual"):
-    img = p["previewImages"][0] if p.get("previewImages") else ""
-    inner = f'<img src="{img}" alt="{esc(p["name"])} preview" loading="lazy">' if img and has(img) else arch_svg("pc"+p["id"][:3], cls="")
-    return f'<div class="{cls}">{inner}</div>'
+    img = p.get("cardImage") or (p["previewImages"][0] if p.get("previewImages") else "")
+    inner = f'<img src="{img}" alt="{esc(p["name"])}: Laser Pistol, prototype tier" width="800" height="600" loading="lazy">' if img and has(img) else arch_svg("pc"+p["id"][:3], cls="")
+    return f'<div class="{cls} on-paper">{inner}</div>'
+
+def product_animation(p, cls="focus-visual", eager=False):
+    """Tier-swap GIF; shows a still poster to people who prefer reduced motion."""
+    a, poster = p.get("animation"), p.get("animationPoster")
+    if not (a and has(a)):
+        return product_visual(p, cls)
+    load = "eager" if eager else "lazy"
+    alt = f'{esc(p["name"])}: all five weapons switching between the Scrap, Military and Prototype tiers'
+    src = f'<source srcset="{poster}" media="(prefers-reduced-motion: reduce)">' if poster and has(poster) else ""
+    return f'<div class="{cls} on-dark"><picture>{src}<img src="{a}" alt="{alt}" width="576" height="918" loading="{load}"></picture></div>'
 
 def product_card(p):
     meta = " • ".join(p["formats"][:3] + [p["store"]]) if p.get("formats") else p["store"]
@@ -222,7 +237,7 @@ def home():
       <p style="color:var(--muted)">Meet {esc(p["name"])}: a stylized retro-futurist 2D weapon asset pack for indie game developers.</p>
       <p style="margin-top:1.4rem"><a class="btn btn-primary" href="{p["slug"]}">Explore {esc(p["name"])}</a></p>
     </div>
-    {product_visual(p, "focus-visual reveal d1")}
+    {product_animation(p, "focus-visual reveal d1")}
   </div>
 </section>
 
@@ -288,62 +303,68 @@ def products_page():
 
 def product_page(p):
     ok = [x for x in p.get("previewImages", []) if has(x)]
-    previews = ""
     if ok:
-        labels = ["On a dark background", "On a light background"]
-        figs = "".join(f'<figure class="preview-slot{" light" if i==1 else ""}" style="margin:0"><img src="{x}" alt="{esc(p["name"])} preview {i+1}" loading="lazy"><figcaption>{labels[i] if i<2 else ""}</figcaption></figure>' for i,x in enumerate(ok))
-        previews = f'<div class="preview-grid">{figs}</div>'
+        labels = ["All 15 sprites on a dark background", "All 15 sprites on a light background"]
+        figs = "".join(f'<figure class="preview-slot preview-tall{" light" if i==1 else ""}" style="margin:0"><img src="{x}" alt="{esc(p["name"])}: all 15 sprites, 5 weapons by 3 tiers, {"dark" if i==0 else "light"} background" width="1008" height="1094" loading="lazy"><figcaption>{labels[i] if i<2 else ""}</figcaption></figure>' for i,x in enumerate(ok))
+        previews = f'<div class="preview-grid">{figs}</div><p class="note">Rows top to bottom: Laser Pistol, Laser Rifle, Laser Shotgun, Energy Blade, Plasma Grenade. Columns: Scrap, Military, Prototype.</p>'
     else:
-        previews = f'<p style="margin-top:1rem">Full previews, including close-ups, are on the <a href="{p["storeUrl"]}" target="_blank" rel="noopener" data-store-link data-store="{p["store"]}" data-product-id="{p["id"]}" data-product-name="{esc(p["name"])}">{p["store"]} page</a>.</p>'
+        previews = f'<p style="margin-top:1rem">Full previews are on the <a href="{p["storeUrl"]}" target="_blank" rel="noopener">{p["store"]} page</a>.</p>'
     inc = "".join(f"<li>{esc(i)}</li>" for i in p["includedItems"])
+    lic = "".join(f"<li>{esc(i)}</li>" for i in p.get("licenceSummary", []))
+    price = f'{p["price"]}€' if p.get("price") and p.get("currency") == "EUR" else ""
     store_btn = lambda label: f'<a class="btn btn-primary" href="{p["storeUrl"]}" target="_blank" rel="noopener" data-store-link data-store="{p["store"]}" data-product-id="{p["id"]}" data-product-name="{esc(p["name"])}">{label} <span aria-hidden="true">↗</span></a>'
-    return shell(p["slug"], f'{p["name"]} — Stylized 2D weapon assets | Teki Solves',
-        f'{p["name"]}: a stylized retro-futurist 2D weapon asset pack for indie game developers. See what is included, the formats and how to get it.', f'''
-<!-- BEFORE LAUNCH: verify package details against the live download: sprite count, 1024x1024 PNGs, SVG sources, atlas + JSON, pivots. Confirm price, licence terms and store URL. -->
+    buy_label = f'Get it for {price} on {p["store"]}' if price else f'View on {p["store"]}'
+    schema = {"@context": "https://schema.org", "@type": "Product", "name": p["name"], "description": p["shortDescription"],
+              "category": p["category"], "brand": {"@type": "Brand", "name": "Teki Solves"}}
+    if SITE_URL and p.get("ogImage"):
+        schema["image"] = f'{SITE_URL}/{p["ogImage"]}'
+    if price:
+        schema["offers"] = {"@type": "Offer", "price": p["price"], "priceCurrency": p["currency"], "url": p["storeUrl"], "availability": "https://schema.org/InStock"}
+    head_extra = f'<script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script>'
+    desc = f'{p["name"]}: 15 retro sci-fi weapon sprites for indie games. 5 weapons in 3 tiers, PNG, SVG and atlas.' + (f' {price} on {p["store"]}.' if price else '')
+    return shell(p["slug"], f'{p["name"]}: 15 retro sci-fi weapon sprites | Teki Solves', desc, f'''
 <div data-product-id="{p["id"]}" data-product-name="{esc(p["name"])}" data-product-category="{esc(p["category"])}">
 <section class="page-hero">
   <div class="wrap">
     <p class="crumbs"><a href="products.html">Products</a> / {esc(p["name"])}</p>
     <div class="focus-card">
       <div>
-        <span class="eyebrow" style="color:var(--lime)">{esc(p["category"])}</span>
+        <span class="eyebrow" style="color:var(--lime)">{esc(p["category"])} · {esc(p.get("version",""))}</span>
         <h1 style="margin-top:1rem">{esc(p["name"]).upper()}</h1>
-        <p class="lede" style="font-family:var(--display);font-size:1.5rem;color:var(--fg);letter-spacing:-.03em;line-height:1.15">Stylized 2D weapon assets for your next game.</p>
-        <p class="lede">Spend less time building every weapon from scratch and more time building your game. Retro Arsenal is a stylized retro-futurist weapon asset pack for indie developers who want a coherent visual set they can work with.</p>
-        <p class="tagline" style="margin-top:1rem">A consistent look. Multiple weapon styles. A practical starting point for your game’s visual world.</p>
-        <p class="meta-line">1024 × 1024 transparent PNG • SVG source • Atlas + JSON • Sold on {p["store"]}</p>
-        <p style="margin-top:1.4rem">{store_btn("View on " + p["store"])}</p>
-        <p class="note">Opens {p["store"]} in a new tab. Price and checkout are shown there.</p>
+        <p class="lede" style="font-family:var(--display);font-size:1.5rem;color:var(--fg);letter-spacing:-.03em;line-height:1.15">15 retro sci-fi weapons. 5 types, 3 tiers each.</p>
+        <p class="lede">A laser pistol, rifle, shotgun, energy blade and plasma grenade, each in Scrap, Military and Prototype versions. Every tier shares the same shape and pivot, so upgrading a weapon in your game is just a texture swap.</p>
+        <p class="meta-line">1024 × 1024 transparent PNG • SVG source • Atlas + JSON • Not pixel art</p>
+        <p class="price-line">{esc(p.get("priceNote",""))}</p>
+        <p style="margin-top:1.2rem">{store_btn(buy_label)}</p>
+        <p class="note">Opens {p["store"]} in a new tab, where checkout and downloads are handled.</p>
       </div>
-      {product_visual(p, "focus-visual")}
+      {product_animation(p, "focus-visual", eager=True)}
     </div>
   </div>
 </section>
 
-<section class="band band-cream" aria-labelledby="problem">
-  <div class="wrap cols">
-    <div class="reveal stack"><span class="eyebrow">The problem</span><h2 id="problem">What this helps with</h2></div>
-    <div class="prose reveal d1">
-      <p>{esc(p["problemSolved"])}</p>
-      <h3 style="margin-top:1rem">Who it’s for</h3>
-      <p>{esc(p["audience"])}</p>
-      <h3 style="margin-top:1rem">The style</h3>
-      <p>Stylized retro-futurist 2D game art with clean outlines and flat, vector-inspired shapes. It has a retro sci-fi, industrial character and simplified, readable forms. It is not pixel art.</p>
-    </div>
+<section class="band band-cream" aria-labelledby="preview">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">Preview</span><h2 id="preview">Every sprite in the pack</h2></div>
+    {previews}
   </div>
 </section>
 
 <section class="band" aria-labelledby="included">
   <div class="wrap cols">
     <div class="reveal stack"><span class="eyebrow">What’s included</span><h2 id="included">Inside the download</h2></div>
-    <div class="reveal d1"><ul class="list">{inc}</ul><p class="note">Check the {p["store"]} page for the current package contents.</p></div>
+    <div class="reveal d1"><ul class="list">{inc}</ul></div>
   </div>
 </section>
 
-<section class="band band-cream" aria-labelledby="preview">
-  <div class="wrap">
-    <div class="section-head reveal"><span class="eyebrow">Preview</span><h2 id="preview">See what you’re getting</h2></div>
-    {previews}
+<section class="band band-cream" aria-labelledby="problem">
+  <div class="wrap cols">
+    <div class="reveal stack"><span class="eyebrow">Who it’s for</span><h2 id="problem">What this helps with</h2></div>
+    <div class="prose reveal d1">
+      <p>{esc(p["problemSolved"])}</p>
+      <p>{esc(p["audience"])}</p>
+      <p>The style is flat and readable, with one thick outline colour across the whole set. Side-on, facing right, no baked shadows, so your engine handles the lighting.</p>
+    </div>
   </div>
 </section>
 
@@ -352,9 +373,10 @@ def product_page(p):
     <div class="reveal stack"><span class="eyebrow">Specifications</span><h2 id="specs">Technical details</h2></div>
     <dl class="spec reveal d1" style="margin:0">
       <div><dt>Format</dt><dd>Transparent PNG, SVG source files, atlas and JSON metadata</dd></div>
-      <div><dt>Dimensions</dt><dd>1024 × 1024 PNG sprites</dd></div>
-      <div><dt>Compatibility</dt><dd>See the {p["store"]} page for engine and software notes</dd></div>
-      <div><dt>Requirements</dt><dd>See the {p["store"]} page</dd></div>
+      <div><dt>Sprites</dt><dd>15 × 1024 × 1024 PNG, straight alpha, facing right</dd></div>
+      <div><dt>Atlas</dt><dd>4096 × 4096 PNG with pivot and action-point data per frame</dd></div>
+      <div><dt>Engines</dt><dd>{esc(p.get("compatibility",""))}</dd></div>
+      <div><dt>Version</dt><dd>{esc(p.get("version",""))}. Updates are free once you’ve bought it.</dd></div>
       <div><dt>Delivery</dt><dd>Download through {p["store"]} after purchase</dd></div>
     </dl>
   </div>
@@ -364,31 +386,31 @@ def product_page(p):
   <div class="wrap cols">
     <div class="reveal stack"><span class="eyebrow">Licensing</span><h2 id="licence">How you can use it</h2></div>
     <div class="prose reveal d1">
-      <p>The licence is listed on the <a href="{p["storeUrl"]}" target="_blank" rel="noopener">{p["store"]} page</a>. Read it before using {esc(p["name"])} in commercial work.</p>
-      <p>Do not redistribute or resell the files unless the licence explicitly allows it.</p>
+      <ul class="list">{lic}</ul>
+      <p class="note">This is a summary. The full licence is in LICENSE.txt inside the download.</p>
     </div>
   </div>
 </section>
 
 <section class="band" aria-labelledby="faq">
   <div class="wrap cols">
-    <div class="reveal stack"><span class="eyebrow">Support</span><h2 id="faq">Questions about this product?</h2></div>
+    <div class="reveal stack"><span class="eyebrow">Support</span><h2 id="faq">Questions</h2></div>
     <div class="reveal d1">
-      <details class="faq"><summary>What is included?</summary><p>The list above shows the files in the pack. Check it, and the {p["store"]} page, before you buy.</p></details>
-      <details class="faq"><summary>Is it pixel art?</summary><p>No. It is stylized retro-futurist 2D art with clean outlines and flat, vector-inspired shapes.</p></details>
-      <details class="faq"><summary>Can I use it commercially?</summary><p>That depends on the licence on the {p["store"]} page. Read it before using the pack in commercial work.</p></details>
-      <details class="faq"><summary>Where do I buy it, and how do I download it?</summary><p>Use the button on this page. It opens {p["store"]}, where checkout, payment and downloads are handled. If you can’t access your files, <a href="contact.html">contact us</a> with the product name and what happened.</p></details>
-      <p style="margin-top:1.4rem;color:var(--muted)">Still unsure? <a href="contact.html" style="color:var(--lime)">Contact us before buying.</a></p>
+      <details class="faq"><summary>Is it pixel art?</summary><p>No. It’s flat, vector-style 2D art with a thick outline, and there are SVG sources too, so it scales cleanly.</p></details>
+      <details class="faq"><summary>Can I use it in a game I sell?</summary><p>Yes. You can use it in any number of your own commercial projects. You just can’t resell the files themselves.</p></details>
+      <details class="faq"><summary>Will it work in my engine?</summary><p>The PNGs work anywhere. The atlas uses TexturePacker’s JSON hash format, which Unity, Godot and Phaser pipelines commonly read, but it hasn’t been tested inside them yet, so check your first import.</p></details>
+      <details class="faq"><summary>How do I buy and download it?</summary><p>Use the button on this page. It opens {p["store"]}, where checkout, payment and downloads are handled. If you can’t access your files, <a href="contact.html">contact us</a> with the product name and what happened.</p></details>
     </div>
   </div>
 </section>
 
 <section class="band band-cream">
-  <div class="wrap"><div class="cta-card reveal"><h2>Keep exploring</h2>
-  <div class="cta-actions">{store_btn("Get the product")}<a class="link-arrow" href="products.html">All products</a></div></div></div>
+  <div class="wrap"><div class="cta-card reveal"><h2>Ready to arm your game?</h2>
+  <p>{esc(p.get("priceNote",""))}</p>
+  <div class="cta-actions">{store_btn(buy_label)}<a class="link-arrow" href="products.html">All products</a></div></div></div>
 </section>
 </div>
-''', current="products.html")
+''', current="products.html", og_image=p.get("ogImage",""), head_extra=head_extra)
 
 def about():
     return shell("about.html", "About — Teki Solves",
@@ -485,9 +507,12 @@ for f in ("style.css", "script.js"):
     shutil.copy(os.path.join(HERE, f), OUT)
 shutil.copytree(os.path.join(HERE, "assets"), os.path.join(OUT, "assets"))
 
-pages = {"index.html": home(), "products.html": products_page(), "about.html": about(), "contact.html": contact(), "404.html": not_found(),
-         "privacy-policy.html": legal("privacy-policy.html", "privacy-policy.html", "Privacy Policy"),
-         "cookie-policy.html": legal("cookie-policy.html", "cookie-policy.html", "Cookie Policy")}
+pages = {"index.html": home(), "products.html": products_page(), "about.html": about(), "contact.html": contact(), "404.html": not_found()}
+for src, title in (("privacy-policy.html", "Privacy Policy"), ("cookie-policy.html", "Cookie Policy")):
+    if os.path.exists(os.path.join(LEGACY, src)):
+        pages[src] = legal(src, src, title)
+    elif os.path.exists(os.path.join(HERE, "..", src)):   # no legacy source: keep the page that's already live
+        shutil.copy(os.path.join(HERE, "..", src), os.path.join(OUT, src))
 for p in products:
     pages[p["slug"]] = product_page(p)
 for name, content in pages.items():
