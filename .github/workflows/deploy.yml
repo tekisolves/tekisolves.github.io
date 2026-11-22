@@ -64,6 +64,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install the Markdown library (for blog posts)
+        run: pip install "markdown==3.7"
       - name: Record this deploy in SEO-CHANGELOG.md
         env:
           TEKI_EMAIL: ${{ secrets.TEKI_EMAIL }}
@@ -88,6 +90,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Install the Markdown library (for blog posts)
+        run: pip install "markdown==3.7"
       - name: Build page list
         working-directory: source
         env:
