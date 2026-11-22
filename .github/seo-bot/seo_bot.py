@@ -203,15 +203,23 @@ def cmd_run(args):
             new_official.append(it)
             if URGENT.search(it["title"]): new_urgent.append(it)
 
-    page_hashes = state.get("pages", {})
-    changed_docs = []
+    # Watch pages: compare the list of headings (each update entry), not the whole page,
+    # because the page's markup changes slightly on every load.
+    known = state.get("doc_headings", {})
+    doc_news = state.get("doc_news", [])     # new entries waiting for the Monday digest
+    changed_docs = []                        # new entries that look ranking-related (urgent)
     for wp in cfg.get("watch_pages", []):
         try:
             _, data = fetch(wp["url"])
-            text = re.sub(r"<[^>]+>", " ", data.decode("utf-8", "ignore"))
-            h = hashlib.sha1(re.sub(r"\s+", " ", text).encode()).hexdigest()
-            if page_hashes.get(wp["url"]) not in (None, h): changed_docs.append(wp)
-            page_hashes[wp["url"]] = h
+            heads = [re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", h))).strip()
+                     for h in re.findall(r"<h[23][^>]*>(.*?)</h[23]>", data.decode("utf-8", "ignore"), re.S)]
+            heads = [h for h in heads if h]
+            if wp["url"] in known:
+                for h in heads:
+                    if h not in known[wp["url"]]:
+                        entry = f'{h} ({wp["name"]}: {wp["url"]})'
+                        (changed_docs if URGENT.search(h) else doc_news).append(entry)
+            known[wp["url"]] = heads[:300]
         except Exception as e:
             broken.append(f'{wp["name"]} ({wp["url"]}): {type(e).__name__}')
 
@@ -248,7 +256,7 @@ def cmd_run(args):
         if new_urgent:
             lines += ["OFFICIAL SEARCH NEWS THAT CAN AFFECT RANKINGS", *[f'- {i["title"]} ({i["source"]})\n  {i["link"]}' for i in new_urgent], ""]
         if changed_docs:
-            lines += ["GOOGLE CHANGED ITS SEARCH DOCUMENTATION", *[f'- {d["url"]}' for d in changed_docs], ""]
+            lines += ["NEW GOOGLE SEARCH DOCUMENTATION UPDATE ABOUT RANKINGS", *[f"- {d}" for d in changed_docs], ""]
         lines.append("Nothing has been changed on the site. Read, then decide.")
         send("🔴 Teki SEO: " + ("site problem" if site_alert else "official search update"), "\n".join(lines))
     state["last_site_problem"] = problem_key
@@ -266,13 +274,18 @@ def cmd_run(args):
         lines += [f'- "{k}" ({len(v)} sources): ' + "; ".join(f'{x["title"]} ({s})' for s, x in list(v.items())[:2]) for k, v in topics] or ["- Nothing that more than one source covered."]
         lines += ["", "OFFICIAL (tier 1), LAST 7 DAYS"]
         lines += [f'- {i["title"]} ({i["source"]})\n  {i["link"]}' for i in week if i["tier"] == 1][:10] or ["- No new official posts."]
+        if doc_news:
+            lines += ["", "GOOGLE SEARCH DOCUMENTATION CHANGES", *[f"- {d}" for d in doc_news[:10]]]
+            doc_news = []
         lines += ["", f"Read {len(items)} items from {len(cfg['feeds']) - len(broken)} feeds; {len(week)} were from this week."]
         if broken: lines += ["", "FEEDS THAT FAILED (swap the URL in .github/seo-bot/feeds.json)", *[f"- {b}" for b in broken]]
         send("📬 Teki SEO weekly digest", "\n".join(lines))
         state["last_digest"] = NOW.date().isoformat()
 
     state["seen"] = sorted(seen)[-3000:]
-    state["pages"] = page_hashes
+    state.pop("pages", None)   # old whole-page hashes (replaced by doc_headings)
+    state["doc_headings"] = known
+    state["doc_news"] = doc_news[-50:]
     state["last_run"] = NOW.isoformat(timespec="minutes")
     json.dump(state, open(STATE_FILE, "w"), indent=1)
     print(f"items={len(items)} broken_feeds={len(broken)} urgent={len(new_urgent)} site_critical={len(site_crit)} digest={send_digest}")
