@@ -7,7 +7,7 @@
     {"name": "web.dev blog", "tier": 1, "url": "https://web.dev/static/blog/feed.xml"},
     {"name": "Chrome for Developers blog", "tier": 1, "url": "https://developer.chrome.com/static/blog/feed.xml"},
     {"name": "Search Engine Roundtable", "tier": 2, "url": "https://www.seroundtable.com/index.rdf"},
-    {"name": "Search Engine Land", "tier": 2, "url": "https://searchengineland.com/feed"},
+    {"name": "Search Engine Land", "tier": 2, "url": "https://searchengineland.com/feed/", "fallbacks": ["https://feeds.searchengineland.com/searchengineland"]},
     {"name": "Search Engine Journal", "tier": 2, "url": "https://www.searchenginejournal.com/feed/"},
     {"name": "Ahrefs blog", "tier": 3, "url": "https://ahrefs.com/blog/feed/"},
     {"name": "Moz blog", "tier": 3, "url": "https://moz.com/posts/rss/blog"},

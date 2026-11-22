@@ -183,13 +183,19 @@ def cmd_run(args):
     items, broken, new_urgent, new_official = [], [], [], []
     for fd in cfg["feeds"]:
         try:
-            _, data = fetch(fd["url"])
+            data = None
+            for u in [fd["url"]] + fd.get("fallbacks", []):   # try the feed's other official addresses
+                try: _, data = fetch(u); break
+                except Exception as e: err = e
+            if data is None: raise err
             for it in parse_feed(data):
                 it.update(source=fd["name"], tier=fd["tier"])
                 it["id"] = hashlib.sha1((fd["url"] + it["title"] + it["link"]).encode()).hexdigest()[:16]
                 items.append(it)
         except Exception as e:
-            broken.append(f'{fd["name"]} ({fd["url"]}): {type(e).__name__}')
+            reason = f"HTTP {e.code}" if getattr(e, "code", None) else type(e).__name__
+            hint = " (the site blocks automated readers; consider removing it)" if getattr(e, "code", None) in (401, 403) else ""
+            broken.append(f'{fd["name"]} ({fd["url"]}): {reason}{hint}')
     for it in items:
         if it["id"] in seen: continue
         seen.add(it["id"])
