@@ -3,6 +3,7 @@ name: Content coach
 # Every evening: checks the blog plan (.github/content-coach/plan.json) and,
 # if today matters (session night, 2 days out, ship day, overdue, or a post just
 # went live), sends one short email. Quiet days send nothing.
+# Sundays also get a business plan review: weekly, monthly (1st Sunday), quarterly (1st Sunday of Jan/Apr/Jul/Oct).
 # A post counts as done when its file exists in the repo. No AI, no cost.
 # Uses the same secrets as the SEO bot: TEKI_EMAIL and GMAIL_APP_PASSWORD.
 
