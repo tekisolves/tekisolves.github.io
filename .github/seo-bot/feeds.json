@@ -1,19 +1,62 @@
 {
   "_note": "tier 1 = official (can trigger an urgent email), 2 = trusted reporting, 3 = deep dives. Tiers 2 and 3 only appear in the Monday digest. A feed that stops working is listed in the digest so you can fix or swap its URL.",
   "feeds": [
-    {"name": "Google Search Central blog", "tier": 1, "url": "https://developers.google.com/search/blog/feed.xml"},
-    {"name": "Google Search Status Dashboard", "tier": 1, "url": "https://status.search.google.com/en/feed.atom"},
-    {"name": "Bing Webmaster blog", "tier": 1, "url": "https://blogs.bing.com/webmaster/feed"},
-    {"name": "web.dev blog", "tier": 1, "url": "https://web.dev/static/blog/feed.xml"},
-    {"name": "Chrome for Developers blog", "tier": 1, "url": "https://developer.chrome.com/static/blog/feed.xml"},
-    {"name": "Search Engine Roundtable", "tier": 2, "url": "https://www.seroundtable.com/index.rdf"},
-    {"name": "Search Engine Land", "tier": 2, "url": "https://searchengineland.com/feed/", "fallbacks": ["https://feeds.searchengineland.com/searchengineland"]},
-    {"name": "Search Engine Journal", "tier": 2, "url": "https://www.searchenginejournal.com/feed/"},
-    {"name": "Ahrefs blog", "tier": 3, "url": "https://ahrefs.com/blog/feed/"},
-    {"name": "Moz blog", "tier": 3, "url": "https://moz.com/posts/rss/blog"},
-    {"name": "schema.org releases", "tier": 3, "url": "https://github.com/schemaorg/schemaorg/releases.atom"}
+    {
+      "name": "Google Search Central blog",
+      "tier": 1,
+      "url": "https://developers.google.com/search/blog/feed.xml"
+    },
+    {
+      "name": "Google Search Status Dashboard",
+      "tier": 1,
+      "url": "https://status.search.google.com/en/feed.atom"
+    },
+    {
+      "name": "Bing Webmaster blog",
+      "tier": 1,
+      "url": "https://blogs.bing.com/webmaster/feed"
+    },
+    {
+      "name": "web.dev blog",
+      "tier": 1,
+      "url": "https://web.dev/static/blog/feed.xml"
+    },
+    {
+      "name": "Chrome for Developers blog",
+      "tier": 1,
+      "url": "https://developer.chrome.com/static/blog/feed.xml"
+    },
+    {
+      "name": "Search Engine Roundtable",
+      "tier": 2,
+      "url": "https://www.seroundtable.com/index.rdf"
+    },
+    {
+      "name": "Search Engine Journal",
+      "tier": 2,
+      "url": "https://www.searchenginejournal.com/feed/"
+    },
+    {
+      "name": "Ahrefs blog",
+      "tier": 3,
+      "url": "https://ahrefs.com/blog/feed/"
+    },
+    {
+      "name": "Moz blog",
+      "tier": 3,
+      "url": "https://moz.com/posts/rss/blog"
+    },
+    {
+      "name": "schema.org releases",
+      "tier": 3,
+      "url": "https://github.com/schemaorg/schemaorg/releases.atom"
+    }
   ],
   "watch_pages": [
-    {"name": "Google Search documentation updates", "tier": 1, "url": "https://developers.google.com/search/updates"}
+    {
+      "name": "Google Search documentation updates",
+      "tier": 1,
+      "url": "https://developers.google.com/search/updates"
+    }
   ]
 }
