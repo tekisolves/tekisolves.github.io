@@ -189,20 +189,80 @@ def build_email(plan, state, today):
     return None
 
 
+# ---------- business plan reviews (Sundays) ----------
+REVIEW_OPENERS = [
+    "Fifteen minutes now saves you a week of working on the wrong thing.",
+    "Founders don't fail from lack of effort. They fail from effort pointed the wrong way. Point it.",
+    "This is the boss meeting. You're the boss. Show up to it.",
+    "A plan you don't look at is a wish. Make it a plan again.",
+    "Honest numbers beat good vibes. Look at them anyway, especially if they're small.",
+]
+
+INCOME_METRICS = [
+    "Money in this period (EUR): sales, tips, client work",
+    "Retro Arsenal: itch.io views, downloads, sales (itch.io > Analytics)",
+    "Website: clicks from Google (Search Console > Performance)",
+    "Free sample: downloads / demo visits",
+    "Customer conversations: messages sent, replies, interviews done",
+    "Hours spent on things that can make money vs everything else",
+]
+
+SOFT_CHECK = [
+    "Did I keep the promises I made to myself this week? Which one did I break, and why?",
+    "What did I avoid because it felt uncomfortable (a message, a call, a price)? Do that first next week.",
+    "Where did I build or tidy instead of selling or talking to people?",
+    "What's one thing I did well that I want to repeat?",
+]
+
+def review_email(today):
+    """Sunday evenings: weekly review. First Sunday of the month: monthly. First Sunday of Jan/Apr/Jul/Oct: quarterly."""
+    if today.strftime("%a") != "Sun":
+        return None
+    first_sunday = today.day <= 7
+    opener = REVIEW_OPENERS[today.toordinal() % len(REVIEW_OPENERS)]
+    soft = "\n".join(f"  - {q}" for q in SOFT_CHECK)
+    metrics = "\n".join(f"  [ ] {m}" for m in INCOME_METRICS)
+    if first_sunday and today.month in (1, 4, 7, 10):
+        subject = "Quarterly review: rewrite the 90-day plan (2 hours)"
+        body = (f"{opener}\n\nThis is the big one. Block 2 hours this week.\n\n"
+                f"1. Fill in the numbers for the last 3 months:\n{metrics}\n\n"
+                "2. Which threads made money or moved you closer to money? Keep those.\n"
+                "3. Which ones didn't? Pause or drop them. Fewer threads, more depth.\n"
+                "4. Rewrite the 90-day plan: 1 income goal, 2-3 projects that serve it, weekly targets.\n\n"
+                f"Soft skills check:\n{soft}\n\nOpen Claude and say \"quarterly review\" to do it together.")
+    elif first_sunday:
+        subject = "Monthly review: check the numbers (45 min)"
+        body = (f"{opener}\n\nOnce a month you check the scoreboard. Small numbers are fine. Unknown numbers aren't.\n\n"
+                f"Last month's numbers:\n{metrics}\n\n"
+                "Then ask: what's working (do more), what isn't (cut or change), what's the one bet for this month?\n\n"
+                f"Soft skills check:\n{soft}\n\nOpen Claude and say \"monthly review\" with your numbers.")
+    else:
+        subject = "Weekly review: 15 minutes with your plan"
+        body = (f"{opener}\n\n"
+                "1. Open your business plan and read the 90-day goals. Just read them.\n"
+                "2. Last week: what moved you closer to income? What didn't?\n"
+                "3. Pick the 2-3 things for this week that serve those goals. Move them to \"This week\" in Trello. Everything else waits.\n"
+                "4. Put your 2 session evenings in your calendar.\n\n"
+                f"Soft skills check (answer honestly, nobody's grading you):\n{soft}")
+    return subject, body + "\n\nA plan only works if you look at it. You just did. That's the habit.\nYour own bot, running on GitHub. No AI, no cost."
+
+
 def cmd_run(args):
     today = dt.date.fromisoformat(args.date) if args.date else dt.date.today()
     plan = load(PLAN, None)
     state = load(STATE, {})
-    if state.get("last_sent") == today.isoformat() and not args.test:
-        print("Already emailed today.")
-        return
-    mail = build_email(plan, state, today)
+    already = state.get("last_sent") == today.isoformat() and not args.test
+    mail = None if already else build_email(plan, state, today)
     if mail:
         subject, body = mail
         send(subject, body + footer(plan, state))
         state["last_sent"] = today.isoformat()
     else:
-        print("Quiet day, no email.")
+        print("Quiet day, no content email.")
+    review = review_email(today)
+    if review and (state.get("last_review") != today.isoformat() or args.test):
+        send(*review)
+        state["last_review"] = today.isoformat()
     if not args.date:  # don't save state for pretend dates
         with open(STATE, "w") as f:
             json.dump(state, f, indent=2)
