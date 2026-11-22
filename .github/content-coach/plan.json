@@ -1,0 +1,63 @@
+{
+  "_note": "Edit dates here if life happens. A task counts as done when its 'done_when' path exists in the repo. Sessions are the evenings you sit down for 45 minutes.",
+  "session_days": ["Tue", "Thu"],
+  "session_minutes": 45,
+  "tasks": [
+    {
+      "id": "blog",
+      "title": "Build the blog section (with Claude)",
+      "due": "2026-11-29",
+      "done_when": "source/blog",
+      "why": "Every post after this has a home. This is the foundation.",
+      "first_step": "Open Claude and say: \"Let's build the blog section.\" That's the whole first step."
+    },
+    {
+      "id": "post-1",
+      "title": "Post 1: Using a sprite atlas + JSON in Phaser",
+      "due": "2026-12-06",
+      "done_when": "source/blog/phaser-sprite-atlas-json.md",
+      "why": "Indie devs search for this every day. They're your buyers.",
+      "first_step": "Load the Retro Arsenal atlas in a blank Phaser scene and screenshot it. Then tell Claude what you did."
+    },
+    {
+      "id": "post-2",
+      "title": "Post 2: Weapon tier upgrades in Godot 4",
+      "due": "2026-12-20",
+      "done_when": "source/blog/godot-4-weapon-tier-upgrades.md",
+      "why": "Godot is where indie devs are moving. Be there when they search.",
+      "first_step": "Make one Godot scene that swaps a tier 1 sprite for tier 2 on a key press."
+    },
+    {
+      "id": "post-3",
+      "title": "Post 3: Free sci-fi weapon sprites (sample pack)",
+      "due": "2027-01-10",
+      "done_when": "source/blog/free-sci-fi-weapon-sprites.md",
+      "why": "Give first. A free sample is the best salesperson a shy founder can have.",
+      "first_step": "Pick the 3 sprites you're proudest of. Just pick them."
+    },
+    {
+      "id": "post-4",
+      "title": "Post 4: Devlog, how I made Retro Arsenal",
+      "due": "2027-01-24",
+      "done_when": "source/blog/how-i-made-retro-arsenal.md",
+      "why": "Your story is the one thing nobody can copy.",
+      "first_step": "Write 5 bullet points on how it was made. Ugly is fine."
+    },
+    {
+      "id": "refresh-feb",
+      "title": "Monthly refresh: check Search Console, improve one post",
+      "due": "2027-02-07",
+      "done_when": null,
+      "why": "Google shows you what people want. Give them more of it.",
+      "first_step": "Open Search Console > Performance. Copy the top 10 queries to Claude."
+    },
+    {
+      "id": "refresh-mar",
+      "title": "Monthly refresh: check Search Console, plan the next post",
+      "due": "2027-03-07",
+      "done_when": null,
+      "why": "Three months of showing up. Now let the data steer.",
+      "first_step": "Open Search Console > Performance. Copy the top 10 queries to Claude."
+    }
+  ]
+}
