@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-22 18:28 UTC: SEO change log + share images on every page (PR #6)
+
+- (no details in the commit message)
+- Areas changed: Automation (build, deploy, checks), Documentation, Page templates and SEO tags, SEO bot rules
+- SEO check after deploy: 8 pages checked, 0 critical problems, 3 minor warnings
+
 ## 2026-11-22 18:17 UTC: SEO bot: remove Search Engine Land feed (PR #4)
 
 - Removed Search Engine Land from the news feeds because it blocks automated readers. Search Engine Roundtable and Search Engine Journal cover the same news.
