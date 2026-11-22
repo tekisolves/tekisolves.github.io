@@ -8,7 +8,7 @@
 Email goes from and to TEKI_EMAIL using GMAIL_APP_PASSWORD (both repo secrets).
 Rules live in this file in plain Python, so you can read and change every one of them.
 """
-import argparse, datetime as dt, email.utils, hashlib, html, json, os, re, smtplib, sys
+import argparse, posixpath, datetime as dt, email.utils, hashlib, html, json, os, re, smtplib, sys
 import urllib.request, urllib.error, urllib.parse
 import xml.etree.ElementTree as ET
 from email.message import EmailMessage
@@ -83,7 +83,10 @@ def check_page(name, text, files=None):
         for href in p.links:
             u = urllib.parse.urlparse(href)
             if u.scheme or href.startswith(("#", "mailto:", "tel:")): continue
-            target = u.path.lstrip("/") or "index.html"
+            path = u.path
+            if not path: continue   # "?query" on the same page
+            target = path.lstrip("/") if path.startswith("/") else posixpath.normpath(posixpath.join(posixpath.dirname(name), path))
+            if path.endswith("/") or target == ".": target = ("" if target in (".", "") else target + "/") + "index.html"
             if target not in files: crit.append(f"broken internal link: {href}")
     return crit, warn
 
@@ -94,14 +97,17 @@ def cmd_check(args):
     pages = sorted(f for f in files if f.endswith(".html"))
     total_crit = 0
     for name in pages:
+        if "/demo/" in name: continue   # small standalone demos (noindex), not site pages
         crit, warn = check_page(name, open(os.path.join(args.dist, name), encoding="utf-8").read(), files)
         for c in crit: print(f"CRITICAL  {name}: {c}")
         for w in warn: print(f"warning   {name}: {w}")
         total_crit += len(crit)
     sm = os.path.join(args.dist, "sitemap.xml")
     if os.path.exists(sm):
-        listed = {x or "index.html" for x in re.findall(r"<loc>[^<]*/([^/<]*)</loc>", open(sm).read())}
+        listed = {(x + "index.html") if (x == "" or x.endswith("/")) else x
+                  for x in re.findall(r"<loc>https?://[^/<]+/([^<]*)</loc>", open(sm).read())}
         missing = [n for n in pages if n != "404.html" and n not in listed]
+        missing = [n for n in missing if 'content="noindex' not in open(os.path.join(args.dist, n), encoding="utf-8").read()]
         if missing: print("warning   sitemap.xml is missing: " + ", ".join(missing))
     print(f"{len(pages)} pages checked, {total_crit} critical problem(s).")
     sys.exit(1 if total_crit else 0)
@@ -110,7 +116,11 @@ def cmd_check(args):
 def cmd_indexnow(args):
     keys = [f[:-4] for f in os.listdir(args.dist) if re.fullmatch(r"[0-9a-f]{32}\.txt", f)]
     if not keys: print("No IndexNow key file in the build; skipping."); return
-    urls = [f"{args.site}/{f}" for f in sorted(os.listdir(args.dist)) if f.endswith(".html") and f != "404.html"]
+    sm = os.path.join(args.dist, "sitemap.xml")
+    if os.path.exists(sm):   # the sitemap already lists exactly the public pages
+        urls = re.findall(r"<loc>([^<]+)</loc>", open(sm).read())
+    else:
+        urls = [f"{args.site}/{f}" for f in sorted(os.listdir(args.dist)) if f.endswith(".html") and f != "404.html"]
     body = json.dumps({"host": urllib.parse.urlparse(args.site).netloc, "key": keys[0],
                        "keyLocation": f"{args.site}/{keys[0]}.txt", "urlList": urls}).encode()
     req = urllib.request.Request("https://api.indexnow.org/indexnow", data=body, method="POST",

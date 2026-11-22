@@ -13,11 +13,11 @@
     },
     {
       "id": "post-1",
-      "title": "Post 1: Using a sprite atlas + JSON in Phaser",
+      "title": "Post 1: Phaser 4 texture atlas (test the demo on your phone, then publish)",
       "due": "2026-12-06",
-      "done_when": "source/blog/phaser-sprite-atlas-json.md",
+      "done_when": "source/blog/phaser-4-texture-atlas.md",
       "why": "Indie devs search for this every day. They're your buyers.",
-      "first_step": "Load the Retro Arsenal atlas in a blank Phaser scene and screenshot it. Then tell Claude what you did."
+      "first_step": "Open the live demo on your phone (tekisolves.github.io/assets/blog/phaser-4-texture-atlas/demo/). Aim, fire, swap tiers. Then read the draft and change anything that doesn't sound like you."
     },
     {
       "id": "post-2",

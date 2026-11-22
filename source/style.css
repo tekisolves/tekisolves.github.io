@@ -260,3 +260,38 @@ details.faq p{margin-top:.7rem;color:var(--muted);max-width:40rem}
 .band-cream .list li::before{background:var(--ink)}
 
 .band-cream .product-card h3,.product-card h3{color:var(--fg)}
+
+/* ---------- blog ---------- */
+.post-wrap{max-width:46rem}
+.post-hero h1{font-size:clamp(2rem,5.5vw,3.4rem);line-height:1.08}
+.post-meta{font:400 .78rem/1.5 var(--mono);letter-spacing:.04em;color:var(--muted);margin-top:1.2rem}
+.post-meta a{color:inherit}
+.draft-flag{display:inline-block;font:500 .7rem/1 var(--mono);letter-spacing:.14em;background:var(--gold);color:#101311;padding:.45rem .6rem;margin-bottom:1rem}
+.post-toc{border:1px solid var(--line);padding:1.1rem 1.3rem;margin-bottom:2.4rem}
+.post-toc ol{margin:.6rem 0 0;padding-left:1.2rem;display:grid;gap:.35rem}
+.post-toc a{color:var(--fg);text-decoration:none}
+.post-toc a:hover{color:var(--lime)}
+.post-body{font-size:1.06rem;line-height:1.75}
+.post-body>*+*{margin-top:1.1rem}
+.post-body h2{font-size:clamp(1.5rem,3.6vw,2rem);margin-top:2.8rem;scroll-margin-top:5rem}
+.post-body h3{font-size:1.25rem;margin-top:2rem;scroll-margin-top:5rem}
+.post-body a{color:var(--lime)}
+.post-body ul,.post-body ol{padding-left:1.3rem;display:grid;gap:.4rem}
+.post-body img{max-width:100%;height:auto;border:1px solid var(--line)}
+.post-body blockquote{border-left:3px solid var(--gold);margin-left:0;padding:.2rem 0 .2rem 1.1rem;color:var(--muted)}
+.post-body code{font:400 .9em/1.5 var(--mono);background:var(--surface);border:1px solid var(--line);padding:.08em .35em;border-radius:3px}
+.post-body pre{background:#0B0E0C;border:1px solid var(--line);padding:1.1rem 1.2rem;overflow-x:auto;border-radius:4px}
+.post-body pre code{background:none;border:0;padding:0;font-size:.86rem;line-height:1.65}
+.post-body table{width:100%;border-collapse:collapse;font-size:.95rem}
+.post-body th,.post-body td{border-bottom:1px solid var(--line);padding:.55rem .4rem;text-align:left;vertical-align:top}
+.made-note{margin-top:2.6rem;border-top:1px solid var(--line);padding-top:1.2rem}
+.author-box{margin-top:1.6rem;background:var(--surface);border:1px solid var(--line);padding:1.2rem 1.3rem}
+.author-box p:last-child{margin-top:.4rem;color:var(--muted)}
+.post-list{display:grid;gap:1.2rem}
+.post-card{background:var(--paper);border:1px solid var(--ink-line);padding:1.5rem 1.6rem;position:relative}
+.post-card h2{font-size:1.45rem;margin-top:.5rem;color:var(--ink)}
+.post-card h2 a{color:inherit;text-decoration:none}
+.post-card h2 a::after{content:"";position:absolute;inset:0}
+.post-card p{margin-top:.6rem}
+.post-card .post-meta{color:var(--ink-muted);margin-top:0}
+.post-card .card-cta{display:inline-block;margin-top:.9rem;font:500 .78rem/1 var(--mono);color:var(--ink)}
