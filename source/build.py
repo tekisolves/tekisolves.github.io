@@ -55,11 +55,14 @@ def diamond_line():
     return '<svg class="diamond-line" viewBox="0 0 140 20" aria-hidden="true" focusable="false"><path d="M0 10H52L60 10 70 1 80 10 70 19 60 10M80 10H140"/></svg>'
 
 # ---------- shared shell ----------
+def page_url(path):
+    return f'{SITE_URL}/{"" if path == "index.html" else path}'
+
 def canon(path):
-    return f'<link rel="canonical" href="{SITE_URL}/{path}">' if SITE_URL else ""
+    return f'<link rel="canonical" href="{page_url(path)}">' if SITE_URL else ""
 
 def shell(path, title, desc, body, current="", robots="index, follow", og_image="", head_extra=""):
-    og = f'<meta property="og:url" content="{SITE_URL}/{path}">' if SITE_URL else ""
+    og = f'<meta property="og:url" content="{page_url(path)}">' if SITE_URL else ""
     if og_image and SITE_URL:
         og += f'<meta property="og:image" content="{SITE_URL}/{og_image}"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">'
     nav = [("products.html","Products"),("about.html","About"),("contact.html","Contact")]
@@ -518,9 +521,15 @@ for p in products:
 for name, content in pages.items():
     open(os.path.join(OUT, name), "w", encoding="utf-8").write(content)
 
-public = [n for n in pages if n != "404.html"]
+for f in os.listdir(HERE):   # IndexNow key file (public by design), used by the SEO bot after each deploy
+    if re.fullmatch(r"[0-9a-f]{32}\.txt", f):
+        shutil.copy(os.path.join(HERE, f), OUT)
+
+public = sorted(n for n in os.listdir(OUT) if n.endswith(".html") and n != "404.html")   # includes copied legal pages
 if SITE_URL:
-    urls = "".join(f"<url><loc>{SITE_URL}/{n}</loc></url>" for n in public)
+    import datetime
+    today = datetime.date.today().isoformat()
+    urls = "".join(f"<url><loc>{SITE_URL}/{'' if n == 'index.html' else n}</loc><lastmod>{today}</lastmod></url>" for n in public)
     open(os.path.join(OUT, "sitemap.xml"), "w").write(f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>')
 open(os.path.join(OUT, "robots.txt"), "w").write("User-agent: *\nAllow: /\n" + (f"Sitemap: {SITE_URL}/sitemap.xml\n" if SITE_URL else ""))
 print("Built", len(pages), "pages ->", OUT)
