@@ -88,7 +88,7 @@ class Demo extends Phaser.Scene {
     this.bladeGoal.copy(this.bladePos);
     this.targets.forEach((t) => this.placeTarget(t, true));
     this.aimAt(this.lastAim ?? { x: w * 0.8, y: h * 0.45 });
-    const dpr = window.devicePixelRatio || 1;
+    const dpr = +(window.devicePixelRatio || 1).toFixed(2);
     $('size').textContent = `${Math.round(w)} × ${Math.round(h)} @${dpr}x`;
   }
 
@@ -192,16 +192,16 @@ class Demo extends Phaser.Scene {
     t.parts.ring.setRadius(r);
     t.parts.inner.setRadius(r * 0.92);
     t.parts.core.setSize(r * 0.6, r * 0.6);
-    const b = this.bounds();
-    if (keep) {
-      t.base = { x: Phaser.Math.Clamp(t.base.x, b.x0, b.x1), y: Phaser.Math.Clamp(t.base.y, b.y0, b.y1) };
-    } else {
-      // pick a spot that doesn't overlap the other targets
+    // positions are stored as 0..1 inside the play area, so a resize scales them, never stacks them
+    const b = this.bounds(), at = (u, v) => ({ x: b.x0 + (b.x1 - b.x0) * u, y: b.y0 + (b.y1 - b.y0) * v });
+    if (!keep) {
       for (let i = 0; i < 20; i++) {
-        t.base = { x: Phaser.Math.Between(b.x0, Math.max(b.x0, b.x1)), y: Phaser.Math.Between(b.y0, Math.max(b.y0, b.y1)) };
-        if (this.targets.every((o) => o === t || !o.base || Phaser.Math.Distance.BetweenPoints(o.base, t.base) > r * 3)) break;
+        t.u = Math.random(); t.v = Math.random();
+        const p = at(t.u, t.v);
+        if (this.targets.every((o) => o === t || o.u === undefined || Phaser.Math.Distance.BetweenPoints(at(o.u, o.v), p) > r * 3)) break;
       }
     }
+    t.base = at(t.u, t.v);
     t.setPosition(t.base.x, t.base.y);
   }
 
