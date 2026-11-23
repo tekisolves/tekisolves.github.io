@@ -199,7 +199,7 @@
       hero.addEventListener('pointerenter', () => hero.style.setProperty('--spot', '1'));
     }
     if ('IntersectionObserver' in window) {
-      const scenes = document.querySelectorAll('.d3, .c3');
+      const scenes = document.querySelectorAll('.ldia-wrap, .c3');
       const io3 = new IntersectionObserver(entries => {
         entries.forEach(en => { en.target.dataset.inview = en.isIntersecting ? '1' : ''; en.target.classList.toggle('is-paused', !en.isIntersecting || document.hidden); });
       }, { threshold: 0 });
