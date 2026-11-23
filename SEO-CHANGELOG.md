@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 02:24 UTC: Game UI level 2: interactive hologram, reticle, decode text, achievement (PR #17)
+
+- (no details in the commit message)
+- Areas changed: Design and layout, Images, Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 02:18 UTC: Game UI layer + fix stale stylesheet caching (PR #16)
 
 - (no details in the commit message)
