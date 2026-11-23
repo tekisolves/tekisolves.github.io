@@ -97,6 +97,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <meta charset="UTF-8">
 <script>try{{if(!sessionStorage.getItem('tk-splash')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){{document.documentElement.classList.add('splash');sessionStorage.setItem('tk-splash','1')}}}}catch(e){{}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="p:domain_verify" content="40d88495a5e6ea16e2af1af40df03b7f">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="robots" content="{robots}">
