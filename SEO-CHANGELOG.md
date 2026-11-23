@@ -2,6 +2,18 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 17:45 UTC: Demo: all five weapons; contact form rebuilt
+
+- Rifle (hold to fire), shotgun (5-pellet spread, short range, big kick),
+- Guns aim through the muzzle, not the grip, so shots land where you point
+- Game-style hotbar (1-5) with sprite icons; HUD adapts to narrow windows
+- Fix: success panel no longer shows before sending ([hidden] was overridden)
+- Field-level validation with clear messages, ticks on valid fields,
+- Honest copy: real person reads it, reply aims, what to do if no reply
+- Sending state, animated confirmation naming the reply email, send another
+- Areas changed: Design and layout, Documentation, Images, Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 17:33 UTC: Demo: return focus to the game after HUD clicks
 
 - (no details in the commit message)
