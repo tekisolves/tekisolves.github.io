@@ -229,8 +229,9 @@ class Demo extends Phaser.Scene {
 
   flash(img) {
     if (reduceMotion) return;
-    img.setTintFill?.(CREAM);
-    this.time.delayedCall(60, () => img.clearTint?.());
+    // Phaser 4: fill tints are setTint + setTintMode (setTintFill was removed)
+    img.setTint(CREAM).setTintMode(Phaser.TintModes.FILL);
+    this.time.delayedCall(60, () => img.clearTint());
   }
 
   // ---------- loop ----------
