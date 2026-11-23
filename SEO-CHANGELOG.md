@@ -2,6 +2,14 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 20:15 UTC: Cross-post blog posts to DEV as drafts, publish on schedule
+
+- .github/devto/devto.py: creates a DEV draft for any post with a devto:
+- Runs on blog changes and hourly; needs the DEVTO_API_KEY secret
+- First post scheduled for Tue 24 Nov 14:00 UTC
+- Areas changed: Automation (build, deploy, checks), Documentation
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 19:39 UTC: Footer: Facebook link uses the new @tekisolves username
 
 - (no details in the commit message)
