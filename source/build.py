@@ -403,6 +403,23 @@ def product_page(p):
   </div>
 </section>
 
+
+<section class="band" aria-labelledby="range-h">
+  <div class="wrap">
+    <div class="section-head reveal"><span class="eyebrow">Try before you buy</span><h2 id="range-h">The weapon range</h2>
+    <p>Every weapon and tier, live in your browser, using the pack's real pivot and muzzle data. Aim, fire, then swap tiers and watch the sprite stay exactly in the hand.</p></div>
+    <div class="range" id="range" data-data="assets/3d/arsenal-data.json" data-base="assets/3d/">
+      <div class="range-hud"><span>WEAPON <b data-hud="weapon">LASER PISTOL</b></span><span>TIER <b data-hud="tier">SCRAP</b></span><span>HITS <b data-hud="hits">000</b></span></div>
+      <canvas tabindex="0" aria-label="Weapon range: aim with the mouse or finger, click or tap to fire. Keys 1 to 5 pick a weapon, T swaps tier, Space fires."></canvas>
+      <p class="range-note" data-hud="note" aria-live="polite"></p>
+      <div class="range-controls">
+        <div class="range-group" role="group" aria-label="Weapon"><button type="button" data-w="0" aria-pressed="true"><kbd>1</kbd>Pistol</button><button type="button" data-w="1" aria-pressed="false"><kbd>2</kbd>Rifle</button><button type="button" data-w="2" aria-pressed="false"><kbd>3</kbd>Shotgun</button><button type="button" data-w="3" aria-pressed="false"><kbd>4</kbd>Blade</button><button type="button" data-w="4" aria-pressed="false"><kbd>5</kbd>Grenade</button></div>
+        <div class="range-group" role="group" aria-label="Tier"><button type="button" data-t="0" aria-pressed="true">Scrap</button><button type="button" data-t="1" aria-pressed="false">Military</button><button type="button" data-t="2" aria-pressed="false">Prototype</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="assets/3d/range.js" defer></script>
 <section class="band band-cream" aria-labelledby="preview">
   <div class="wrap">
     <div class="section-head reveal"><span class="eyebrow">Preview</span><h2 id="preview">Every sprite in the pack</h2></div>
