@@ -433,3 +433,47 @@ details.faq p{margin-top:.7rem;color:var(--muted);max-width:40rem}
   .ldia,.ldia-body,.ldia-mini,.ldia-mini-in,.ldia-body i:last-child,.holo .c3-item img,.holo-emitter i{animation:none}
   .ldia-body{transform:rotateY(-20deg)}
 }
+
+/* ---------- game UI layer: HUD frames, chamfered buttons, inventory cards, section indexes ---------- */
+/* HUD corner brackets (gold) on framed panels */
+.product-card::after,.c3::after,.post-card::after,.hero-art::after{content:"";position:absolute;inset:-1px;pointer-events:none;z-index:3;
+  --c:rgba(242,205,110,.9);--l:16px;
+  background:
+    linear-gradient(var(--c),var(--c)) top left/var(--l) 2px no-repeat,linear-gradient(var(--c),var(--c)) top left/2px var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) top right/var(--l) 2px no-repeat,linear-gradient(var(--c),var(--c)) top right/2px var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) bottom left/var(--l) 2px no-repeat,linear-gradient(var(--c),var(--c)) bottom left/2px var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) bottom right/var(--l) 2px no-repeat,linear-gradient(var(--c),var(--c)) bottom right/2px var(--l) no-repeat;
+  transition:inset .35s var(--ease),opacity .35s}
+.hero-art::after{inset:-18px;--l:22px;--c:rgba(242,205,110,.55)}
+.product-card:hover::after,.c3:hover::after,.post-card:hover::after{inset:-7px}
+/* game-style chamfered buttons with a light sweep */
+.btn{border-radius:2px;clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);position:relative;overflow:hidden;letter-spacing:.02em}
+.btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;transform:skewX(-20deg);background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);transition:left .55s var(--ease);pointer-events:none}
+.btn:hover::after,.btn:focus-visible::after{left:120%}
+.btn-primary{box-shadow:0 0 0 1px rgba(178,221,49,.4),0 0 22px -6px rgba(178,221,49,.7)}
+.btn-primary:hover{box-shadow:0 0 0 1px rgba(178,221,49,.7),0 0 30px -4px rgba(178,221,49,.9)}
+/* inventory-card 3D tilt (pointer set by script) with a legendary gold glint */
+.product-card{transform:perspective(900px) rotateX(var(--tx,0deg)) rotateY(var(--ty,0deg));transform-style:preserve-3d}
+.product-card::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(400px circle at var(--gx,50%) var(--gy,50%),rgba(255,236,170,.16),transparent 45%)}
+.product-card:hover::before{opacity:1}
+.product-card .eyebrow::after{content:"  ◆ LEGENDARY";color:#e9c55c;letter-spacing:.18em}
+/* HUD section index: 01 //, 02 // ... before each section eyebrow */
+main{counter-reset:hud}
+.section-head .eyebrow::before,.cols .stack>.eyebrow::before{counter-increment:hud;content:counter(hud,decimal-leading-zero) " // ";color:#e9c55c}
+/* status pill: a live "online" dot like a game lobby */
+.chip i{box-shadow:0 0 0 0 rgba(233,197,92,.7);animation:ping 2.4s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(233,197,92,.6)}80%,100%{box-shadow:0 0 0 8px rgba(233,197,92,0)}}
+/* hero: faint moving scanline across the grid, like a game menu */
+.hero::before{animation:herosweep 10s ease-in-out infinite alternate}
+@keyframes herosweep{from{transform:translateY(-6%)}to{transform:translateY(8%)}}
+@media(prefers-reduced-motion:reduce){
+  .chip i,.hero::before{animation:none}
+  .product-card{transform:none}
+  .btn::after{display:none}
+}
+.band-cream .section-head .eyebrow::before,.band-cream .cols .stack>.eyebrow::before{color:#8c6315}
+/* panels clip overflow, so their HUD brackets sit just inside the edge */
+.product-card::after,.c3::after,.post-card::after{inset:7px}
+.product-card:hover::after,.c3:hover::after,.post-card:hover::after{inset:3px}
+.band-cream .post-card::after{--c:rgba(140,99,21,.85)}

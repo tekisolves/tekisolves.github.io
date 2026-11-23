@@ -14,6 +14,11 @@ OUT = os.path.join(HERE, "dist")
 LEGACY = os.environ.get("LEGACY_DIR", os.path.join(HERE, "..", "Teki-Solves-Landing-Page-main"))
 products = json.load(open(os.path.join(HERE, "products.json")))
 esc = html.escape
+import hashlib
+def asset_ver(name):
+    """Short content hash so browsers fetch the new file after every change (no stale CSS)."""
+    return hashlib.sha1(open(os.path.join(HERE, name), "rb").read()).hexdigest()[:8]
+CSS_V, JS_V = asset_ver("style.css"), asset_ver("script.js")
 
 def has(path):
     return os.path.exists(os.path.join(HERE, path))
@@ -93,7 +98,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v={CSS_V}">
 <link rel="alternate" type="application/rss+xml" title="Teki Solves blog" href="blog/feed.xml">
 <script>document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('consent','default',{{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'}});</script>
 <script type="application/ld+json">{org}</script>
@@ -136,7 +141,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
     <div class="cookie-actions"><button class="btn btn-primary btn-sm" id="cookieSettingsAccept" type="button">Allow analytics</button><button class="btn btn-outline btn-sm" id="cookieSettingsReject" type="button">Reject analytics</button></div>
   </div>
 </div>
-<script src="script.js" defer></script>
+<script src="script.js?v={JS_V}" defer></script>
 </body>
 </html>
 '''

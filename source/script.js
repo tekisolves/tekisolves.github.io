@@ -207,4 +207,20 @@
       document.addEventListener('visibilitychange', () => scenes.forEach(el => el.classList.toggle('is-paused', document.hidden || !el.dataset.inview)));
     }
   })();
+
+  /* ---------- game UI: inventory-card tilt + glint ---------- */
+  (function () {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(pointer: fine)').matches) return;
+    document.querySelectorAll('.product-card').forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+        card.style.setProperty('--ty', ((x - 0.5) * 10).toFixed(2) + 'deg');
+        card.style.setProperty('--tx', ((0.5 - y) * 8).toFixed(2) + 'deg');
+        card.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
+        card.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+      });
+      card.addEventListener('pointerleave', () => { card.style.setProperty('--tx', '0deg'); card.style.setProperty('--ty', '0deg'); });
+    });
+  })();
 })();
