@@ -223,4 +223,91 @@
       card.addEventListener('pointerleave', () => { card.style.setProperty('--tx', '0deg'); card.style.setProperty('--ty', '0deg'); });
     });
   })();
+
+  /* ---------- game UI level 2: reticle, magnetic buttons, decode text, drag-to-spin hologram, achievement ---------- */
+  (function () {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine = matchMedia('(pointer: fine)').matches;
+
+    // targeting reticle that trails the cursor and locks onto links and buttons
+    const ret = document.getElementById('reticle');
+    if (ret && fine && !reduce) {
+      let tx = 0, ty = 0, x = 0, y = 0, running = false;
+      const step = () => {
+        x += (tx - x) * 0.22; y += (ty - y) * 0.22;
+        ret.style.transform = `translate3d(${x}px,${y}px,0)`;
+        if (Math.abs(tx - x) + Math.abs(ty - y) > 0.3) requestAnimationFrame(step); else running = false;
+      };
+      addEventListener('pointermove', e => {
+        tx = e.clientX; ty = e.clientY; ret.classList.add('on');
+        ret.classList.toggle('lock', !!e.target.closest('a, button, .holo'));
+        if (!running) { running = true; requestAnimationFrame(step); }
+      }, { passive: true });
+      document.addEventListener('pointerleave', () => ret.classList.remove('on'));
+    }
+
+    // magnetic primary buttons
+    if (fine && !reduce) {
+      document.querySelectorAll('.btn-primary').forEach(b => {
+        b.addEventListener('pointermove', e => {
+          const r = b.getBoundingClientRect();
+          const dx = (e.clientX - (r.left + r.width / 2)) / r.width, dy = (e.clientY - (r.top + r.height / 2)) / r.height;
+          b.style.transform = `translate(${(dx * 8).toFixed(1)}px,${(dy * 6).toFixed(1)}px)`;
+        });
+        b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+      });
+    }
+
+    // decode effect on section labels as they come into view
+    if (!reduce && 'IntersectionObserver' in window) {
+      const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/<>#*+';
+      const decode = el => {
+        const final = el.textContent; el.setAttribute('aria-label', final); el.classList.add('decoding');
+        const start = performance.now(), dur = 700;
+        const tick = now => {
+          const t = Math.min(1, (now - start) / dur), keep = Math.floor(final.length * t);
+          el.textContent = final.slice(0, keep) + final.slice(keep).replace(/[^\s/•·]/g, () => glyphs[Math.random() * glyphs.length | 0]);
+          if (t < 1) requestAnimationFrame(tick); else { el.textContent = final; el.classList.remove('decoding'); }
+        };
+        requestAnimationFrame(tick);
+      };
+      const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { io.unobserve(en.target); decode(en.target); } }), { threshold: 0.6 });
+      document.querySelectorAll('.hero .eyebrow, .section-head .eyebrow, .stack > .eyebrow, .holo-label').forEach(el => io.observe(el));
+    }
+
+    // drag (or swipe) the hologram to spin it; a real drag never triggers the link
+    const holo = document.querySelector('.holo');
+    if (holo) {
+      const wrap = holo.querySelector('.c3-drag');
+      let startX = 0, base = 0, drag = 0, moved = false, down = false;
+      holo.addEventListener('pointerdown', e => { down = true; moved = false; startX = e.clientX; base = drag; holo.setPointerCapture(e.pointerId); });
+      holo.addEventListener('pointermove', e => {
+        if (!down) return;
+        const dx = e.clientX - startX;
+        if (Math.abs(dx) > 6) { moved = true; holo.classList.add('dragging'); }
+        if (moved) { drag = base + dx * 0.45; wrap.style.setProperty('--drag', drag.toFixed(1) + 'deg'); }
+      });
+      const end = () => { down = false; holo.classList.remove('dragging'); };
+      holo.addEventListener('pointerup', end); holo.addEventListener('pointercancel', end);
+      holo.addEventListener('click', e => { if (moved) { e.preventDefault(); moved = false; } });
+      holo.addEventListener('dragstart', e => e.preventDefault());
+    }
+
+    // achievement: shown once per session when someone reaches the bottom of a page
+    const toast = document.getElementById('achv');
+    if (toast) {
+      let seen = false; try { seen = sessionStorage.getItem('teki-achv') === '1'; } catch (e) {}
+      const check = () => {
+        if (seen) return;
+        const h = document.documentElement;
+        if (h.scrollTop + innerHeight >= h.scrollHeight * 0.92 && h.scrollHeight > innerHeight * 1.6) {
+          seen = true; try { sessionStorage.setItem('teki-achv', '1'); } catch (e) {}
+          toast.hidden = false; requestAnimationFrame(() => toast.classList.add('show'));
+          setTimeout(() => { toast.classList.remove('show'); setTimeout(() => { toast.hidden = true; }, 600); }, 6000);
+          removeEventListener('scroll', check);
+        }
+      };
+      addEventListener('scroll', check, { passive: true });
+    }
+  })();
 })();

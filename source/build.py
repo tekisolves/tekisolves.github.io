@@ -141,6 +141,8 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
     <div class="cookie-actions"><button class="btn btn-primary btn-sm" id="cookieSettingsAccept" type="button">Allow analytics</button><button class="btn btn-outline btn-sm" id="cookieSettingsReject" type="button">Reject analytics</button></div>
   </div>
 </div>
+<div class="reticle" id="reticle" aria-hidden="true"><i></i></div>
+<div class="toast" id="achv" role="status" aria-live="polite" hidden><span class="toast-ico" aria-hidden="true">◆</span><div><b>Achievement unlocked: Explorer</b><span>You've seen the whole base. The free sprite sample is on the <a href="blog/">blog</a>.</span></div></div>
 <script src="script.js?v={JS_V}" defer></script>
 </body>
 </html>
@@ -196,14 +198,19 @@ CAROUSEL = [("pistol", "Laser Pistol"), ("rifle", "Laser Rifle"), ("shotgun", "L
             ("blade", "Energy Blade"), ("grenade", "Plasma Grenade")]
 
 def carousel3d(p):
-    """The weapons as a hologram projected from a small emitter, clean sci-fi style."""
-    items = "".join(f'<figure class="c3-item" style="--i:{i}"><img src="assets/3d/{k}.webp" alt="" width="480" height="480" loading="lazy" decoding="async"><figcaption>{n}</figcaption></figure>'
-                    for i, (k, n) in enumerate(CAROUSEL))
-    label = f'See {esc(p["name"])}: five prototype-tier weapons shown as a turning hologram'
-    return (f'<a class="c3 holo reveal d1" href="{p["slug"]}" aria-label="{label}">'
-            f'<span class="holo-beam"></span><div class="c3-ring" style="--n:{len(CAROUSEL)}">{items}</div>'
+    """The weapons as a hologram projected from a small emitter. Each weapon cycles Scrap > Military > Prototype.
+    Drag to spin it (script.js)."""
+    tiers = "".join(f'<b class="c3-tier t{n}">{t}</b>' for n, t in ((1, "SCRAP"), (2, "MILITARY"), (3, "PROTOTYPE")))
+    items = "".join(
+        f'<figure class="c3-item" style="--i:{i}"><span class="c3-stack">'
+        + "".join(f'<img class="t{n}" src="assets/3d/{k}-t{n}.webp" alt="" width="400" height="400" loading="lazy" decoding="async">' for n in (1, 2, 3))
+        + f'</span><figcaption>{n}<span class="c3-tiers">{tiers}</span></figcaption></figure>'
+        for i, (k, n) in enumerate(CAROUSEL))
+    label = f'See {esc(p["name"])}: five weapons, each cycling through its three tiers, shown as a turning hologram'
+    return (f'<a class="c3 holo reveal d1" href="{p["slug"]}" aria-label="{label}" draggable="false">'
+            f'<span class="holo-beam"></span><div class="c3-drag"><div class="c3-ring" style="--n:{len(CAROUSEL)}">{items}</div></div>'
             f'<span class="holo-scan"></span><span class="holo-emitter"><i></i></span>'
-            f'<span class="holo-label">RETRO ARSENAL // 5 WEAPONS · 3 TIERS</span></a>')
+            f'<span class="holo-label">RETRO ARSENAL // 5 WEAPONS · 3 TIERS</span><span class="holo-hint">DRAG TO ROTATE</span></a>')
 
 # ---------- pages ----------
 def home():
