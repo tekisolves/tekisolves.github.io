@@ -718,4 +718,4 @@ button,.btn,.range canvas,.holo{touch-action:manipulation}
 @keyframes socin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media(pointer:coarse){.soc-name{display:none}.socials ul{padding-bottom:0}}
 @media(prefers-reduced-motion:reduce){.socials.in li{animation:none}.soc,.soc svg{transition:none}.soc::after{display:none}}
-@media(max-width:420px){.socials ul{gap:.4rem}.soc{width:42px;height:42px}.soc svg{width:17px;height:17px}}
+@media(max-width:420px){.socials ul{gap:.3rem}.soc{width:38px;height:38px;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}.soc svg{width:16px;height:16px}}
