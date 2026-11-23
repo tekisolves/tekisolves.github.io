@@ -76,10 +76,10 @@ class Demo extends Phaser.Scene {
     this.W = w; this.H = h;
     const m = Math.min(w, h);
     this.unit = m;
-    this.gunScale = Phaser.Math.Clamp(m * 0.5, 140, 360) / 1024;
-    const bladeLen = Phaser.Math.Clamp(m * 0.42, 120, 330);
+    this.gunScale = Phaser.Math.Clamp(m * 0.4, 120, 320) / 1024;
+    const bladeLen = Phaser.Math.Clamp(m * 0.36, 110, 300);
     this.bladeScale = bladeLen / (BLADE.tip_px.x - BLADE.pivot_px.x);
-    this.handAt = { x: Math.max(w * 0.2, 90), y: h * 0.58 };
+    this.handAt = { x: Math.max(w * 0.18, 80), y: h * 0.58 };
     this.gun.setPosition(this.handAt.x, this.handAt.y);
     this.hand.setPosition(this.handAt.x, this.handAt.y);
     this.blade.setScale(this.bladeScale);
@@ -164,7 +164,7 @@ class Demo extends Phaser.Scene {
   // ---------- blade ----------
   startSwing() {
     if (this.swing) return;
-    const from = this.restAngle - 0.9, to = this.restAngle + 2.3;   // big overhead arc
+    const from = this.restAngle - 0.6, to = this.restAngle + 1.9;   // big overhead arc
     this.swing = { t: 0, from, to };
     this.blade.setRotation(from);
   }
@@ -257,7 +257,7 @@ class Demo extends Phaser.Scene {
       this.blade.setPosition(this.bladePos.x, this.bladePos.y);
       this.trail.clear();
       if (this.swing) {
-        this.swing.t = Math.min(1, this.swing.t + s / 0.2);
+        this.swing.t = Math.min(1, this.swing.t + s / 0.18);
         const k = Phaser.Math.Easing.Cubic.Out(this.swing.t);
         this.blade.setRotation(Phaser.Math.Linear(this.swing.from, this.swing.to, k));
         this.drawTrail(k);
