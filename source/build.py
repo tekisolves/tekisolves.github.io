@@ -247,7 +247,7 @@ def carousel3d(p):
 def home():
     p = products[0]
     cards = "".join(product_card(x) for x in live_products())
-    return shell("index.html", "Teki Solves — Digital products that solve real problems",
+    return shell("index.html", "Teki Solves | Digital products that solve real problems",
         "Teki Solves is a digital product shop and creative workshop making thoughtful things for people who build, learn and create. Keep it simple, problem solved.", f'''
 <section class="hero">
   <div class="wrap hero-grid">
@@ -368,7 +368,7 @@ def home():
 
 def products_page():
     cards = "".join(product_card(x) for x in live_products())
-    return shell("products.html", "Game assets and digital products — Teki Solves",
+    return shell("products.html", "Game assets and digital products | Teki Solves",
         "Browse game assets and digital products made to help you build, learn and create, starting with Retro Arsenal: 15 retro sci-fi weapon sprites.", f'''
 <section class="page-hero">
   <div class="wrap">
@@ -523,7 +523,7 @@ def product_page(p):
 ''', current="products.html", og_image=p.get("ogImage",""), head_extra=head_extra)
 
 def about():
-    return shell("about.html", "About Teki Solves — an independent digital product shop",
+    return shell("about.html", "About Teki Solves | An independent digital product shop",
         "Teki Solves is an independent digital product shop and creative workshop built around a simple idea: useful things should solve real problems.", '''
 <section class="page-hero">
   <div class="wrap">
@@ -557,7 +557,7 @@ def about():
 ''', current="about.html")
 
 def contact():
-    return shell("contact.html", "Contact — Teki Solves",
+    return shell("contact.html", "Contact | Teki Solves",
         "Tell us what you’re trying to make, what you need or what’s getting in the way. Teki Solves is interested in problems worth solving.", f'''
 <section class="page-hero">
   <div class="wrap">
@@ -617,10 +617,10 @@ def legal(src, out, current_title):
     desc = re.search(r'<meta name="description" content="(.*?)">', s).group(1).strip()
     body = f'''<div class="legal"><div class="wrap legal-wrap"><a class="legal-back" href="index.html">← Back to Teki Solves</a>
 <span class="eyebrow" style="display:block;margin-top:1.4rem">{eb}</span><h1>{h1}</h1><p class="legal-updated">{upd}</p>{secs}</div></div>'''
-    return shell(out, f"{current_title} — Teki Solves", desc, body)
+    return shell(out, f"{current_title} | Teki Solves", desc, body)
 
 def not_found():
-    return shell("404.html", "Page not found — Teki Solves", "That page could not be found.", '''
+    return shell("404.html", "Page not found | Teki Solves", "That page could not be found.", '''
 <section class="page-hero page-hero-lost"><div class="wrap"><span class="eyebrow">404</span><h1 style="margin-top:1rem">That page wandered off.</h1>
 <p class="lede">Even the Solver takes a wrong turn sometimes. Let’s get you somewhere useful.</p><p style="margin-top:1.6rem"><a class="btn btn-primary" href="products.html">Explore products</a></p></div></section>''', robots="noindex")
 
