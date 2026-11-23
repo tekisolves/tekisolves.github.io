@@ -477,3 +477,45 @@ main{counter-reset:hud}
 .product-card::after,.c3::after,.post-card::after{inset:7px}
 .product-card:hover::after,.c3:hover::after,.post-card:hover::after{inset:3px}
 .band-cream .post-card::after{--c:rgba(140,99,21,.85)}
+
+/* ---------- game UI, level 2 ---------- */
+/* hologram: tiers cycle with a glitch cut, drag wrapper */
+.c3-drag{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(var(--drag,0deg));transition:transform .6s var(--ease)}
+.c3.dragging .c3-drag{transition:none}
+.c3.dragging{cursor:grabbing}
+.holo{cursor:grab;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.c3-stack{position:relative;display:block;aspect-ratio:1}
+.c3-stack img{position:absolute;inset:0;width:100%;height:auto;opacity:0;animation:tiercycle 9s infinite}
+.c3-stack img.t2{animation-delay:3s}.c3-stack img.t3{animation-delay:6s}
+@keyframes tiercycle{0%{opacity:0;transform:translateX(6px) skewX(-8deg)}3%{opacity:.9;transform:none}31%{opacity:.9;transform:none}33%{opacity:0;transform:translateX(-6px) skewX(8deg)}100%{opacity:0}}
+.c3-tiers{position:relative;display:block;height:1.1em;margin-top:.35rem}
+.c3-tier{position:absolute;left:0;right:0;font-weight:500;color:#e9c55c;text-shadow:0 0 8px rgba(233,197,92,.55);opacity:0;animation:tiercycle 9s infinite}
+.c3-tier.t2{animation-delay:3s}.c3-tier.t3{animation-delay:6s}
+.holo-hint{position:absolute;right:4%;bottom:4%;font:500 .56rem/1 var(--mono);letter-spacing:.2em;color:rgba(160,255,220,.45)}
+@media(pointer:coarse){.holo-hint{display:none}}
+
+/* targeting reticle that trails the cursor (desktop only; native cursor stays) */
+.reticle{position:fixed;left:0;top:0;z-index:70;width:34px;height:34px;margin:-17px 0 0 -17px;pointer-events:none;opacity:0;transition:opacity .3s,width .25s var(--ease),height .25s var(--ease),margin .25s var(--ease);
+  border-radius:50%;border:1px solid rgba(233,197,92,.55);will-change:transform}
+.reticle::before,.reticle::after{content:"";position:absolute;background:rgba(233,197,92,.8)}
+.reticle::before{left:50%;top:-6px;bottom:-6px;width:1px;-webkit-mask:linear-gradient(#000 0 8px,transparent 8px calc(100% - 8px),#000 calc(100% - 8px));mask:linear-gradient(#000 0 8px,transparent 8px calc(100% - 8px),#000 calc(100% - 8px))}
+.reticle::after{top:50%;left:-6px;right:-6px;height:1px;-webkit-mask:linear-gradient(90deg,#000 0 8px,transparent 8px calc(100% - 8px),#000 calc(100% - 8px));mask:linear-gradient(90deg,#000 0 8px,transparent 8px calc(100% - 8px),#000 calc(100% - 8px))}
+.reticle i{position:absolute;left:50%;top:50%;width:3px;height:3px;margin:-1.5px;border-radius:50%;background:var(--lime)}
+.reticle.on{opacity:1}
+.reticle.lock{width:52px;height:52px;margin:-26px 0 0 -26px;border-color:rgba(178,221,49,.8)}
+@media(pointer:coarse),(prefers-reduced-motion:reduce){.reticle{display:none}}
+
+/* achievement toast */
+.toast{position:fixed;left:1.2rem;bottom:1.2rem;z-index:65;display:flex;gap:.8rem;align-items:flex-start;max-width:340px;padding:.9rem 1rem;border:1px solid transparent;
+  background:linear-gradient(#141915,#141915) padding-box,var(--gold-metal) border-box;box-shadow:0 18px 40px -12px rgba(0,0,0,.7),0 0 24px -8px rgba(233,197,92,.45);
+  clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px);transform:translateY(140%);transition:transform .5s var(--ease)}
+.toast.show{transform:none}
+.toast-ico{font-size:1.2rem;line-height:1;background:var(--gold-metal);-webkit-background-clip:text;background-clip:text;color:transparent}
+.toast b{display:block;font:600 .78rem/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#e9c55c}
+.toast span{display:block;font-size:.85rem;color:var(--muted);margin-top:.2rem}
+.toast a{color:var(--lime)}
+
+/* decode effect needs fixed glyph widths so text doesn't jump */
+.decoding{font-variant-numeric:tabular-nums}
+
+@media(prefers-reduced-motion:reduce){.c3-stack img,.c3-tier{animation:none}.c3-stack img.t3,.c3-tier.t3{opacity:.9}}
