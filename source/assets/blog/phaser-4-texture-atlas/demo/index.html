@@ -37,31 +37,44 @@ button:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
 .touch-only{display:none}
 @media(pointer:coarse){.touch-only{display:inline}.mouse-only{display:none}}
 @media(max-width:560px){.brand span{display:none}.score{padding:.75em .6em}button{padding:.75em .75em}}
-@media(max-height:420px){.bot .keys{display:none}}
+@media(max-height:420px),(max-width:760px) and (pointer:fine){.bot .keys{display:none}}
 #size{position:fixed;right:var(--pad);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font:400 .62rem/1 var(--mono);letter-spacing:.2em;color:var(--lime);opacity:0;transition:opacity .3s;pointer-events:none}
 body.debug #size{opacity:.8}
+.hotbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(max(var(--pad),env(safe-area-inset-bottom)) + 2.6rem);display:flex;gap:6px;padding:6px;
+  background:rgba(16,19,17,.78);backdrop-filter:blur(8px);box-shadow:inset 0 0 0 1px var(--line);clip-path:polygon(10px 0,100% 0,100% calc(100% - 10px),calc(100% - 10px) 100%,0 100%,0 10px)}
+.slot{position:relative;overflow:hidden;width:clamp(56px,9vw,78px);height:clamp(54px,8.5vw,70px);padding:0;display:block;background:rgba(244,243,237,.03);box-shadow:inset 0 0 0 1px var(--line);
+  clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);transition:background .2s,box-shadow .2s}
+.slot img{position:absolute;left:50%;top:44%;width:122%;max-width:none;height:auto;transform:translate(-50%,-50%);pointer-events:none;filter:saturate(.7) brightness(.85);transition:filter .2s,transform .25s}
+.slot i{position:absolute;left:6px;top:4px;font:500 .58rem/1 var(--mono);font-style:normal;color:var(--muted)}
+.slot span{position:absolute;left:0;right:0;bottom:5px;font:500 .5rem/1 var(--mono);letter-spacing:.12em;color:var(--muted);text-align:center}
+.slot:hover img{filter:none;transform:translate(-50%,-50%) scale(1.06)}
+.slot[aria-pressed="true"]{background:rgba(178,221,49,.12);box-shadow:inset 0 0 0 1px rgba(178,221,49,.7),0 0 18px -6px rgba(178,221,49,.8);color:inherit}
+.slot[aria-pressed="true"] img{filter:none}
+.slot[aria-pressed="true"] i,.slot[aria-pressed="true"] span{color:var(--lime)}
+.slot .cd{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--lime)}
+@media(max-width:420px){.slot span{display:none}.slot img{top:50%}}
+@media(max-height:420px){.hotbar{bottom:max(var(--pad),env(safe-area-inset-bottom))}}
 noscript{position:fixed;inset:0;display:grid;place-items:center;font-family:var(--mono)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/phaser@4.2.1/dist/phaser.min.js" defer></script>
-<script src="main.js?v=20261123b" defer></script>
+<script src="main.js?v=20261123d" defer></script>
 </head>
 <body>
 <div id="game" aria-label="Retro Arsenal demo: move the weapon and hit the targets" role="application"></div>
 
 <div class="hud top">
   <a class="brand" href="../../../../blog/phaser-4-texture-atlas/">◆ TEKI <b>/</b> SOLVES <span>· PHASER 4 DEMO</span></a>
-  <div class="seg" role="group" aria-label="Weapon">
-    <button id="w-pistol" aria-pressed="true">Pistol</button><button id="w-blade" aria-pressed="false">Blade</button>
-  </div>
   <button id="tier" class="chip" aria-label="Next tier">Tier <b>Scrap</b></button>
   <button id="debug" class="chip" aria-pressed="false">Pivots</button>
   <span class="score chip" aria-live="polite">Hits <b id="hits">0</b></span>
 </div>
 
+<nav class="hotbar" role="group" aria-label="Weapon"><button class="slot" data-w="pistol" aria-pressed="true" aria-label="Pistol"><i>1</i><img src="pistol-t3.webp" alt="" width="400" height="400"><span>Pistol</span></button><button class="slot" data-w="rifle" aria-pressed="false" aria-label="Rifle"><i>2</i><img src="rifle-t3.webp" alt="" width="400" height="400"><span>Rifle</span></button><button class="slot" data-w="shotgun" aria-pressed="false" aria-label="Shotgun"><i>3</i><img src="shotgun-t3.webp" alt="" width="400" height="400"><span>Shotgun</span></button><button class="slot" data-w="blade" aria-pressed="false" aria-label="Blade"><i>4</i><img src="blade-t3.webp" alt="" width="400" height="400"><span>Blade</span></button><button class="slot" data-w="grenade" aria-pressed="false" aria-label="Grenade"><i>5</i><img src="grenade-t3.webp" alt="" width="400" height="400"><span>Grenade</span></button></nav>
+
 <div class="hud bot">
   <span class="keys">
-    <span class="mouse-only"><kbd>Mouse</kbd> aim/move · <kbd>Click</kbd> fire/swing · <kbd>Space</kbd> tier · <kbd>1</kbd> <kbd>2</kbd> weapon · <kbd>D</kbd> pivots</span>
-    <span class="touch-only">Drag to aim/move · Tap to fire/swing</span>
+    <span class="mouse-only"><kbd>Mouse</kbd> aim · <kbd>Click</kbd> use (hold for rifle) · <kbd>1</kbd>–<kbd>5</kbd> weapon · <kbd>Space</kbd> tier · <kbd>D</kbd> pivots</span>
+    <span class="touch-only">Drag to aim · Tap to use · Hold for rifle</span>
   </span>
   <span><a href="../../../../blog/phaser-4-texture-atlas/">Tutorial</a> · <a href="../../../../retro-arsenal.html">Get Retro Arsenal</a></span>
 </div>

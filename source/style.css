@@ -192,21 +192,73 @@ details.faq p{margin-top:.7rem;color:var(--muted);max-width:40rem}
 .footer-meta{font:400 .72rem/1.6 var(--mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:.4rem 1.4rem}
 
 /* form */
-.form-wrap{display:grid;gap:2.5rem}
-@media(min-width:900px){.form-wrap{grid-template-columns:.9fr 1.1fr}}
-.contact-form{display:grid;gap:1rem}
-.contact-form label{display:grid;gap:.4rem;font-size:.82rem;font-weight:600}
-.contact-form small{font-weight:400;color:var(--muted)}
-.contact-form input,.contact-form select,.contact-form textarea{width:100%;background:#0B0D0B;color:var(--fg);border:1px solid rgba(244,243,237,.25);border-radius:6px;padding:.8rem .9rem;font:inherit}
-.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--lime);outline:none;box-shadow:0 0 0 3px rgba(178,221,49,.2)}
-.form-grid{display:grid;gap:1rem}
-@media(min-width:620px){.form-grid{grid-template-columns:1fr 1fr}}
-.privacy-consent{display:flex!important;grid-template-columns:none;align-items:flex-start;gap:.7rem!important;font-weight:400!important}
-.privacy-consent input{width:auto;margin-top:.25rem;accent-color:var(--lime)}
+[hidden]{display:none!important}
+.form-wrap{display:grid;gap:2.5rem;align-items:start}
+@media(min-width:900px){.form-wrap{grid-template-columns:.75fr 1.25fr;gap:3.5rem}}
+.form-aside{display:grid;gap:1.1rem;position:sticky;top:96px}
+.helper-mail{font:400 .8rem/1.5 var(--mono);color:var(--muted)}
+.helper-mail a{color:var(--fg)}
+/* the form sits on a framed panel with HUD corners */
+.form-panel{position:relative;background:linear-gradient(170deg,rgba(26,32,28,.9),rgba(16,19,17,.9));border:1px solid var(--line);padding:clamp(1.25rem,3vw,2.2rem)}
+.form-panel::after{content:"";position:absolute;inset:7px;pointer-events:none;--c:rgba(242,205,110,.75);--l:14px;
+  background:linear-gradient(var(--c),var(--c)) top left/var(--l) 2px no-repeat,linear-gradient(var(--c),var(--c)) top left/2px var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) top right/var(--l) 2px no-repeat,linear-gradient(var(--c),var(--c)) top right/2px var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) bottom left/var(--l) 2px no-repeat,linear-gradient(var(--c),var(--c)) bottom left/2px var(--l) no-repeat,
+    linear-gradient(var(--c),var(--c)) bottom right/var(--l) 2px no-repeat,linear-gradient(var(--c),var(--c)) bottom right/2px var(--l) no-repeat}
+.contact-form{display:grid;gap:1.15rem}
+.field{display:grid;gap:.45rem;position:relative;min-width:0}
+.field>label:not(.privacy-consent),.topics legend{font:500 .68rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.field:focus-within>label:not(.privacy-consent),.topics:focus-within legend{color:var(--lime)}
+.contact-form small{font:inherit;text-transform:none;letter-spacing:0;color:rgba(169,177,170,.7)}
+.contact-form input:not([type=checkbox]):not([type=radio]),.contact-form textarea{width:100%;background:#0B0D0B;color:var(--fg);border:1px solid rgba(244,243,237,.18);border-radius:4px;padding:.85rem .95rem;font:inherit;font-size:1rem;
+  transition:border-color .2s,box-shadow .2s,background .2s}
+.contact-form textarea{resize:vertical;min-height:9rem;line-height:1.55}
+.contact-form ::placeholder{color:rgba(169,177,170,.45)}
+.contact-form input:hover,.contact-form textarea:hover{border-color:rgba(244,243,237,.32)}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--lime);outline:none;box-shadow:0 0 0 3px rgba(178,221,49,.18);background:#0d100e}
+/* states: a quiet tick when a field is good, a clear message when it isn't */
+.field.valid::after{content:"";position:absolute;right:.9rem;top:calc(.68rem + .45rem + 1.05rem);width:.5rem;height:.9rem;border:solid var(--lime);border-width:0 2px 2px 0;transform:translateY(-60%) rotate(45deg);pointer-events:none}
+.field.valid:has(textarea)::after,.field.valid:has(.privacy-consent)::after{display:none}
+.field.invalid input:not([type=checkbox]),.field.invalid textarea{border-color:#ff9d8a;box-shadow:0 0 0 3px rgba(255,157,138,.12)}
+.field-error{margin:0;min-height:0;font-size:.8rem;color:#ff9d8a}
+.field-error:empty{display:none}
+.field-meta{display:flex;justify-content:space-between;gap:1rem;align-items:baseline}
+.count{margin-left:auto;font:400 .68rem/1 var(--mono);color:rgba(169,177,170,.6)}
+.count.near{color:var(--sun)}
+/* topic chips */
+.topics{border:0;padding:0;margin:0;min-width:0}
+.topics legend{padding:0;margin-bottom:.55rem}
+.topic-row{display:flex;flex-wrap:wrap;gap:.5rem}
+.topic{position:relative;cursor:pointer}
+.topic input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.topic span{display:inline-block;padding:.6rem .95rem;font-size:.88rem;border:1px solid rgba(244,243,237,.18);color:var(--muted);transition:color .2s,border-color .2s,background .2s;
+  clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
+.topic:hover span{color:var(--fg);border-color:rgba(244,243,237,.35)}
+.topic input:checked+span{color:#101311;background:var(--lime);border-color:var(--lime);font-weight:600}
+.topic input:focus-visible+span{outline:2px solid var(--lime);outline-offset:2px}
+.privacy-consent{display:flex;align-items:flex-start;gap:.7rem;font-size:.88rem;color:var(--muted);cursor:pointer}
+.privacy-consent input{width:1.05rem;height:1.05rem;margin-top:.2rem;flex:none;accent-color:var(--lime)}
+.privacy-consent a{color:var(--lime)}
 .honeypot{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
 .form-error{color:#ff9d8a;font-size:.85rem;margin:0}
-.form-footer{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;color:var(--muted);font-size:.8rem}
-.success-message{border:1px solid var(--lime);border-radius:10px;padding:1.5rem;display:grid;gap:.8rem;background:rgba(178,221,49,.07)}
+.form-footer{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;justify-content:space-between;color:var(--muted);font-size:.8rem;margin-top:.3rem}
+.form-note{font:400 .7rem/1 var(--mono);letter-spacing:.08em}
+#submitButton.is-sending{opacity:.85;cursor:progress}
+#submitButton.is-sending::before{content:"";width:.9em;height:.9em;margin-right:.5em;border:2px solid rgba(16,19,17,.35);border-top-color:#101311;border-radius:50%;display:inline-block;vertical-align:-.12em;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* success */
+.success-message{display:grid;gap:.85rem;justify-items:start;padding:.5rem 0;outline:none}
+.success-message h2{font-size:clamp(1.6rem,4vw,2.2rem)}
+.success-message p{color:var(--muted)}
+.success-small{font-size:.85rem}
+.success-small a{color:var(--fg)}
+.success-actions{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.4rem}
+.tick{width:52px;height:52px;fill:none;stroke:var(--lime);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.tick circle{stroke-dasharray:151;stroke-dashoffset:151;animation:draw .6s var(--ease) forwards;opacity:.5}
+.tick path{stroke-dasharray:40;stroke-dashoffset:40;animation:draw .35s .45s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.tick circle,.tick path{animation:none;stroke-dashoffset:0}#submitButton.is-sending::before{animation:none}}
+@media(max-width:899px){.form-aside{position:static}}
 .helper{display:grid;gap:.6rem;color:var(--muted);font-size:.9rem}
 
 /* cookie */
@@ -607,6 +659,7 @@ button,.btn,.range canvas,.holo{touch-action:manipulation}
 @media(pointer:coarse){
   /* comfortable tap targets (WCAG 2.2: at least 24px, we aim for ~44px) */
   .footer-links a,.footer-links button{display:inline-flex;align-items:center;min-height:44px}
+  .topic span{padding:.75rem 1rem}
   .crumbs a{display:inline-flex;align-items:center;min-height:40px}
   .chip{min-height:44px}
   .range-group button{min-height:44px;padding:.6rem .8rem}

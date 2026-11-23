@@ -110,34 +110,68 @@
   if (form) {
     const formError = $('formError');
     const submitButton = $('submitButton');
+    const label = submitButton.querySelector('.btn-label');
     const successMessage = $('successMessage');
+    const msg = form.message, count = $('c-msg');
     const formOpenedAt = Date.now();
+    const emailOk = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+
+    // one rule per field, checked on blur and again on submit
+    const rules = {
+      name: () => form.name.value.trim() ? '' : 'Please add your name.',
+      email: () => !form.email.value.trim() ? 'Please add your email so we can reply.' : emailOk(form.email.value.trim()) ? '' : 'That email doesn’t look quite right.',
+      message: () => { const n = msg.value.trim().length; return !n ? 'Please tell us a little about it.' : n < 10 ? 'A little more detail, please (10 characters minimum).' : ''; },
+      privacyAcknowledgement: () => form.privacyAcknowledgement.checked ? '' : 'Please confirm you’ve read the Privacy Policy.'
+    };
+    const errIds = { name: 'e-name', email: 'e-email', message: 'e-msg', privacyAcknowledgement: 'e-consent' };
+    const check = (k, show = true) => {
+      const m = rules[k](), field = form[k], box = field.closest('.field');
+      if (show) { $(errIds[k]).textContent = m; box.classList.toggle('invalid', !!m); field.setAttribute('aria-invalid', m ? 'true' : 'false'); }
+      if (!m && field.value) box.classList.add('valid'); else box.classList.remove('valid');
+      return m;
+    };
+    Object.keys(rules).forEach(k => {
+      const f = form[k];
+      f.addEventListener('blur', () => { if (f.type === 'checkbox' || f.value) check(k); });
+      f.addEventListener('input', () => { if (f.closest('.field').classList.contains('invalid')) check(k); else check(k, false); });
+      f.addEventListener('change', () => { if (f.type === 'checkbox') check(k); });
+    });
+    const updateCount = () => { const n = msg.value.length; count.textContent = `${n} / 2000`; count.classList.toggle('near', n > 1800); };
+    msg.addEventListener('input', updateCount);
 
     const showError = m => { formError.textContent = m; formError.hidden = false; };
-    const showSuccess = () => { form.hidden = true; successMessage.hidden = false; successMessage.focus?.(); };
+    const showSuccess = (name, email) => {
+      $('successText').textContent = name && email ? `Thanks, ${name}. We’ll reply to ${email}.` : 'Thanks. We’ll reply to the email you gave us.';
+      form.hidden = true; successMessage.hidden = false; successMessage.focus();
+    };
+    $('sendAnother').addEventListener('click', () => {
+      successMessage.hidden = true; form.hidden = false;
+      form.querySelectorAll('.field').forEach(f => f.classList.remove('valid', 'invalid'));
+      updateCount(); form.name.focus();
+    });
 
     form.addEventListener('submit', async event => {
       event.preventDefault();
       formError.hidden = true;
-      if (!form.checkValidity()) { form.reportValidity(); return; }
+      const bad = Object.keys(rules).filter(k => check(k));
+      if (bad.length) { form[bad[0]].focus(); return; }
 
       const data = new FormData(form);
-      const website = String(data.get('website') || '').trim();
       const payload = {
         name: form.name.value.trim(),
         email: form.email.value.trim(),
         businessName: form.businessName.value.trim(),
-        trackInterest: form.trackInterest.value,
-        message: form.message.value.trim(),
+        trackInterest: data.get('trackInterest') || 'Not sure',
+        message: msg.value.trim(),
         privacyAcknowledgement: form.privacyAcknowledgement.checked
       };
 
-      if (website) return showSuccess();
+      if (String(data.get('website') || '').trim()) return showSuccess();          // honeypot: quietly drop bots
       if (Date.now() - formOpenedAt < 1200) return showError('Please take a moment to check your details before sending.');
-      if (!payload.name || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) return showError('Please add your name and a valid email address.');
 
       submitButton.disabled = true;
-      submitButton.textContent = 'Sending…';
+      submitButton.classList.add('is-sending');
+      label.textContent = 'Sending…';
       try {
         await fetch(leadEndpoint, {
           method: 'POST',
@@ -146,16 +180,17 @@
           body: JSON.stringify(payload)
         });
         form.reset();
-        showSuccess();
+        showSuccess(payload.name, payload.email);
         track('lead_form_submit', {});
       } catch (error) {
-        showError('Something went wrong while sending that. Your details are still here — please try again.');
+        showError('That didn’t send, probably a connection problem. Your message is still here, so please try again.');
       } finally {
         submitButton.disabled = false;
-        submitButton.innerHTML = 'Send it over <span aria-hidden="true">→</span>';
+        submitButton.classList.remove('is-sending');
+        label.textContent = 'Send message';
       }
     });
-    form.addEventListener('focusin', () => { if (!form.dataset.started) { form.dataset.started = '1'; track('lead_form_start', {}); } }, { once: false });
+    form.addEventListener('focusin', () => { if (!form.dataset.started) { form.dataset.started = '1'; track('lead_form_start', {}); } });
   }
 })();
 

@@ -17,7 +17,7 @@ You can follow along with a **free sample**: the Laser Pistol from my pack Retro
 
 **[Download the free sample (ZIP, 210 KB)](assets/blog/phaser-4-texture-atlas/retro-arsenal-free-sample.zip)** · **[Try the live demo](assets/blog/phaser-4-texture-atlas/demo/)**
 
-The live demo goes a step further than the ZIP: switch to the energy blade, move it onto a target and swing. Press **D** to see every pivot and muzzle point while you play.
+The live demo goes further than the ZIP: all five weapons from the pack, each behaving like what it is. Hold to fire the rifle, get close with the shotgun, swing the blade onto a target or lob a grenade. Press **D** to see every pivot and muzzle point while you play.
 
 ## What a texture atlas is (and why bother)
 

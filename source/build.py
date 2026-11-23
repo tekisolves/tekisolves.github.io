@@ -568,28 +568,43 @@ def contact():
 </section>
 <section class="band">
   <div class="wrap form-wrap">
-    <ul class="list helper reveal">
-      <li>Share as much or as little detail as you’re comfortable with.</li>
-      <li>If you’re asking about a product, include its name.</li>
-      <li>Please don’t include passwords, payment card details or other sensitive information.</li>
-    </ul>
-    <div class="reveal d1">
+    <div class="form-aside reveal">
+      <p class="eyebrow">Before you send</p>
+      <ul class="list helper">
+        <li>A real person reads every message. We aim to reply within a few working days.</li>
+        <li>Share as much or as little detail as you’re comfortable with. If it’s about a product, name it.</li>
+        <li>Please don’t include passwords, payment card details or other sensitive information.</li>
+      </ul>
+      <p class="helper-mail">Prefer email? <a href="mailto:{EMAIL}">{EMAIL}</a></p>
+    </div>
+    <div class="form-panel reveal d1">
       <form class="contact-form" id="contactForm" novalidate>
         <div class="form-grid">
-          <label>Name<input name="name" type="text" autocomplete="name" required></label>
-          <label>Email<input name="email" type="email" autocomplete="email" required></label>
+          <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" type="text" autocomplete="name" required maxlength="120" aria-describedby="e-name"><p class="field-error" id="e-name"></p></div>
+          <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required maxlength="200" aria-describedby="e-email"><p class="field-error" id="e-email"></p></div>
         </div>
-        <div class="form-grid">
-          <label>Business or project name <small>(optional)</small><input name="businessName" type="text" autocomplete="organization"></label>
-          <label>What is this about?<select name="trackInterest"><option>Digital Products</option><option>Product idea or request</option><option selected>Not sure</option></select></label>
-        </div>
-        <label>Message<textarea name="message" rows="6"></textarea></label>
+        <div class="field"><label for="f-biz">Business or project name <small>(optional)</small></label><input id="f-biz" name="businessName" type="text" autocomplete="organization" maxlength="160"></div>
+        <fieldset class="field topics"><legend>What is this about?</legend>
+          <div class="topic-row">
+            <label class="topic"><input type="radio" name="trackInterest" value="Digital Products"><span>A product</span></label>
+            <label class="topic"><input type="radio" name="trackInterest" value="Product idea or request"><span>An idea or request</span></label>
+            <label class="topic"><input type="radio" name="trackInterest" value="Not sure" checked><span>Something else</span></label>
+          </div>
+        </fieldset>
+        <div class="field"><label for="f-msg">Message</label><textarea id="f-msg" name="message" rows="6" required minlength="10" maxlength="2000" aria-describedby="e-msg c-msg" placeholder="What are you trying to make, and what’s in the way?"></textarea>
+          <div class="field-meta"><p class="field-error" id="e-msg"></p><span class="count" id="c-msg" aria-live="polite">0 / 2000</span></div></div>
         <label class="honeypot" aria-hidden="true">Website<input name="website" type="text" tabindex="-1" autocomplete="off"></label>
-        <label class="privacy-consent"><input name="privacyAcknowledgement" type="checkbox" required><span>I’ve read the <a href="privacy-policy.html" target="_blank" rel="noopener" style="color:var(--lime)">Privacy Policy</a> and understand how my details will be used to reply to me.</span></label>
+        <div class="field"><label class="privacy-consent"><input name="privacyAcknowledgement" type="checkbox" required aria-describedby="e-consent"><span>I’ve read the <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a> and understand my details are only used to reply to me.</span></label><p class="field-error" id="e-consent"></p></div>
         <p class="form-error" id="formError" role="alert" hidden></p>
-        <div class="form-footer"><button class="btn btn-primary" id="submitButton" type="submit">Send it over <span aria-hidden="true">→</span></button><span>Or email <a href="mailto:{EMAIL}">{EMAIL}</a></span></div>
+        <div class="form-footer"><button class="btn btn-primary" id="submitButton" type="submit"><span class="btn-label">Send message</span> <span aria-hidden="true">→</span></button><span class="form-note">Takes about a minute.</span></div>
       </form>
-      <div class="success-message" id="successMessage" tabindex="-1" hidden><h2 style="font-size:1.6rem">Thanks, that’s with us.</h2><p style="color:var(--muted)">We’ll read it and get back to you.</p><p><a class="btn btn-outline btn-sm" href="products.html">Explore products</a></p></div>
+      <div class="success-message" id="successMessage" tabindex="-1" role="status" hidden>
+        <svg class="tick" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="24"/><path d="M15 27l7 7 15-16"/></svg>
+        <h2>Message sent.</h2>
+        <p id="successText">Thanks. We’ll reply to the email you gave us.</p>
+        <p class="success-small">Nothing back after a few working days? Email <a href="mailto:{EMAIL}">{EMAIL}</a> directly, in case it went astray.</p>
+        <div class="success-actions"><a class="btn btn-outline btn-sm" href="products.html">Explore products</a><button class="btn btn-outline btn-sm" id="sendAnother" type="button">Send another message</button></div>
+      </div>
     </div>
   </div>
 </section>
