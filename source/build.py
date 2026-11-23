@@ -96,7 +96,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <head>
 <meta charset="UTF-8">
 <script>try{{if(!sessionStorage.getItem('tk-splash')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){{document.documentElement.classList.add('splash');sessionStorage.setItem('tk-splash','1')}}}}catch(e){{}}</script>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <meta name="robots" content="{robots}">
@@ -104,7 +104,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 {"" if "noindex" in robots else canon(path)}
 <meta property="og:type" content="{og_type}"><meta property="og:site_name" content="Teki Solves">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{og}
-<link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Teki Solves"><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v={CSS_V}">
@@ -220,7 +220,7 @@ def carousel3d(p):
     return (f'<a class="c3 holo reveal d1" href="{p["slug"]}" aria-label="{label}" draggable="false">'
             f'<span class="holo-beam"></span><div class="c3-drag"><div class="c3-ring" style="--n:{len(CAROUSEL)}">{items}</div></div>'
             f'<span class="holo-scan"></span><span class="holo-emitter"><i></i></span>'
-            f'<span class="holo-label">RETRO ARSENAL // 5 WEAPONS · 3 TIERS</span><span class="holo-hint">DRAG TO ROTATE</span></a>')
+            f'<span class="holo-label">RETRO ARSENAL // 5 WEAPONS · 3 TIERS</span><span class="holo-hint">DRAG TO ROTATE</span><span class="holo-hint holo-hint-touch">SWIPE TO ROTATE</span></a>')
 
 # ---------- pages ----------
 def home():
@@ -425,7 +425,7 @@ def product_page(p):
       <p class="range-note" data-hud="note" aria-live="polite"></p>
       <div class="range-controls">
         <div class="range-group" role="group" aria-label="Weapon"><button type="button" data-w="0" aria-pressed="true"><kbd>1</kbd>Pistol</button><button type="button" data-w="1" aria-pressed="false"><kbd>2</kbd>Rifle</button><button type="button" data-w="2" aria-pressed="false"><kbd>3</kbd>Shotgun</button><button type="button" data-w="3" aria-pressed="false"><kbd>4</kbd>Blade</button><button type="button" data-w="4" aria-pressed="false"><kbd>5</kbd>Grenade</button></div>
-        <div class="range-group" role="group" aria-label="Sound"><button type="button" data-sound aria-pressed="true">SOUND ON</button></div>
+        <div class="range-group" role="group" aria-label="Options"><button type="button" data-sound aria-pressed="true">SOUND ON</button><button type="button" data-fs hidden>FULLSCREEN</button></div>
         <div class="range-group" role="group" aria-label="Tier"><button type="button" data-t="0" aria-pressed="true">Scrap</button><button type="button" data-t="1" aria-pressed="false">Military</button><button type="button" data-t="2" aria-pressed="false">Prototype</button></div>
       </div>
     </div>
@@ -728,7 +728,7 @@ def relocate(page, path):
 if os.path.exists(OUT):
     shutil.rmtree(OUT)
 os.makedirs(OUT)
-for f in ("style.css", "script.js"):
+for f in ("style.css", "script.js", "site.webmanifest"):
     shutil.copy(os.path.join(HERE, f), OUT)
 shutil.copytree(os.path.join(HERE, "assets"), os.path.join(OUT, "assets"))
 

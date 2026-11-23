@@ -568,3 +568,41 @@ html.splash-out .tk-splash .tk-dia{transform:scale(1.15);transition:transform .5
 /* failsafe: never let the splash block the page, even if scripts fail */
 html.splash .tk-splash{animation:splashfail .4s 2.6s forwards}
 @keyframes splashfail{to{opacity:0;visibility:hidden}}
+
+/* ---------- mobile polish ---------- */
+a,button{-webkit-tap-highlight-color:transparent}
+button,.btn,.range canvas,.holo{touch-action:manipulation}
+.holo{touch-action:pan-y}
+@media(pointer:coarse){
+  /* comfortable tap targets (WCAG 2.2: at least 24px, we aim for ~44px) */
+  .footer-links a,.footer-links button{display:inline-flex;align-items:center;min-height:44px}
+  .crumbs a{display:inline-flex;align-items:center;min-height:40px}
+  .chip{min-height:44px}
+  .range-group button{min-height:44px;padding:.6rem .8rem}
+  .post-meta a{display:inline-block;padding:.4rem 0}
+  .holo-hint{display:none}
+  .holo-hint-touch{display:block}
+}
+.holo-hint-touch{display:none}
+/* notch / home-indicator safe areas */
+.toast{left:max(1.2rem,env(safe-area-inset-left));bottom:max(1.2rem,env(safe-area-inset-bottom))}
+.site-footer{padding-bottom:max(2rem,env(safe-area-inset-bottom))}
+/* weapon range in fullscreen (landscape phones feel like a real game) */
+.range:fullscreen{display:flex;flex-direction:column;clip-path:none;background:#0a0d0b}
+.range:fullscreen canvas{flex:1;aspect-ratio:auto;max-height:none;height:auto;min-height:0}
+.range:-webkit-full-screen{display:flex;flex-direction:column;clip-path:none;background:#0a0d0b}
+.range:-webkit-full-screen canvas{flex:1;aspect-ratio:auto;max-height:none}
+@media(max-width:700px){
+  .range-controls{padding:.7rem .8rem;gap:.6rem}
+  .range-group{gap:.35rem}
+  .range-group button kbd{display:none}
+  .hero-art::after{inset:-10px;--l:16px}
+}
+@media(max-width:700px){
+  .range canvas{aspect-ratio:1/1;max-height:62vh}
+  .range-controls{flex-direction:column}
+  .range-group{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-inline:-.2rem;padding-inline:.2rem}
+  .range-group::-webkit-scrollbar{display:none}
+  .range-group button{flex:0 0 auto}
+  .ldia-wrap{right:-2%;top:-4%;width:28%}
+}
