@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 02:18 UTC: Game UI layer + fix stale stylesheet caching (PR #16)
+
+- (no details in the commit message)
+- Areas changed: Design and layout, Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 02:11 UTC: Logo diamond in gold 3D + hologram projector carousel (PR #15)
 
 - (no details in the commit message)
