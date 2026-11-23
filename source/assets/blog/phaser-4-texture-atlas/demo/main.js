@@ -73,6 +73,8 @@ class Demo extends Phaser.Scene {
   // ---------- layout: everything is sized from the smaller screen side ----------
   layout({ width: w, height: h }) {
     this.cameras.main.setViewport(0, 0, w, h);
+    // keep the blade at the same relative spot when the window changes size
+    if (this.W) this.bladePos.set(this.bladePos.x * w / this.W, this.bladePos.y * h / this.H);
     this.W = w; this.H = h;
     const m = Math.min(w, h);
     this.unit = m;
@@ -84,7 +86,7 @@ class Demo extends Phaser.Scene {
     this.hand.setPosition(this.handAt.x, this.handAt.y);
     this.blade.setScale(this.bladeScale);
     if (this.bladePos.lengthSq() === 0) { this.bladePos.set(w * 0.3, h * 0.6); this.bladeGoal.copy(this.bladePos); }
-    this.bladePos.set(Phaser.Math.Clamp(this.bladePos.x, 0, w), Phaser.Math.Clamp(this.bladePos.y, 0, h));
+    this.bladePos.set(Phaser.Math.Clamp(this.bladePos.x, 40, w - 40), Phaser.Math.Clamp(this.bladePos.y, 40, h - 40));
     this.bladeGoal.copy(this.bladePos);
     this.targets.forEach((t) => this.placeTarget(t, true));
     this.aimAt(this.lastAim ?? { x: w * 0.8, y: h * 0.45 });
