@@ -115,7 +115,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div><a class="brand" href="index.html" aria-label="Teki Solves home"><span class="brand-mark"><img src="assets/logo-diamond.png" alt="Teki Solves logo" width="26" height="26"></span><span class="brand-text">TEKI / SOLVES</span></a>
-    <p class="mono" style="margin-top:1rem;font-size:.72rem;letter-spacing:.14em;color:var(--gold)">KEEP IT SIMPLE, PROBLEM SOLVED.</p></div>
+    <p class="mono gold-metal" style="margin-top:1rem;font-size:.72rem;letter-spacing:.14em">KEEP IT SIMPLE, PROBLEM SOLVED.</p></div>
     <div class="footer-links"><a href="products.html">Products</a><a href="blog/">Blog</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="{ITCH_PROFILE}" target="_blank" rel="noopener">Teki Solves on itch.io</a><button class="footer-link cookie-settings-trigger" type="button">Cookie Settings</button></div>
     <div class="footer-meta"><a href="mailto:{EMAIL}" style="text-decoration:none">{EMAIL}</a><span>© 2026 Teki Solves</span></div>
   </div>
@@ -182,19 +182,23 @@ def live_products():
 
 # ---------- 3D (pure CSS transforms, no libraries; paused off-screen and for reduced motion) ----------
 def diamond3d():
-    """The Teki diamond as a slowly turning wireframe octahedron (three squares on the three axes)."""
-    return ('<div class="d3" aria-hidden="true"><div class="d3-spin">'
-            '<i class="d3-sq d3-xy"></i><i class="d3-sq d3-xz"></i><i class="d3-sq d3-yz"></i>'
-            '<i class="d3-core"></i></div></div>')
+    """The Teki logo as a solid metallic-gold 3D diamond (stacked layers give it thickness), plus small companions."""
+    layers = "".join(f'<i style="--z:{z}"></i>' for z in range(12))
+    minis = "".join(f'<span class="ldia-mini m{i}"><span class="ldia-mini-in"></span></span>' for i in range(1, 4))
+    return f'<div class="ldia-wrap" aria-hidden="true"><div class="ldia"><div class="ldia-body">{layers}</div></div>{minis}</div>'
 
 CAROUSEL = [("pistol", "Laser Pistol"), ("rifle", "Laser Rifle"), ("shotgun", "Laser Shotgun"),
             ("blade", "Energy Blade"), ("grenade", "Plasma Grenade")]
 
 def carousel3d(p):
+    """The weapons as a hologram projected from a small emitter, clean sci-fi style."""
     items = "".join(f'<figure class="c3-item" style="--i:{i}"><img src="assets/3d/{k}.webp" alt="" width="480" height="480" loading="lazy" decoding="async"><figcaption>{n}</figcaption></figure>'
                     for i, (k, n) in enumerate(CAROUSEL))
-    label = f'See {esc(p["name"])}: five prototype-tier weapons turning on a 3D carousel'
-    return f'<a class="c3 reveal d1" href="{p["slug"]}" aria-label="{label}"><div class="c3-ring" style="--n:{len(CAROUSEL)}">{items}</div><span class="c3-floor"></span></a>'
+    label = f'See {esc(p["name"])}: five prototype-tier weapons shown as a turning hologram'
+    return (f'<a class="c3 holo reveal d1" href="{p["slug"]}" aria-label="{label}">'
+            f'<span class="holo-beam"></span><div class="c3-ring" style="--n:{len(CAROUSEL)}">{items}</div>'
+            f'<span class="holo-scan"></span><span class="holo-emitter"><i></i></span>'
+            f'<span class="holo-label">RETRO ARSENAL // 5 WEAPONS · 3 TIERS</span></a>')
 
 # ---------- pages ----------
 def home():
