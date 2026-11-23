@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 02:38 UTC: Signature loader + sound for the weapon range (PR #19)
+
+- (no details in the commit message)
+- Areas changed: Design and layout, Images, Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 02:29 UTC: Retro Arsenal: playable weapon range (try before you buy) (PR #18)
 
 - (no details in the commit message)
