@@ -346,3 +346,40 @@ details.faq p{margin-top:.7rem;color:var(--muted);max-width:40rem}
   .tilt3d{transform:none}
   .c3-ring{transform:rotateX(-8deg) rotateY(-20deg)}
 }
+
+/* ---------- final polish: metallic gold, spotlight, grain, scroll progress, page transitions ---------- */
+:root{--gold-metal:linear-gradient(100deg,#7a5410 0%,#c9971f 18%,#f7dc8a 32%,#d4a62c 46%,#8c6315 60%,#e9c55c 78%,#fff0b8 88%,#b8860b 100%)}
+/* gold text with a slow light sweep */
+.tagline,.gold-metal{background:var(--gold-metal);background-size:240% 100%;-webkit-background-clip:text;background-clip:text;color:transparent!important;-webkit-text-fill-color:transparent;animation:goldsweep 9s ease-in-out infinite}
+@keyframes goldsweep{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+/* hairline gold edge on cards and the 3D stage */
+.product-card,.c3,.post-card,.author-box{border:1px solid transparent!important;background-clip:padding-box,border-box!important;background-origin:border-box}
+.product-card{background-image:linear-gradient(#101311,#101311),var(--gold-metal)}
+.c3{background-image:radial-gradient(ellipse at 50% 70%,rgba(178,221,49,.10),transparent 60%),linear-gradient(var(--surface),var(--surface)),var(--gold-metal);background-clip:padding-box,padding-box,border-box!important}
+.post-card{background-image:linear-gradient(var(--paper),var(--paper)),var(--gold-metal)}
+.author-box{background-image:linear-gradient(var(--surface),var(--surface)),var(--gold-metal)}
+.product-card:hover{box-shadow:0 18px 40px -18px rgba(218,165,32,.45)}
+/* metallic gold diamond edges */
+.d3-xz,.d3-yz{border-image:var(--gold-metal) 1}
+.d3-xy{border-color:var(--lime)}
+.chip{border-color:rgba(218,165,32,.55);background:rgba(218,165,32,.07)}
+.chip i{background:linear-gradient(135deg,#fff0b8,#c9971f)}
+/* cursor spotlight on the hero grid (fine pointers only, set by script) */
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:var(--spot,0);transition:opacity .6s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(247,220,138,.10),rgba(178,221,49,.05) 40%,transparent 70%)}
+/* gold reading-progress line under the header (CSS scroll-driven, no JS) */
+@supports (animation-timeline: scroll()){
+  .site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--gold-metal);transform-origin:0 50%;transform:scaleX(0);animation:readprog linear both;animation-timeline:scroll(root)}
+  @keyframes readprog{to{transform:scaleX(1)}}
+}
+/* fine film grain for a tactile finish (desktop only, very low opacity) */
+@media(min-width:900px){
+  body::after{content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+}
+/* smooth cross-page transitions where supported */
+@view-transition{navigation:auto}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.28s}
+@media(prefers-reduced-motion:reduce){
+  .tagline,.gold-metal{animation:none}
+  .site-header::after{display:none}
+  @view-transition{navigation:none}
+}

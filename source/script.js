@@ -191,9 +191,12 @@
           const y = (e.clientY - r.top) / r.height - 0.5;
           art.style.setProperty('--ry', (x * 10).toFixed(2) + 'deg');
           art.style.setProperty('--rx', (-y * 8).toFixed(2) + 'deg');
+          hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+          hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
         });
       });
-      hero.addEventListener('pointerleave', () => { art.style.setProperty('--rx', '0deg'); art.style.setProperty('--ry', '0deg'); });
+      hero.addEventListener('pointerleave', () => { art.style.setProperty('--rx', '0deg'); art.style.setProperty('--ry', '0deg'); hero.style.setProperty('--spot', '0'); });
+      hero.addEventListener('pointerenter', () => hero.style.setProperty('--spot', '1'));
     }
     if ('IntersectionObserver' in window) {
       const scenes = document.querySelectorAll('.d3, .c3');

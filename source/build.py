@@ -115,7 +115,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <footer class="site-footer">
   <div class="wrap footer-inner">
     <div><a class="brand" href="index.html" aria-label="Teki Solves home"><span class="brand-mark"><img src="assets/logo-diamond.png" alt="Teki Solves logo" width="26" height="26"></span><span class="brand-text">TEKI / SOLVES</span></a>
-    <p class="mono" style="margin-top:1rem;font-size:.72rem;letter-spacing:.14em;color:var(--gold)">KEEP IT SIMPLE, PROBLEM SOLVED.</p></div>
+    <p class="mono gold-metal" style="margin-top:1rem;font-size:.72rem;letter-spacing:.14em">KEEP IT SIMPLE, PROBLEM SOLVED.</p></div>
     <div class="footer-links"><a href="products.html">Products</a><a href="blog/">Blog</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy-policy.html">Privacy Policy</a><a href="cookie-policy.html">Cookie Policy</a><a href="{ITCH_PROFILE}" target="_blank" rel="noopener">Teki Solves on itch.io</a><button class="footer-link cookie-settings-trigger" type="button">Cookie Settings</button></div>
     <div class="footer-meta"><a href="mailto:{EMAIL}" style="text-decoration:none">{EMAIL}</a><span>© 2026 Teki Solves</span></div>
   </div>
