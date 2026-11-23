@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 18:07 UTC: Footer: add Facebook to social links (and schema sameAs)
+
+- (no details in the commit message)
+- Areas changed: Design and layout, Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 17:47 UTC: Titles: replace em-dashes with the site's | separator
 
 - (no details in the commit message)
