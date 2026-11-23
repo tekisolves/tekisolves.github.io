@@ -2,6 +2,15 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 17:13 UTC: Add social links to footer and upgrade the hologram
+
+- Footer: chamfered HUD tiles for Instagram, TikTok, YouTube, X, Pinterest,
+- Organization schema sameAs now lists every profile
+- Hologram: soft volumetric beam with travelling light pulses, RGB fringe and
+- All new motion is off for reduced-motion users
+- Areas changed: Design and layout, Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 16:39 UTC: Add Pinterest domain verification tag
 
 - (no details in the commit message)
