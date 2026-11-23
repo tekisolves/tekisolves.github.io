@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 01:57 UTC: Homepage 3D: hero diamond + weapon carousel (PR #14)
+
+- (no details in the commit message)
+- Areas changed: Design and layout, Images, Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-22 21:15 UTC: Fix changelog and IndexNow jobs: install Markdown before building
 
 - (no details in the commit message)
