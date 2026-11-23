@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 17:31 UTC: Demo: Phaser 4 tint API, cache-bust main.js
+
+- (no details in the commit message)
+- Areas changed: Images
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 17:28 UTC: Demo: movable energy blade, destructible targets, fully responsive
 
 - Blade grip follows the pointer, click/tap swings it; points along the edge
