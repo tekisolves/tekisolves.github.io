@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 16:39 UTC: Add Pinterest domain verification tag
+
+- (no details in the commit message)
+- Areas changed: Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 02:44 UTC: Mobile polish + installable app + range upgrades (PR #20)
 
 - (no details in the commit message)
