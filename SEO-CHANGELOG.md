@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 21:18 UTC: Demo: grenade can reach every target on wide screens
+
+- (no details in the commit message)
+- Areas changed: Images
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 20:47 UTC: Add DEV cover image for the Phaser 4 atlas post
 
 - (no details in the commit message)
