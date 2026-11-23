@@ -52,6 +52,8 @@
 
   let data = null, imgs = {}, w = 0, h = 0, dpr = 1, started = false;
   let weapon = 0, tier = 0, aim = 0, flipped = false, hits = 0;
+  let holding = false;
+  const buzz = ms => { try { if (navigator.vibrate && matchMedia('(pointer: coarse)').matches) navigator.vibrate(ms); } catch (e) {} };
   let pointer = { x: 0, y: 0 }, last = 0, cooldown = 0, flash = 0, swing = 0, notice = 0;
   const shots = [], sparks = [], targets = [];
 
@@ -64,7 +66,7 @@
     if (!targets.length) spawnTargets();
   }
   const gunPos = () => ({ x: w * 0.24, y: h * 0.62 });
-  const scale = () => Math.min(w, h * 1.6) / 2300; // sprite px -> screen px
+  const scale = () => Math.min(w, h * 1.6) / (w < 560 ? 1500 : 2300); // sprite px -> screen px
 
   function spawnTargets() {
     targets.length = 0;
@@ -81,7 +83,7 @@
 
   function fire() {
     if (!started || cooldown > 0 || !root.classList.contains('started')) return;
-    sfx.init();
+    sfx.init(); buzz(8);
     const { type } = frameData(), m = muzzleWorld(), name = WEAPONS[weapon];
     const speed = name === 'rifle' ? 1500 : 1000;
     if (type === 'gun') {
@@ -100,12 +102,12 @@
 
   function hit(t) {
     if (t.hp <= 0) return;
-    t.hp = 0; t.pop = 0.5; hits++; sfx.hit(); hud.hits.textContent = String(hits).padStart(3, '0');
+    t.hp = 0; t.pop = 0.5; hits++; sfx.hit(); buzz(25); hud.hits.textContent = String(hits).padStart(3, '0');
     for (let i = 0; i < 14; i++) { const a = Math.random() * 6.28, v = 80 + Math.random() * 220; sparks.push({ x: t.x, y: t.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 0.5 + Math.random() * 0.3 }); }
     setTimeout(() => { t.hp = 1; t.x = w * (0.55 + Math.random() * 0.38); t.y = h * (0.15 + Math.random() * 0.55); }, 900);
   }
   function boom(x, y) {
-    sfx.boom();
+    sfx.boom(); buzz([30, 20, 40]);
     for (let i = 0; i < 26; i++) { const a = Math.random() * 6.28, v = 60 + Math.random() * 320; sparks.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 0.6 + Math.random() * 0.4, gold: true }); }
     targets.forEach(t => { if (Math.hypot(t.x - x, t.y - y) < t.r + w * 0.09) hit(t); });
   }
@@ -118,7 +120,18 @@
   function updateHud() {
     hud.weapon.textContent = NAMES[WEAPONS[weapon]].toUpperCase();
     hud.tier.textContent = data[WEAPONS[weapon]][TIERS[tier]].tier.toUpperCase();
-    const sbtn = root.querySelector('[data-sound]');
+    const fsb = root.querySelector('[data-fs]');
+  const fsEl = root.requestFullscreen ? 'requestFullscreen' : root.webkitRequestFullscreen ? 'webkitRequestFullscreen' : null;
+  if (fsb && fsEl) {
+    fsb.hidden = false;
+    fsb.addEventListener('click', async () => {
+      if (document.fullscreenElement || document.webkitFullscreenElement) { (document.exitFullscreen || document.webkitExitFullscreen).call(document); return; }
+      try { await root[fsEl](); if (screen.orientation && screen.orientation.lock) screen.orientation.lock('landscape').catch(() => {}); } catch (e) {}
+    });
+    const onFs = () => { const on = !!(document.fullscreenElement || document.webkitFullscreenElement); fsb.textContent = on ? 'EXIT FULLSCREEN' : 'FULLSCREEN'; setTimeout(() => started && resize(), 120); };
+    document.addEventListener('fullscreenchange', onFs); document.addEventListener('webkitfullscreenchange', onFs);
+  }
+  const sbtn = root.querySelector('[data-sound]');
   if (sbtn) sbtn.addEventListener('click', () => { const on = sbtn.getAttribute('aria-pressed') !== 'true'; sbtn.setAttribute('aria-pressed', String(on)); sbtn.textContent = on ? 'SOUND ON' : 'SOUND OFF'; sfx.toggle(on); if (on) { sfx.init(); sfx.pick(); } });
   root.querySelectorAll('[data-w]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.w === weapon)));
     root.querySelectorAll('[data-t]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.t === tier)));
@@ -187,6 +200,7 @@
   function loop(now) {
     const dt = Math.min(0.05, (now - last) / 1000 || 0); last = now;
     if (cooldown > 0) cooldown -= dt; if (flash > 0) flash -= dt; if (swing > 0) swing -= dt;
+    if (holding && cooldown <= 0) fire();
     if (notice > 0) { notice -= dt; if (notice <= 0) hud.note.textContent = ''; }
     const g = gunPos();
     aim = Math.atan2(pointer.y - g.y, pointer.x - g.x); flipped = Math.abs(aim) > Math.PI / 2;
@@ -216,8 +230,12 @@
   }), { threshold: 0.15 }).observe(root);
 
   addEventListener('resize', () => started && resize());
-  canvas.addEventListener('pointermove', e => { const r = canvas.getBoundingClientRect(); pointer = { x: e.clientX - r.left, y: e.clientY - r.top }; });
-  canvas.addEventListener('pointerdown', e => { const r = canvas.getBoundingClientRect(); pointer = { x: e.clientX - r.left, y: e.clientY - r.top }; fire(); });
+  const setPointer = e => { const r = canvas.getBoundingClientRect(); pointer = { x: e.clientX - r.left, y: e.clientY - r.top }; };
+  canvas.addEventListener('pointermove', setPointer);
+  canvas.addEventListener('pointerdown', e => { setPointer(e); holding = true; canvas.setPointerCapture(e.pointerId); fire(); });
+  const release = () => { holding = false; };
+  canvas.addEventListener('pointerup', release); canvas.addEventListener('pointercancel', release); canvas.addEventListener('lostpointercapture', release);
+  canvas.addEventListener('contextmenu', e => e.preventDefault());
   root.querySelectorAll('[data-w]').forEach(b => b.addEventListener('click', () => setWeapon(+b.dataset.w)));
   root.querySelectorAll('[data-t]').forEach(b => b.addEventListener('click', () => setTier(+b.dataset.t)));
   root.addEventListener('keydown', e => {
