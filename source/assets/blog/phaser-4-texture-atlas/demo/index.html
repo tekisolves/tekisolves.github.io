@@ -3,12 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="robots" content="noindex">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Retro Arsenal free sample - Phaser 4 demo</title>
-<style>html,body{margin:0;height:100%;background:#101311}</style>
-<script src="https://cdn.jsdelivr.net/npm/phaser@4.2.1/dist/phaser.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101311">
+<title>Retro Arsenal: Phaser 4 weapon demo | Teki Solves</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#101311;--surface:#1A201C;--fg:#F4F3ED;--muted:#A9B1AA;--line:#2A312C;--lime:#B2DD31;--gold:#E9C55C;
+  --mono:'DM Mono',ui-monospace,monospace;--display:'Space Grotesk',system-ui,sans-serif;--pad:clamp(10px,2.2vw,20px)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);overflow:hidden;font-family:var(--display);-webkit-tap-highlight-color:transparent}
+#game{position:fixed;inset:0;touch-action:none}
+#game canvas{display:block}
+.hud{position:fixed;left:0;right:0;display:flex;align-items:center;gap:8px;padding:var(--pad);pointer-events:none;
+  padding-left:max(var(--pad),env(safe-area-inset-left));padding-right:max(var(--pad),env(safe-area-inset-right))}
+.hud>*{pointer-events:auto}
+.top{top:0;flex-wrap:wrap;padding-top:max(var(--pad),env(safe-area-inset-top))}
+.bot{bottom:0;justify-content:space-between;flex-wrap:wrap;padding-bottom:max(var(--pad),env(safe-area-inset-bottom));font:400 .7rem/1.4 var(--mono);color:var(--muted);letter-spacing:.06em}
+.brand{font:500 .7rem/1 var(--mono);letter-spacing:.18em;color:var(--fg);text-decoration:none;margin-right:auto;white-space:nowrap}
+.brand b{color:var(--lime);font-weight:500}
+.seg{display:flex;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+button{font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:0;padding:.75em 1em;cursor:pointer;min-height:38px}
+button:hover{color:var(--fg)}
+button[aria-pressed="true"]{color:#101311;background:var(--lime)}
+button:focus-visible{outline:2px solid var(--lime);outline-offset:2px}
+.chip{background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);clip-path:polygon(8px 0,100% 0,100% calc(100% - 8px),calc(100% - 8px) 100%,0 100%,0 8px)}
+#tier b{color:var(--gold);font-weight:500}
+.score{font:500 .72rem/1 var(--mono);letter-spacing:.1em;color:var(--muted);padding:.75em 1em}
+.score b{color:var(--lime);font-weight:500}
+.bot a{color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line)}
+.bot a:hover{border-color:var(--lime)}
+.keys kbd{font:inherit;color:var(--fg);border:1px solid var(--line);padding:0 .35em;border-radius:3px}
+.touch-only{display:none}
+@media(pointer:coarse){.touch-only{display:inline}.mouse-only{display:none}}
+@media(max-width:560px){.brand span{display:none}.score{padding:.75em .6em}button{padding:.75em .75em}}
+@media(max-height:420px){.bot .keys{display:none}}
+#size{position:fixed;right:var(--pad);top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font:400 .62rem/1 var(--mono);letter-spacing:.2em;color:var(--lime);opacity:0;transition:opacity .3s;pointer-events:none}
+body.debug #size{opacity:.8}
+noscript{position:fixed;inset:0;display:grid;place-items:center;font-family:var(--mono)}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/phaser@4.2.1/dist/phaser.min.js" defer></script>
+<script src="main.js" defer></script>
 </head>
 <body>
-<script src="main.js"></script>
+<div id="game" aria-label="Retro Arsenal demo: move the weapon and hit the targets" role="application"></div>
+
+<div class="hud top">
+  <a class="brand" href="../../../../blog/phaser-4-texture-atlas/">◆ TEKI <b>/</b> SOLVES <span>· PHASER 4 DEMO</span></a>
+  <div class="seg" role="group" aria-label="Weapon">
+    <button id="w-pistol" aria-pressed="true">Pistol</button><button id="w-blade" aria-pressed="false">Blade</button>
+  </div>
+  <button id="tier" class="chip" aria-label="Next tier">Tier <b>Scrap</b></button>
+  <button id="debug" class="chip" aria-pressed="false">Pivots</button>
+  <span class="score chip" aria-live="polite">Hits <b id="hits">0</b></span>
+</div>
+
+<div class="hud bot">
+  <span class="keys">
+    <span class="mouse-only"><kbd>Mouse</kbd> aim/move · <kbd>Click</kbd> fire/swing · <kbd>Space</kbd> tier · <kbd>1</kbd> <kbd>2</kbd> weapon · <kbd>D</kbd> pivots</span>
+    <span class="touch-only">Drag to aim/move · Tap to fire/swing</span>
+  </span>
+  <span><a href="../../../../blog/phaser-4-texture-atlas/">Tutorial</a> · <a href="../../../../retro-arsenal.html">Get Retro Arsenal</a></span>
+</div>
+<div id="size" aria-hidden="true"></div>
+<noscript>This demo needs JavaScript.</noscript>
 </body>
 </html>

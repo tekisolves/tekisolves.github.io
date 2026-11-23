@@ -3,7 +3,7 @@ title: How to Load a Texture Atlas in Phaser 4 (and Line Up Weapons Properly)
 seo_title: Phaser 4 Texture Atlas Tutorial: Pivots and Muzzle Points
 description: Load a texture atlas in Phaser 4, fix the pivot bug that misaligns weapons, spawn bullets from the muzzle and swap tiers. Free sample included.
 date: 2026-11-22
-updated: 2026-11-22
+updated: 2026-11-23
 image: assets/blog/phaser-4-texture-atlas/og.png
 image_alt: Three tiers of a retro sci-fi laser pistol next to the title of the tutorial
 made: Written by Khaya, drafted with help from Claude (AI). The demo was tested in Phaser 4.2.1 on a low-end Android phone before publishing.
@@ -16,6 +16,8 @@ This guide covers both. It's written for **Phaser 4**, which came out in April 2
 You can follow along with a **free sample**: the Laser Pistol from my pack Retro Arsenal, in all 3 tiers, as an atlas + JSON with a working demo.
 
 **[Download the free sample (ZIP, 210 KB)](assets/blog/phaser-4-texture-atlas/retro-arsenal-free-sample.zip)** · **[Try the live demo](assets/blog/phaser-4-texture-atlas/demo/)**
+
+The live demo goes a step further than the ZIP: switch to the energy blade, move it onto a target and swing. Press **D** to see every pivot and muzzle point while you play.
 
 ## What a texture atlas is (and why bother)
 
