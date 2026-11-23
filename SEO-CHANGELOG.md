@@ -2,6 +2,16 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 17:28 UTC: Demo: movable energy blade, destructible targets, fully responsive
+
+- Blade grip follows the pointer, click/tap swings it; points along the edge
+- Pistol bolts now hit targets too; tier swap applies to both weapons
+- Phaser Scale.RESIZE: canvas fills the window, everything sized from the
+- Brand HUD (weapon toggle, tier, hit counter, pivots debug with live size
+- Post mentions the blade in the live demo
+- Areas changed: Documentation, Images
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 17:13 UTC: Add social links to footer and upgrade the hologram
 
 - Footer: chamfered HUD tiles for Instagram, TikTok, YouTube, X, Pinterest,
