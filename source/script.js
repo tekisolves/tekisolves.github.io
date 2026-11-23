@@ -327,3 +327,10 @@
     document.querySelector('.tk-splash')?.addEventListener('click', out);
   })();
 })();
+/* footer social tiles power on when they scroll into view */
+(() => {
+  const s = document.querySelector('.socials');
+  if (!s || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { s.classList.add('in'); io.disconnect(); } }), { threshold: .4 });
+  io.observe(s);
+})();
