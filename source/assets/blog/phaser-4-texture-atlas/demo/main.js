@@ -167,10 +167,14 @@ class Demo extends Phaser.Scene {
 
   aimAt(p) {
     if (this.W8.kind !== 'gun') return;
-    const a = Phaser.Math.Angle.Between(this.handAt.x, this.handAt.y, p.x, p.y);
+    // aim the barrel, not the grip: the muzzle sits above the pivot, so tilt the gun until
+    // the line out of the muzzle passes through the pointer
+    const d = this.W8, px = p.x - this.handAt.x, py = p.y - this.handAt.y, dist = Math.hypot(px, py);
+    const phi = Math.atan2(py, px), flip = Math.abs(phi) > Math.PI / 2 ? -1 : 1;   // pointing left? flip so it isn't upside down
+    const off = (d.point[1] - d.pivot[1]) / 1024 * this.framePx * flip;
+    const a = dist > Math.abs(off) ? phi - Math.asin(off / dist) : phi;
     this.held.setRotation(a);
-    // pointing left? flip vertically so the gun isn't upside down
-    this.held.setScale(this.baseScale, Math.abs(a) > Math.PI / 2 ? -this.baseScale : this.baseScale);
+    this.held.setScale(this.baseScale, this.baseScale * flip);
   }
 
   // a point in 1024 frame space -> world space: offset from the pivot, scaled, rotated
