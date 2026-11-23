@@ -217,7 +217,7 @@ class Demo extends Phaser.Scene {
   throwNade() {
     const d = this.W8, from = { x: this.handAt.x, y: this.handAt.y - this.framePx * 0.1 };
     const goal = this.lastAim ?? { x: this.W * 0.7, y: this.H * 0.5 };
-    const max = this.unit * 0.95, dist = Phaser.Math.Distance.BetweenPoints(from, goal);
+    const max = Math.hypot(this.W, this.H) * 0.8, dist = Phaser.Math.Distance.BetweenPoints(from, goal);
     const to = dist > max ? { x: from.x + (goal.x - from.x) * max / dist, y: from.y + (goal.y - from.y) * max / dist } : goal;
     const n = this.add.image(from.x, from.y, `grenade${this.tier + 1}`).setDepth(3)
       .setOrigin(d.pivot[0] / 1024, d.pivot[1] / 1024).setScale(this.framePx / 400 * 0.7);
