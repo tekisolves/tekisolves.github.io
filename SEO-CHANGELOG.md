@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 17:33 UTC: Demo: return focus to the game after HUD clicks
+
+- (no details in the commit message)
+- Areas changed: Images
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 17:31 UTC: Demo: Phaser 4 tint API, cache-bust main.js
 
 - (no details in the commit message)
