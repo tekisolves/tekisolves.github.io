@@ -1,0 +1,26 @@
+name: Cross-post to DEV
+
+on:
+  push:
+    branches: [main]
+    paths: ["source/blog/**", ".github/devto/**"]
+  schedule:
+    - cron: "17 * * * *"   # hourly: publishes drafts whose time has come
+  workflow_dispatch:
+
+concurrency:
+  group: devto
+  cancel-in-progress: false
+
+jobs:
+  devto:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Sync blog posts to DEV
+        env:
+          DEVTO_API_KEY: ${{ secrets.DEVTO_API_KEY }}
+        run: python3 .github/devto/devto.py

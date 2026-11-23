@@ -6,6 +6,8 @@ date: 2026-11-22
 updated: 2026-11-23
 image: assets/blog/phaser-4-texture-atlas/og.png
 image_alt: Three tiers of a retro sci-fi laser pistol next to the title of the tutorial
+devto: 2026-11-24T14:00:00Z
+devto_tags: phaser, gamedev, javascript, tutorial
 made: Written by Khaya, drafted with help from Claude (AI). The demo was tested in Phaser 4.2.1 on a low-end Android phone before publishing.
 ---
 
