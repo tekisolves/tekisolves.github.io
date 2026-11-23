@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 19:39 UTC: Footer: Facebook link uses the new @tekisolves username
+
+- (no details in the commit message)
+- Areas changed: Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 18:07 UTC: Footer: add Facebook to social links (and schema sameAs)
 
 - (no details in the commit message)
