@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-23 17:47 UTC: Titles: replace em-dashes with the site's | separator
+
+- (no details in the commit message)
+- Areas changed: Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 17:45 UTC: Demo: all five weapons; contact form rebuilt
 
 - Rifle (hold to fire), shotgun (5-pellet spread, short range, big kick),
