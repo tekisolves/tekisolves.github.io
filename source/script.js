@@ -173,4 +173,35 @@
   };
   addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
   update();
+
+  /* ---------- 3D: pointer tilt on the hero art, pause spinning scenes when off-screen ---------- */
+  (function () {
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine = matchMedia('(pointer: fine)').matches;
+    const art = document.querySelector('.tilt3d');
+    if (art && fine && !reduce) {
+      const hero = art.closest('.hero') || art;
+      let raf = 0;
+      hero.addEventListener('pointermove', e => {
+        if (raf) return;
+        raf = requestAnimationFrame(() => {
+          raf = 0;
+          const r = hero.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5;
+          const y = (e.clientY - r.top) / r.height - 0.5;
+          art.style.setProperty('--ry', (x * 10).toFixed(2) + 'deg');
+          art.style.setProperty('--rx', (-y * 8).toFixed(2) + 'deg');
+        });
+      });
+      hero.addEventListener('pointerleave', () => { art.style.setProperty('--rx', '0deg'); art.style.setProperty('--ry', '0deg'); });
+    }
+    if ('IntersectionObserver' in window) {
+      const scenes = document.querySelectorAll('.d3, .c3');
+      const io3 = new IntersectionObserver(entries => {
+        entries.forEach(en => { en.target.dataset.inview = en.isIntersecting ? '1' : ''; en.target.classList.toggle('is-paused', !en.isIntersecting || document.hidden); });
+      }, { threshold: 0 });
+      scenes.forEach(el => io3.observe(el));
+      document.addEventListener('visibilitychange', () => scenes.forEach(el => el.classList.toggle('is-paused', document.hidden || !el.dataset.inview)));
+    }
+  })();
 })();

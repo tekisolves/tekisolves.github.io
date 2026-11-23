@@ -179,6 +179,23 @@ def product_card(p):
 def live_products():
     return [p for p in products if p["status"] == "available"]
 
+
+# ---------- 3D (pure CSS transforms, no libraries; paused off-screen and for reduced motion) ----------
+def diamond3d():
+    """The Teki diamond as a slowly turning wireframe octahedron (three squares on the three axes)."""
+    return ('<div class="d3" aria-hidden="true"><div class="d3-spin">'
+            '<i class="d3-sq d3-xy"></i><i class="d3-sq d3-xz"></i><i class="d3-sq d3-yz"></i>'
+            '<i class="d3-core"></i></div></div>')
+
+CAROUSEL = [("pistol", "Laser Pistol"), ("rifle", "Laser Rifle"), ("shotgun", "Laser Shotgun"),
+            ("blade", "Energy Blade"), ("grenade", "Plasma Grenade")]
+
+def carousel3d(p):
+    items = "".join(f'<figure class="c3-item" style="--i:{i}"><img src="assets/3d/{k}.webp" alt="" width="480" height="480" loading="lazy" decoding="async"><figcaption>{n}</figcaption></figure>'
+                    for i, (k, n) in enumerate(CAROUSEL))
+    label = f'See {esc(p["name"])}: five prototype-tier weapons turning on a 3D carousel'
+    return f'<a class="c3 reveal d1" href="{p["slug"]}" aria-label="{label}"><div class="c3-ring" style="--n:{len(CAROUSEL)}">{items}</div><span class="c3-floor"></span></a>'
+
 # ---------- pages ----------
 def home():
     p = products[0]
@@ -195,7 +212,7 @@ def home():
       <p class="tagline">Keep it simple, problem solved.</p>
       <div class="hero-actions"><a class="btn btn-primary" href="products.html#catalogue">Browse game assets</a></div>
     </div>
-    <div class="hero-art">{arch_svg("h")}<a class="chip" href="{p["slug"]}"><i></i>Now on itch.io: {esc(p["name"])}</a></div>
+    <div class="hero-art tilt3d">{arch_svg("h")}{diamond3d()}<a class="chip" href="{p["slug"]}"><i></i>Now on itch.io: {esc(p["name"])}</a></div>
   </div>
 </section>
 
@@ -254,7 +271,7 @@ def home():
       <p style="color:var(--muted)">Meet {esc(p["name"])}: a stylized retro-futurist 2D weapon asset pack for indie game developers.</p>
       <p style="margin-top:1.4rem"><a class="btn btn-primary" href="{p["slug"]}">Explore {esc(p["name"])}</a></p>
     </div>
-    {product_animation(p, "focus-visual reveal d1")}
+    {carousel3d(p)}
   </div>
 </section>
 
