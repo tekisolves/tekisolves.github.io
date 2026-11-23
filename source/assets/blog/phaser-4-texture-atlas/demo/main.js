@@ -65,6 +65,8 @@ class Demo extends Phaser.Scene {
     $('w-blade').onclick = () => this.setWeapon('blade');
     $('tier').onclick = () => this.nextTier();
     $('debug').onclick = () => this.toggleDebug();
+    // hand keyboard focus back to the game after a HUD click, so Space changes tier, not the last button
+    document.querySelectorAll('.hud button').forEach((b) => b.addEventListener('click', () => b.blur()));
 
     for (let i = 0; i < 3; i++) this.spawnTarget();
     this.setWeapon('pistol');
