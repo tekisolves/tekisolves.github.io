@@ -59,6 +59,14 @@ def arch_svg(p, cls="breathe"):
 def diamond_line():
     return '<svg class="diamond-line" viewBox="0 0 140 20" aria-hidden="true" focusable="false"><path d="M0 10H52L60 10 70 1 80 10 70 19 60 10M80 10H140"/></svg>'
 
+
+def signature_loader(cls, sub="", extra=""):
+    """Teki Solves signature loader: the gold logo diamond turning, the name beneath, a thin gold progress line."""
+    layers = "".join(f'<i style="--z:{z}"></i>' for z in range(6))
+    sub_html = f'<span class="tk-sub">{sub}</span>' if sub else ""
+    return (f'<div class="tk-loader {cls}" aria-hidden="{"true" if cls == "tk-splash" else "false"}"><div class="tk-dia"><div class="tk-dia-body">{layers}</div></div>'
+            f'<span class="tk-name">TEKI SOLVES</span>{sub_html}<span class="tk-bar"><i></i></span>{extra}</div>')
+
 # ---------- shared shell ----------
 def page_url(path):
     return f'{SITE_URL}/{path[:-len("index.html")] if path.endswith("index.html") else path}'
@@ -87,6 +95,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>try{{if(!sessionStorage.getItem('tk-splash')&&!matchMedia('(prefers-reduced-motion: reduce)').matches){{document.documentElement.classList.add('splash');sessionStorage.setItem('tk-splash','1')}}}}catch(e){{}}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
@@ -105,6 +114,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 {head_extra}
 </head>
 <body>
+{signature_loader("tk-splash", "KEEP IT SIMPLE, PROBLEM SOLVED.")}
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header">
   <div class="wrap header-inner">
@@ -410,10 +420,12 @@ def product_page(p):
     <p>Every weapon and tier, live in your browser, using the pack's real pivot and muzzle data. Aim, fire, then swap tiers and watch the sprite stay exactly in the hand.</p></div>
     <div class="range" id="range" data-data="assets/3d/arsenal-data.json" data-base="assets/3d/">
       <div class="range-hud"><span>WEAPON <b data-hud="weapon">LASER PISTOL</b></span><span>TIER <b data-hud="tier">SCRAP</b></span><span>HITS <b data-hud="hits">000</b></span></div>
+      {signature_loader("tk-range-load", "WEAPON RANGE", '<button type="button" class="tk-start" data-start hidden>&#9654; PRESS START</button>')}
       <canvas tabindex="0" aria-label="Weapon range: aim with the mouse or finger, click or tap to fire. Keys 1 to 5 pick a weapon, T swaps tier, Space fires."></canvas>
       <p class="range-note" data-hud="note" aria-live="polite"></p>
       <div class="range-controls">
         <div class="range-group" role="group" aria-label="Weapon"><button type="button" data-w="0" aria-pressed="true"><kbd>1</kbd>Pistol</button><button type="button" data-w="1" aria-pressed="false"><kbd>2</kbd>Rifle</button><button type="button" data-w="2" aria-pressed="false"><kbd>3</kbd>Shotgun</button><button type="button" data-w="3" aria-pressed="false"><kbd>4</kbd>Blade</button><button type="button" data-w="4" aria-pressed="false"><kbd>5</kbd>Grenade</button></div>
+        <div class="range-group" role="group" aria-label="Sound"><button type="button" data-sound aria-pressed="true">SOUND ON</button></div>
         <div class="range-group" role="group" aria-label="Tier"><button type="button" data-t="0" aria-pressed="true">Scrap</button><button type="button" data-t="1" aria-pressed="false">Military</button><button type="button" data-t="2" aria-pressed="false">Prototype</button></div>
       </div>
     </div>

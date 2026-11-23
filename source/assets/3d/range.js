@@ -13,6 +13,43 @@
   const SRC = 1024, IMG = 400; // sprite data is in 1024px space, images are 400px
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---- sound: synthesized with Web Audio, no audio files ---- */
+  const sfx = (() => {
+    let ac = null, master = null, on = true, noiseBuf = null;
+    const init = () => {
+      if (ac) return ac.state === 'suspended' ? ac.resume() : null;
+      const AC = window.AudioContext || window.webkitAudioContext; if (!AC) return;
+      ac = new AC(); master = ac.createGain(); master.gain.value = 0.32; master.connect(ac.destination);
+      noiseBuf = ac.createBuffer(1, ac.sampleRate, ac.sampleRate); const d = noiseBuf.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+    };
+    const env = (g, t, a, peak, dec) => { g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(peak, t + a); g.gain.exponentialRampToValueAtTime(0.0001, t + a + dec); };
+    const tone = (type, f0, f1, dur, vol, at = 0) => {
+      if (!ac || !on) return; const t = ac.currentTime + at, o = ac.createOscillator(), g = ac.createGain(), lp = ac.createBiquadFilter();
+      o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(Math.max(20, f1), t + dur);
+      lp.type = 'lowpass'; lp.frequency.value = 5200; env(g, t, 0.004, vol, dur);
+      o.connect(lp).connect(g).connect(master); o.start(t); o.stop(t + dur + 0.05);
+    };
+    const noise = (dur, vol, ftype, f0, f1, at = 0) => {
+      if (!ac || !on) return; const t = ac.currentTime + at, src = ac.createBufferSource(), f = ac.createBiquadFilter(), g = ac.createGain();
+      src.buffer = noiseBuf; f.type = ftype; f.frequency.setValueAtTime(f0, t); f.frequency.exponentialRampToValueAtTime(f1, t + dur); f.Q.value = 1.2;
+      env(g, t, 0.005, vol, dur); src.connect(f).connect(g).connect(master); src.start(t); src.stop(t + dur + 0.05);
+    };
+    return {
+      init, toggle: v => { on = v; },
+      pistol: () => { tone('sawtooth', 1400, 180, 0.16, 0.5); tone('square', 2600, 900, 0.05, 0.12); },
+      rifle: () => { tone('sawtooth', 1900, 300, 0.09, 0.42); noise(0.05, 0.15, 'highpass', 3000, 6000); },
+      shotgun: () => { noise(0.22, 0.6, 'bandpass', 2400, 400); tone('sawtooth', 900, 90, 0.2, 0.35); },
+      blade: () => { noise(0.28, 0.45, 'bandpass', 600, 4200); tone('sine', 520, 1200, 0.22, 0.12); },
+      throw: () => { tone('sine', 300, 520, 0.12, 0.3); },
+      boom: () => { noise(0.7, 0.9, 'lowpass', 1400, 120); tone('sine', 110, 38, 0.6, 0.7); },
+      hit: () => { tone('sine', 1320, 1320, 0.12, 0.35); tone('sine', 1980, 1980, 0.18, 0.25, 0.06); },
+      tier: n => { tone('square', [440, 554, 659][n], [440, 554, 659][n] * 1.5, 0.09, 0.18); },
+      pick: () => { tone('triangle', 660, 880, 0.06, 0.2); },
+      start: () => { [523, 659, 784, 1047].forEach((f, i) => tone('triangle', f, f, 0.16, 0.25, i * 0.07)); }
+    };
+  })();
+
   let data = null, imgs = {}, w = 0, h = 0, dpr = 1, started = false;
   let weapon = 0, tier = 0, aim = 0, flipped = false, hits = 0;
   let pointer = { x: 0, y: 0 }, last = 0, cooldown = 0, flash = 0, swing = 0, notice = 0;
@@ -43,42 +80,47 @@
   }
 
   function fire() {
-    if (!started || cooldown > 0) return;
+    if (!started || cooldown > 0 || !root.classList.contains('started')) return;
+    sfx.init();
     const { type } = frameData(), m = muzzleWorld(), name = WEAPONS[weapon];
     const speed = name === 'rifle' ? 1500 : 1000;
     if (type === 'gun') {
       const spread = name === 'shotgun' ? [-0.14, -0.07, 0, 0.07, 0.14] : [0];
       spread.forEach(a => shots.push({ x: m.x, y: m.y, vx: Math.cos(aim + a) * speed, vy: Math.sin(aim + a) * speed, life: 1.2, kind: 'bolt' }));
       flash = 0.08; cooldown = name === 'rifle' ? 0.12 : name === 'shotgun' ? 0.5 : 0.22;
+      sfx[name]();
     } else if (type === 'blade') {
-      swing = 0.25; cooldown = 0.3;
+      swing = 0.25; cooldown = 0.3; sfx.blade();
       targets.forEach(t => { if (Math.hypot(t.x - m.x, t.y - m.y) < t.r + w * 0.12) hit(t); });
     } else {
       shots.push({ x: m.x, y: m.y, vx: Math.cos(aim) * 650, vy: Math.sin(aim) * 650 - 200, life: 1.1, kind: 'nade' });
-      cooldown = 0.7;
+      cooldown = 0.7; sfx.throw();
     }
   }
 
   function hit(t) {
     if (t.hp <= 0) return;
-    t.hp = 0; t.pop = 0.5; hits++; hud.hits.textContent = String(hits).padStart(3, '0');
+    t.hp = 0; t.pop = 0.5; hits++; sfx.hit(); hud.hits.textContent = String(hits).padStart(3, '0');
     for (let i = 0; i < 14; i++) { const a = Math.random() * 6.28, v = 80 + Math.random() * 220; sparks.push({ x: t.x, y: t.y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 0.5 + Math.random() * 0.3 }); }
     setTimeout(() => { t.hp = 1; t.x = w * (0.55 + Math.random() * 0.38); t.y = h * (0.15 + Math.random() * 0.55); }, 900);
   }
   function boom(x, y) {
+    sfx.boom();
     for (let i = 0; i < 26; i++) { const a = Math.random() * 6.28, v = 60 + Math.random() * 320; sparks.push({ x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 0.6 + Math.random() * 0.4, gold: true }); }
     targets.forEach(t => { if (Math.hypot(t.x - x, t.y - y) < t.r + w * 0.09) hit(t); });
   }
 
-  function setWeapon(i) { weapon = (i + WEAPONS.length) % WEAPONS.length; updateHud(); }
+  function setWeapon(i) { weapon = (i + WEAPONS.length) % WEAPONS.length; updateHud(); sfx.pick(); }
   function setTier(i) {
-    tier = (i + 3) % 3; updateHud();
+    tier = (i + 3) % 3; updateHud(); sfx.tier(tier);
     hud.note.textContent = 'Same pivot, same muzzle point: the sprite swaps without moving.'; notice = 2.5;
   }
   function updateHud() {
     hud.weapon.textContent = NAMES[WEAPONS[weapon]].toUpperCase();
     hud.tier.textContent = data[WEAPONS[weapon]][TIERS[tier]].tier.toUpperCase();
-    root.querySelectorAll('[data-w]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.w === weapon)));
+    const sbtn = root.querySelector('[data-sound]');
+  if (sbtn) sbtn.addEventListener('click', () => { const on = sbtn.getAttribute('aria-pressed') !== 'true'; sbtn.setAttribute('aria-pressed', String(on)); sbtn.textContent = on ? 'SOUND ON' : 'SOUND OFF'; sfx.toggle(on); if (on) { sfx.init(); sfx.pick(); } });
+  root.querySelectorAll('[data-w]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.w === weapon)));
     root.querySelectorAll('[data-t]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.t === tier)));
   }
 
@@ -156,12 +198,17 @@
   let visible = false, running = false;
   function start() {
     if (started) return; started = true;
+    const bar = root.querySelector('.tk-range-load .tk-bar'), startBtn = root.querySelector('[data-start]');
+    const total = 16; let done = 0;
+    const tickLoad = () => { done++; bar.style.setProperty('--p', (done / total).toFixed(3)); if (done >= total) ready(); };
+    const ready = () => { startBtn.hidden = false; startBtn.focus({ preventScroll: true }); };
     fetch(root.dataset.data).then(r => r.json()).then(d => {
-      data = d;
-      WEAPONS.forEach(wn => TIERS.forEach(t => { const im = new Image(); im.decoding = 'async'; im.src = `${root.dataset.base}${wn}-${t}.webp`; imgs[wn + t] = im; }));
+      data = d; tickLoad();
+      WEAPONS.forEach(wn => TIERS.forEach(t => { const im = new Image(); im.decoding = 'async'; im.onload = im.onerror = tickLoad; im.src = `${root.dataset.base}${wn}-${t}.webp`; imgs[wn + t] = im; }));
       resize(); pointer = { x: w * 0.8, y: h * 0.45 }; updateHud(); root.classList.add('live');
       if (visible && !running) { running = true; requestAnimationFrame(loop); }
     });
+    startBtn.addEventListener('click', () => { sfx.init(); sfx.start(); root.classList.add('started'); canvas.focus({ preventScroll: true }); });
   }
   new IntersectionObserver(es => es.forEach(e => {
     visible = e.isIntersecting;
