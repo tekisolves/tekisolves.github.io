@@ -1,0 +1,13 @@
+{
+  "shipped": {
+    "blog": {
+      "date": "2026-11-24",
+      "on_time": true
+    },
+    "post-1": {
+      "date": "2026-11-24",
+      "on_time": true
+    }
+  },
+  "last_sent": "2026-11-24"
+}
