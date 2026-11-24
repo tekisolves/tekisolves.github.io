@@ -125,7 +125,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{og}
 <link rel="manifest" href="site.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Teki Solves"><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v={CSS_V}">
 <link rel="alternate" type="application/rss+xml" title="Teki Solves blog" href="blog/feed.xml">
 <script>document.documentElement.classList.add('js');window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('consent','default',{{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'}});</script>
@@ -251,6 +251,7 @@ def home():
     return shell("index.html", "Teki Solves | Digital products that solve real problems",
         "Teki Solves is a digital product shop and creative workshop making thoughtful things for people who build, learn and create. Keep it simple, problem solved.", f'''
 <section class="hero">
+  <span class="haze" aria-hidden="true"><i></i><i></i><i></i></span>
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">Digital products • Creative tools • Practical solutions</span>
@@ -261,6 +262,16 @@ def home():
       <div class="hero-actions"><a class="btn btn-primary" href="products.html#catalogue">Browse game assets</a></div>
     </div>
     <div class="hero-art tilt3d">{arch_svg("h")}{diamond3d()}<a class="chip" href="{p["slug"]}"><i></i>Now on itch.io: {esc(p["name"])}</a></div>
+  </div>
+  <div class="wrap now-playing reveal">
+    <a class="np" href="{p["slug"]}">
+      <span class="np-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span class="np-label">Now playing</span>
+      <span class="np-title">{esc(p["name"])}</span>
+      <span class="np-meta">{esc(p.get("version",""))} · 15 sprites · {esc(p["price"])}€</span>
+      <span class="np-go" aria-hidden="true">→</span>
+    </a>
+    <span class="np-clock" data-clock="Europe/Dublin" aria-hidden="true">Dublin</span>
   </div>
 </section>
 
@@ -275,6 +286,8 @@ def home():
     {diamond_line()}
   </div>
 </section>
+
+<div class="interlude" aria-hidden="true"><div class="interlude-track"><span>Keep it simple, <em>problem solved.</em></span><span>Keep it simple, <em>problem solved.</em></span><span>Keep it simple, <em>problem solved.</em></span><span>Keep it simple, <em>problem solved.</em></span></div></div>
 
 <section class="band band-cream" aria-labelledby="featured-h">
   <div class="wrap">

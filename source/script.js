@@ -369,3 +369,11 @@
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { s.classList.add('in'); io.disconnect(); } }), { threshold: .4 });
   io.observe(s);
 })();
+
+/* late night: the hero clock shows the time in Dublin */
+(function(){
+  var el=document.querySelector('[data-clock]');if(!el)return;
+  var tz=el.getAttribute('data-clock'),place=el.textContent;
+  function tick(){try{el.textContent=place+' · '+new Date().toLocaleTimeString('en-IE',{hour:'2-digit',minute:'2-digit',timeZone:tz})}catch(e){}}
+  tick();setInterval(tick,30000);
+})();
