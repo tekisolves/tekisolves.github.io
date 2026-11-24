@@ -377,3 +377,27 @@
   function tick(){try{el.textContent=place+' · '+new Date().toLocaleTimeString('en-IE',{hour:'2-digit',minute:'2-digit',timeZone:tz})}catch(e){}}
   tick();setInterval(tick,30000);
 })();
+
+/* flow layer: section tracker rail (wide screens). Built from the page's own labelled sections. */
+(function(){
+  var secs=[].slice.call(document.querySelectorAll('main > section[aria-labelledby]')).filter(function(s){return document.getElementById(s.getAttribute('aria-labelledby'))});
+  if(secs.length<3||!('IntersectionObserver' in window))return;
+  var nav=document.createElement('nav');nav.className='rail';nav.setAttribute('aria-label','Sections on this page');
+  var links=secs.map(function(s,i){
+    var h=document.getElementById(s.getAttribute('aria-labelledby'));
+    var eb=s.querySelector('.eyebrow');var label=(eb&&eb.textContent.trim())||h.textContent.trim();
+    if(label.length>28)label=label.slice(0,26)+'…';
+    var a=document.createElement('a');a.href='#'+h.id;
+    var sp=document.createElement('span');sp.textContent=String(i+1).padStart(2,'0')+'  '+label;
+    a.appendChild(sp);a.appendChild(document.createElement('i'));
+    a.addEventListener('click',function(e){e.preventDefault();s.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})});
+    nav.appendChild(a);return a;
+  });
+  document.body.appendChild(nav);
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;var i=secs.indexOf(e.target);
+    links.forEach(function(l,j){l.classList.toggle('on',j===i)});
+    nav.classList.toggle('on-cream',e.target.classList.contains('band-cream'));
+  })},{rootMargin:'-48% 0px -48% 0px'});
+  secs.forEach(function(s){io.observe(s)});
+})();

@@ -751,3 +751,67 @@ button,.btn,.range canvas,.holo{touch-action:manipulation}
 
 @media(max-width:600px){.np-title{font-size:1.2rem}}
 @media(prefers-reduced-motion:reduce){.haze i,.np-eq i,.interlude-track{animation:none}}
+
+/* ---------- flow layer: sections blend, scrolling becomes an experience. Added on top; nothing above is changed ---------- */
+/* 1. soft seams: dark fades into cream and back, instead of hard lines */
+.band{border-bottom-color:transparent}
+.band-cream{position:relative;isolation:isolate}
+.band-cream>.wrap{position:relative;z-index:1}
+.band-cream::before,.band-cream::after{content:"";position:absolute;left:0;right:0;height:clamp(28px,4vw,48px);pointer-events:none;z-index:0}
+.band-cream::before{top:0;background:linear-gradient(180deg,var(--bg),rgba(16,19,17,.62) 14%,rgba(16,19,17,.34) 34%,rgba(16,19,17,.15) 56%,rgba(16,19,17,.04) 78%,transparent)}
+.band-cream::after{bottom:0;background:linear-gradient(0deg,var(--bg),rgba(16,19,17,.62) 14%,rgba(16,19,17,.34) 34%,rgba(16,19,17,.15) 56%,rgba(16,19,17,.04) 78%,transparent)}
+.band-cream+.band-cream::before,.band-cream:has(+.band-cream)::after,.band-cream:last-child::after{display:none}
+
+/* 2. scroll-linked motion (only where the browser supports it, and never for reduced motion) */
+@media (prefers-reduced-motion:no-preference){
+@supports (animation-timeline: view()){
+  /* the hero sinks back as you leave it: content drifts up and dims, the art lags behind */
+  .hero .hero-copy{animation:flow-hero-out linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
+  .hero .hero-art{animation:flow-art-out linear both;animation-timeline:view();animation-range:exit 0% exit 100%}
+  @keyframes flow-hero-out{to{transform:translateY(-70px) scale(.96);opacity:.15;filter:blur(3px)}}
+  @keyframes flow-art-out{to{transform:translateY(60px) scale(1.04);opacity:.35}}
+
+  /* cream sections open up like a panel: inset and rounded, then full width */
+  .band-cream{animation:flow-panel linear both;animation-timeline:view();animation-range:entry 0% entry 55vh}
+  @keyframes flow-panel{from{clip-path:inset(0 6% 0 6% round 48px)}to{clip-path:inset(0 0 0 0 round 28px)}}
+
+  /* every section's content rises into place as it arrives */
+  .band>.wrap,.guardian-copy{animation:flow-rise linear both;animation-timeline:view();animation-range:entry 0% entry 45vh}
+  @keyframes flow-rise{from{transform:translateY(80px);opacity:.2}to{transform:none;opacity:1}}
+
+  /* big headings slide at their own speed for depth */
+  .cols>.stack h2{animation:flow-parallax linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+  @keyframes flow-parallax{from{transform:translateY(14px)}to{transform:translateY(-14px)}}
+
+  /* the guardian: the camera pulls back as you scroll through */
+  .guardian-art{animation:flow-pull linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+  @keyframes flow-pull{from{transform:scale(1.18)}to{transform:scale(1)}}
+
+  /* the interlude line also slides with your scroll, on top of its slow crawl */
+  .interlude{animation:flow-slide linear both;animation-timeline:view();animation-range:cover 0% cover 100%}
+  @keyframes flow-slide{from{transform:translateX(6%)}to{transform:translateX(-6%)}}
+
+  /* product grid tilts up into view */
+  .product-grid{animation:flow-tilt linear both;animation-timeline:view();animation-range:entry 0% entry 50vh;transform-origin:50% 100%}
+  @keyframes flow-tilt{from{transform:perspective(1200px) rotateX(14deg) translateY(40px);opacity:.3}to{transform:none;opacity:1}}
+
+  /* footer rises out of the dark */
+  .site-footer .footer-inner{animation:flow-rise linear both;animation-timeline:view();animation-range:entry 0% entry 35vh}
+}
+}
+
+/* 3. section tracker: a quiet HUD rail on wide screens, built by script.js */
+.rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:40;display:none;flex-direction:column;gap:14px;padding:12px 0}
+.rail::before{content:"";position:absolute;top:0;bottom:0;right:4px;width:1px;background:linear-gradient(180deg,transparent,rgba(244,243,237,.18) 15%,rgba(244,243,237,.18) 85%,transparent)}
+.rail a{position:relative;display:flex;align-items:center;justify-content:flex-end;gap:12px;text-decoration:none;height:10px}
+.rail a i{display:block;width:9px;height:9px;transform:rotate(45deg);border:1px solid rgba(244,243,237,.4);background:var(--bg);transition:background-color .3s,border-color .3s,transform .3s var(--ease)}
+.rail a span{font:500 .62rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);opacity:0;transform:translateX(6px);transition:opacity .25s,transform .25s var(--ease);white-space:nowrap;background:rgba(16,19,17,.85);padding:4px 7px}
+.rail a:hover span,.rail a:focus-visible span,.rail a.on span{opacity:1;transform:none}
+.rail a.on i{background:var(--lime);border-color:var(--lime);transform:rotate(45deg) scale(1.25);box-shadow:0 0 12px rgba(178,221,49,.6)}
+.rail a.on span{color:var(--fg)}
+.rail.on-cream a i{border-color:rgba(31,61,47,.5)}
+.rail.on-cream a span{background:rgba(246,241,227,.92);color:var(--ink-muted)}
+.rail.on-cream a.on span{color:var(--ink)}
+.rail.on-cream::before{background:linear-gradient(180deg,transparent,rgba(31,61,47,.25) 15%,rgba(31,61,47,.25) 85%,transparent)}
+@media(min-width:1280px){.rail{display:flex}}
+@media(prefers-reduced-motion:reduce){.rail a i,.rail a span{transition:none}}
