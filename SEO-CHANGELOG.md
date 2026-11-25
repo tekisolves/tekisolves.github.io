@@ -2,6 +2,18 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-25 10:48 UTC: Flow layer: sections blend and scrolling becomes an experience
+
+- Soft eased seams where dark and cream sections meet; hard band lines hidden
+- Cream sections open from a rounded inset panel to full width as they arrive
+- Section content rises in, hero sinks back as you leave it, guardian camera pulls back
+- Interlude line and product grid move with your scroll; gentle heading parallax
+- Section tracker rail on wide screens (1280px+), built from each page's own sections
+- Scroll effects only where the browser supports scroll timelines, all off for reduced motion
+- Checked: every page desktop and phone with no errors, contact form, weapon range, SEO bot 0 critical
+- Areas changed: Design and layout
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-23 21:18 UTC: Demo: grenade can reach every target on wide screens
 
 - (no details in the commit message)
