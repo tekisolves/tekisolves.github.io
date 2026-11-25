@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-25 15:00 UTC: Revert "Polish the guardian banner: clean diamonds and shoulder"
+
+- (no details in the commit message)
+- Areas changed: Images
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-25 14:57 UTC: Polish the guardian banner: clean diamonds and shoulder
 
 - (no details in the commit message)
