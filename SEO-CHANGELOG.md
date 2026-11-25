@@ -2,6 +2,17 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-25 11:47 UTC: No horizontal overflow: wrap instead of scrolling sideways
+
+- 'Keep it simple' line slides inside its own strip; the strip never moves past the screen edge
+- Weapon range buttons wrap onto rows on phones instead of a sideways scroller
+- Blog code blocks and inline code wrap
+- Long words and links wrap in headings, text, lists and tables
+- html/body clip sideways overflow; older Safari hides it on the root so the sticky header still works
+- Checked: 10 pages at 360, 390, 768 and 1280px through the full scroll; SEO bot 0 critical
+- Areas changed: Design and layout
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-25 10:48 UTC: Flow layer: sections blend and scrolling becomes an experience
 
 - Soft eased seams where dark and cream sections meet; hard band lines hidden
