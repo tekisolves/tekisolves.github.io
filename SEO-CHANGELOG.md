@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-25 14:57 UTC: Polish the guardian banner: clean diamonds and shoulder
+
+- (no details in the commit message)
+- Areas changed: Images
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-25 11:47 UTC: No horizontal overflow: wrap instead of scrolling sideways
 
 - 'Keep it simple' line slides inside its own strip; the strip never moves past the screen edge
