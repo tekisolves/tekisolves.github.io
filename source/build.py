@@ -120,7 +120,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <meta name="description" content="{esc(desc)}">
 <meta name="robots" content="{robots}">
 <meta name="theme-color" content="#101311">
-<meta name="google-site-verification" content="oExXkd9cOqFY9OD4mJLQL2HdzcTL1CUN0-pltYzr9-M">
+<meta name="google-site-verification" content="nYsJvhCaw1ibEW9_ufcVtOauVlhTH-OMoWzTx22gvWc">
 {"" if "noindex" in robots else canon(path)}
 <meta property="og:type" content="{og_type}"><meta property="og:site_name" content="Teki Solves">
 <meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">{og}
