@@ -175,6 +175,7 @@ def shell(path, title, desc, body, current="", robots="index, follow", og_image=
 <div class="reticle" id="reticle" aria-hidden="true"><i></i></div>
 <div class="toast" id="achv" role="status" aria-live="polite" hidden><span class="toast-ico" aria-hidden="true">◆</span><div><b>Achievement unlocked: Explorer</b><span>You've seen the whole base. The free sprite sample is on the <a href="blog/">blog</a>.</span></div></div>
 <script src="script.js?v={JS_V}" defer></script>
+<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{{"token": "416d294b2e514c8f9a1c0ec0acf85f44"}}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
 '''
