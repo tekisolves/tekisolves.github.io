@@ -2,6 +2,15 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-26 15:08 UTC: Add Cloudflare Web Analytics (cookie-free visit counts)
+
+- Beacon on every page via the shared template, plus the two policy pages
+- Privacy and Cookie policies explain it: no cookies or local storage, no identification, totals only
+- Google Analytics and the consent banner unchanged
+- SEO bot: 11 pages, 0 critical
+- Areas changed: Page templates and SEO tags
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-26 15:00 UTC: Search Console: use URL-prefix HTML tag verification
 
 - (no details in the commit message)
