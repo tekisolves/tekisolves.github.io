@@ -1,0 +1,24 @@
+id: 2026-11-28-aim-barrel
+date: asap
+link: https://tekisolves.github.io/blog/phaser-4-texture-atlas/
+honest: This is the exact aiming code running in the live Retro Arsenal demo, where the guns hit what you point at.
+facts:
+  - Rotating a gun sprite to face the cursor aims the grip (the pivot), not the barrel, so shots pass above or below the target.
+  - The muzzle sits above the pivot. Call that vertical gap "off" (in screen pixels) and the distance from the pivot to the cursor "dist".
+  - "Fix: take the angle to the cursor, phi = Math.atan2(dy, dx), then rotate by phi - Math.asin(off / dist). Now the line out of the muzzle passes through the cursor."
+  - When the gun points left, flip the sprite vertically and flip the sign of the offset so it isn't upside down.
+  - It's 3 lines of maths and it is running in the free, live Retro Arsenal demo in the browser.
+  - The full Phaser 4 tutorial and a free laser pistol sprite with pivot and muzzle data in its JSON are linked in bio.
+card:
+  eyebrow: Phaser 4 · Aiming
+  title: Aim the *barrel,* not the grip.
+  sub: Point a gun sprite at the cursor and it aims from the grip, so shots miss. Tilt by the muzzle offset instead.
+  code: |
+    const phi = Math.atan2(dy, dx);
+    const a = phi - Math.asin(off / dist);
+    gun.setRotation(a);
+  pill: Running in the live demo
+  alt: "Card: aim the barrel, not the grip. Phaser 4 code rotating a gun by the angle to the cursor minus asin of the muzzle offset over the distance."
+posts:
+  instagram:
+    brief: A quick, practical Phaser tip that solves "my bullets miss what I point at". Teach the fix in plain words.
