@@ -4,6 +4,11 @@
     "due": "now",
     "queued": "2026-11-28T16:05:08+00:00"
   },
+  "2026-11-29-aim-barrel-fb:facebook": {
+    "buffer_id": "6b0b01d992f975c0e06c39d3",
+    "due": "2026-11-29T12:00:00+00:00",
+    "queued": "2026-11-28T16:31:21+00:00"
+  },
   "2026-11-30-muzzle-carousel:instagram": {
     "buffer_id": "6b0af044c6d7f1e72252245d",
     "due": "2026-11-30T10:00:00+00:00",
