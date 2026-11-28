@@ -1,0 +1,39 @@
+id: 2026-12-01-atlas-bugs
+date: 2026-12-01T19:00
+link: https://tekisolves.github.io/blog/phaser-4-texture-atlas/
+honest: All three bugs are covered and fixed in the tutorial, with tested code and a working demo.
+
+card:
+  eyebrow: Phaser 4 · Texture atlas
+  title: Three atlas bugs, *fixed.*
+  sub: Each one has a one-line cause and a one-line fix.
+  points:
+    - "Wrong frame: the name needs its .png"
+    - "Floating weapon: flip the pivot's y"
+    - "Jumps on upgrade: setFrame(f, false, false)"
+  pill: Free tutorial + free sprite
+  alt: "Card listing three Phaser 4 texture atlas bugs and their fixes: add .png to frame names, flip the pivot y, pass false to setFrame."
+
+posts:
+  facebook:
+    text: |
+      Three Phaser 4 texture atlas bugs that waste hours, and how to fix each one:
+
+      1. Wrong sprite shows up. Atlas frame names often keep the .png, so 'pistol_t2' silently falls back to the first frame.
+      2. Weapon floats off the hand. Some atlas tools measure pivots from the bottom-left, Phaser measures from the top-left. Flip the y.
+      3. Sprite jumps on upgrade. setFrame re-applies the atlas pivot unless you pass false for updateOrigin.
+
+      The full tutorial has the tested code, a live demo and a free laser pistol sprite to follow along with:
+      {link}
+  instagram:
+    date: 2026-12-01T18:00
+    text: |
+      Three texture atlas bugs that waste hours in Phaser 4, and the one-line cause of each.
+
+      Wrong frame: the name needs the .png.
+      Floating weapon: flip the pivot's y.
+      Jumping sprite: pass false to setFrame's updateOrigin.
+
+      The full tutorial, live demo and a free laser pistol sprite are in the link in bio.
+
+      #phaser #gamedev #indiedev #javascript #webgamedev

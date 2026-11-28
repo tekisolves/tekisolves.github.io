@@ -1,0 +1,88 @@
+name: Social posts
+
+# Briefs in content/social/ become posts on Facebook, Instagram and YouTube.
+#   Pull request -> render cards, run the brand checks, show a preview table.
+#   Merge        -> the site deploys (so images are live), then posts are queued in Buffer.
+#   Daily        -> queues anything that has come within the next 7 days.
+# One-time setup: repo secret BUFFER_API_KEY (Buffer > Settings > API).
+
+on:
+  pull_request:
+    paths: ["content/social/**", ".github/social/**"]
+  workflow_run:
+    workflows: ["Build and deploy site"]
+    types: [completed]
+    branches: [main]
+  schedule:
+    - cron: "41 7 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Only print what would be queued"
+        type: boolean
+        default: false
+
+concurrency:
+  group: social-${{ github.event_name == 'pull_request' && github.head_ref || 'main' }}
+  cancel-in-progress: false
+
+jobs:
+  preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml playwright && python -m playwright install --with-deps chromium
+      - name: Render cards
+        run: python3 .github/social/engine.py render
+      - name: Brand checks
+        run: python3 .github/social/engine.py check
+      - name: Save rendered cards to this pull request
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git add source/assets/social
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "social-bot"
+          git config user.email "social-bot@users.noreply.github.com"
+          git commit -m "social: render cards"
+          git push
+
+  publish:
+    if: >
+      github.event_name != 'pull_request' &&
+      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Check Buffer connection
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python3 .github/social/engine.py doctor
+      - name: Queue due posts in Buffer
+        env:
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+        run: python3 .github/social/engine.py publish ${{ inputs.dry_run && '--dry-run' || '' }}
+      - name: Record what was queued
+        if: always()
+        run: |
+          git add .github/social/ledger.json
+          if git diff --cached --quiet; then exit 0; fi
+          git config user.name "social-bot"
+          git config user.email "social-bot@users.noreply.github.com"
+          git commit -m "social: update ledger [skip ci]"
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 5; done

@@ -1,0 +1,29 @@
+# Moved from Metricool (its free monthly limit is used up for November).
+id: 2026-11-30-muzzle-carousel
+date: 2026-11-30T10:00
+honest: The muzzle function is the one used in the live demo, and the free pistol JSON really includes pivot and muzzle data.
+
+media:
+  - src: https://static.metricool.com/planner/202611/8296115-file-18064642588938198042.jpg
+    alt: "Title slide: fire from the muzzle, not the hand. Phaser 4 quick tip."
+  - src: https://static.metricool.com/planner/202611/8296115-file-15121044280014291803.jpg
+    alt: "The problem: bullets spawn at the grip, where the sprite's pivot sits."
+  - src: https://static.metricool.com/planner/202611/8296115-file-3638362736138693338.jpg
+    alt: "The fix: a JavaScript muzzle function that scales and rotates the grip-to-muzzle offset."
+  - src: https://static.metricool.com/planner/202611/8296115-file-9005607422095176215.jpg
+    alt: "Why it works: store a muzzle point per frame in the atlas JSON."
+  - src: https://static.metricool.com/planner/202611/8296115-file-9663755735901003855.jpg
+    alt: "Try it with the free Retro Arsenal laser pistol sample, link in bio."
+
+posts:
+  instagram:
+    text: |
+      If your bullets come out of the player's fist, this one's for you.
+
+      A sprite's position is its pivot, which for a gun is usually the grip. The fix is to store a muzzle point in your atlas, then scale and rotate the offset so it holds at any angle. The full function is on slide 3.
+
+      Same trick works for blade tips, grenade pins and muzzle flashes.
+
+      The free laser pistol sample already has the pivot and muzzle data in its JSON. Link in bio.
+
+      #phaser #phaserjs #gamedev #indiedev #javascript
