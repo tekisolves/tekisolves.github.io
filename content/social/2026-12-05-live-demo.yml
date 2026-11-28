@@ -1,0 +1,29 @@
+id: 2026-12-05-live-demo
+date: 2026-12-05T11:00
+link: https://tekisolves.github.io/assets/blog/phaser-4-texture-atlas/demo/
+honest: The demo is live on the site and plays all five weapons. The pistol really is free.
+
+media:
+  - src: source/assets/social/2026-12-05-live-demo/demo.jpg
+    alt: "Retro Arsenal Phaser 4 demo: pistol, rifle, shotgun, blade and grenade in a hotbar, playable in the browser."
+
+posts:
+  facebook:
+    text: |
+      Try every weapon before you buy.
+
+      I built a small Phaser 4 demo for Retro Arsenal. All five weapons work the way they should: the rifle auto-fires, the shotgun spreads, the blade swings and the grenade arcs and explodes. Press D to see every pivot and muzzle point.
+
+      It runs in your browser, on phone or laptop:
+      {link}
+
+      The laser pistol is free if you want to use it in your own game.
+  instagram:
+    text: |
+      Try every weapon before you buy.
+
+      The Retro Arsenal demo runs in your browser: the rifle auto-fires, the shotgun spreads, the blade swings and the grenade arcs and explodes. Press D to see every pivot and muzzle point.
+
+      Play it from the link in bio. The laser pistol is free.
+
+      #gamedev #indiedev #phaserjs #2dart #gameassets

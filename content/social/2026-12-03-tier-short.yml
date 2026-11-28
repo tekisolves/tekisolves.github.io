@@ -1,0 +1,24 @@
+id: 2026-12-03-tier-short
+date: 2026-12-03T18:00
+link: https://tekisolves.github.io/retro-arsenal.html
+video: source/assets/social/2026-12-03-tier-short/tiers.mp4
+honest: The clip is a real capture of the Retro Arsenal sprites swapping tiers. I made the pack.
+
+posts:
+  youtube:
+    title: "One sprite, three tiers: weapon upgrades that don't jump #gamedev"
+    text: |
+      Scrap, Military, Prototype. Each Retro Arsenal weapon keeps the same grip and muzzle point across all three tiers, so an upgrade is a single frame swap in your game.
+
+      I made this pack for 2D games: 5 weapons, 3 tiers each, PNG + SVG, with a texture atlas and JSON pivot data. The laser pistol is free.
+
+      Get it here: {link}
+
+      #gamedev #indiedev #phaser
+  facebook:
+    text: |
+      Scrap, Military, Prototype.
+
+      Every weapon in Retro Arsenal keeps the same grip and muzzle point across its three tiers, so upgrading in your game is one frame swap. No re-aligning, no jumping sprites.
+
+      Which tier would you hand the player first?
