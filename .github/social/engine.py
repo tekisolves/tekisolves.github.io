@@ -49,6 +49,8 @@ def when(b, platform=None):
     """Post time as an aware datetime. A platform can override the brief's date."""
     raw = (b.get("posts", {}).get(platform) or {}).get("date") if platform else None
     raw = raw or b.get("date")
+    if str(raw).lower() == "asap":
+        return dt.datetime.now(TZ) + dt.timedelta(minutes=15)
     d = raw if isinstance(raw, dt.datetime) else dt.datetime.fromisoformat(str(raw))
     return d if d.tzinfo else d.replace(tzinfo=TZ)
 
@@ -163,6 +165,27 @@ def hashtags(t):
     return re.findall(r"(?<!\w)#\w+", t)
 
 
+def opening(t):
+    return re.sub(r"\W+", " ", t.strip().split("\n")[0].lower()).strip()
+
+
+def too_similar(b, plat, text):
+    """Compare against every other post on the same platform. Returns the clash, if any."""
+    from difflib import SequenceMatcher
+    body = lambda t: re.sub(r"#\w+|https?://\S+|\{link\}", "", t.lower())
+    for other in load_briefs():
+        if other.get("id") == b.get("id"):
+            continue
+        t = ((other.get("posts") or {}).get(plat) or {}).get("text") or ""
+        if not t:
+            continue
+        if opening(t) == opening(text):
+            return f"same opening line as {other['id']}"
+        if SequenceMatcher(None, body(t), body(text)).ratio() > BRAND["max_similarity"]:
+            return f"reads too much like {other['id']}"
+    return None
+
+
 def check_brief(b, ids, fb_links):
     err, warn = [], []
     need = lambda cond, msg: None if cond else err.append(msg)
@@ -197,6 +220,8 @@ def check_brief(b, ids, fb_links):
         lim = BRAND["limits"][plat]
         text = text_for(b, plat)
         need(text, f"{plat}: no text yet (write it, or add GEMINI_API_KEY to draft it)")
+        clash = text and too_similar(b, plat, text)
+        need(not clash, f"{plat}: repetitive, {clash}")
         everything = " ".join([text, p.get("title", ""), json.dumps(b.get("card", {}), ensure_ascii=False)])
         for ch in BRAND["banned_characters"]:
             need(ch not in everything, f"{plat}: no em or en dashes")
@@ -322,9 +347,12 @@ def cmd_publish(args):
             due = when(b, plat)
             if key in book or due > horizon:
                 continue
-            if due < now + dt.timedelta(minutes=10):
+            asap = str((b["posts"][plat] or {}).get("date") or b.get("date")).lower() == "asap"
+            if due < now + dt.timedelta(minutes=10) and not asap:
                 print(f"skip {key}: due time has passed"); continue
             data = payload(b, plat)
+            if asap:
+                data["mode"] = "shareNow"; data.pop("dueAt")
             urls = [list(a.values())[0]["url"] for a in data["assets"]]
             if not all(live(u) for u in urls) and not args.dry_run:
                 print(f"wait {key}: media not live yet, will retry"); continue
@@ -336,9 +364,9 @@ def cmd_publish(args):
                 print(f"FAIL {key}: {e}"); failed += 1; continue
             if "post" not in res:
                 print(f"FAIL {key}: {res.get('message')}"); failed += 1; continue
-            book[key] = {"buffer_id": res["post"]["id"], "due": data["dueAt"], "queued": now.isoformat(timespec="seconds")}
+            book[key] = {"buffer_id": res["post"]["id"], "due": data.get("dueAt", "now"), "queued": now.isoformat(timespec="seconds")}
             changed = True
-            print(f"queued {key} for {data['dueAt']}")
+            print(f"queued {key} for {data.get('dueAt', 'right now')}")
     if changed:
         json.dump(book, open(LEDGER_PATH, "w"), indent=2, sort_keys=True)
     return 1 if failed else 0
@@ -385,6 +413,10 @@ def prompt_for(b, platform):
         rules.append("Also write a title under 100 characters for each option.")
     if (b.get("posts", {}).get(platform) or {}).get("brief"):
         rules.append("Angle for this post: " + b["posts"][platform]["brief"])
+    recent = [opening(((o.get("posts") or {}).get(platform) or {}).get("text") or "") for o in load_briefs() if o["id"] != b["id"]]
+    recent = [r for r in recent if r][-12:]
+    if recent:
+        rules.append("Every option must open differently from each other AND from these recent posts, and take a fresh angle: " + " | ".join(recent))
     facts = "\n".join(f"- {f}" for f in (b.get("facts") or [])) or "- " + b.get("honest", "")
     ex = examples(platform, b["id"])
     shots = ("\n\nApproved past posts, match this voice:\n" + "\n---\n".join(ex)) if ex else ""
@@ -400,17 +432,33 @@ def gemini(prompt, with_title):
     body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
             "generationConfig": {"temperature": 0.9, "responseMimeType": "application/json",
                                  "responseSchema": {"type": "ARRAY", "items": item}}}
-    req = urllib.request.Request(GEMINI.format(model), method="POST", data=json.dumps(body).encode(),
-                                 headers={"Content-Type": "application/json", "x-goog-api-key": key})
-    res = json.load(urllib.request.urlopen(req, timeout=90))
-    return json.loads(res["candidates"][0]["content"]["parts"][0]["text"])
+    # Free tier is often busy: retry with backoff, and fall back to the lighter model.
+    import time
+    models = [model] + [m for m in BRAND["voice"].get("fallback_models", []) if m != model]
+    last = None
+    for attempt in range(6):
+        m = models[attempt % len(models)]
+        req = urllib.request.Request(GEMINI.format(m), method="POST", data=json.dumps(body).encode(),
+                                     headers={"Content-Type": "application/json", "x-goog-api-key": key})
+        try:
+            res = json.load(urllib.request.urlopen(req, timeout=90))
+            return json.loads(res["candidates"][0]["content"]["parts"][0]["text"])
+        except urllib.error.HTTPError as e:
+            last = f"{m}: HTTP {e.code} {e.read().decode()[:200]}"
+            if e.code not in (429, 500, 502, 503, 504):
+                break
+        except Exception as e:
+            last = f"{m}: {e}"
+        print(f"  gemini retry {attempt + 1}: {last}")
+        time.sleep(5 * (attempt + 1))
+    raise RuntimeError(last)
 
 
 def passes(b, platform, option):
     """Run a candidate through the same brand checks as a real post."""
     trial = dict(b, posts={platform: dict(b["posts"].get(platform) or {}, **option)})
     err, _ = check_brief(trial, set(), {})
-    about_text = ("dash", "phrase", "chars", "hashtags", "clickable", "title", "no text", "{link}")
+    about_text = ("dash", "phrase", "chars", "hashtags", "clickable", "title", "no text", "{link}", "repetitive")
     return [e for e in err if any(k in e for k in about_text)]
 
 

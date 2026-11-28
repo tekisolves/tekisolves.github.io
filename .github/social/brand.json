@@ -47,7 +47,7 @@
     "card_sub": 160
   },
   "youtube_category": "20",
-  "notes": "youtube_category 20 = Gaming, 28 = Science and Technology. links_per_month: Facebook limits link posts on Pages without Meta Verified; raise it here if Meta lifts it.",
+  "notes": "youtube_category 20 = Gaming, 28 = Science and Technology. links_per_month: Facebook limits link posts on Pages without Meta Verified; raise it here if Meta lifts it. max_similarity: how alike two posts on the same platform may read (0 to 1). date: asap posts as soon as the PR is merged.",
   "voice": {
     "model": "gemini-flash-latest",
     "options": 3,
@@ -57,6 +57,10 @@
       "facebook": 700,
       "instagram": 900,
       "youtube": 600
-    }
-  }
+    },
+    "fallback_models": [
+      "gemini-flash-lite-latest"
+    ]
+  },
+  "max_similarity": 0.55
 }
