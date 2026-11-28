@@ -1,0 +1,25 @@
+name: Social daily check
+
+# Emails Khaya at 12:30 Irish time, only when the social calendar needs him.
+# Two UTC times cover winter and summer time; the script only runs when it's 12:xx in Dublin.
+
+on:
+  schedule:
+    - cron: "30 11 * * *"
+    - cron: "30 12 * * *"
+  workflow_dispatch:
+
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml
+      - name: Check the calendar and email if needed
+        env:
+          TEKI_EMAIL: ${{ secrets.TEKI_EMAIL }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+        run: python3 .github/social/engine.py remind ${{ github.event_name == 'workflow_dispatch' && '--force' || '' }}

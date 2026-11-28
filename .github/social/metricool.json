@@ -1,0 +1,46 @@
+{
+  "_about": "Posts scheduled in Metricool (free plan: 20 published a month, resets on the 1st). Metricool has no free API, so Claude schedules these and lists them here so the daily check sees the whole calendar. Buffer (Facebook, Instagram, YouTube) is driven by content/social/ briefs.",
+  "monthly_limit": 20,
+  "posts": [
+    {
+      "date": "2026-12-01T12:00",
+      "platform": "pinterest",
+      "title": "Energy blade sprite pin"
+    },
+    {
+      "date": "2026-12-01T13:00",
+      "platform": "bluesky",
+      "title": "Three atlas bugs"
+    },
+    {
+      "date": "2026-12-02T12:00",
+      "platform": "pinterest",
+      "title": "Why use a texture atlas pin"
+    },
+    {
+      "date": "2026-12-03T12:00",
+      "platform": "pinterest",
+      "title": "Plasma grenade sprite pin"
+    },
+    {
+      "date": "2026-12-04T12:00",
+      "platform": "pinterest",
+      "title": "Laser shotgun sprite pin"
+    },
+    {
+      "date": "2026-12-04T19:00",
+      "platform": "tiktok",
+      "title": "Live demo (vertical)"
+    },
+    {
+      "date": "2026-12-05T13:00",
+      "platform": "bluesky",
+      "title": "Live demo"
+    },
+    {
+      "date": "2026-12-06T12:00",
+      "platform": "pinterest",
+      "title": "setFrame fix pin"
+    }
+  ]
+}

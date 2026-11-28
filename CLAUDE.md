@@ -16,8 +16,9 @@ Owner: Khaya (Teki Solves). Keep answers short. Correct grammar, no em-dashes, h
 ## Workflow rules
 - Work on a branch, open a PR with `gh api repos/tekisolves/tekisolves.github.io/pulls`. Khaya merges PRs himself.
 - Pushing to `main` deploys automatically (GitHub Actions to GitHub Pages).
-- Bots in `.github/`: `seo-bot` (daily SEO news, Monday digest, IndexNow), `content-coach` (blog reminder emails, plan in `.github/content-coach/plan.json`). Both email via the `TEKI_EMAIL` and `GMAIL_APP_PASSWORD` secrets. `.github/social` is the social engine (briefs in `content/social/`, queued to Buffer after merge). No paid services. AI (Gemini free tier) may draft, but every post passes the brand checks and Khaya's approval before it publishes.
+- Bots in `.github/`: `seo-bot` (daily SEO news, Monday digest, IndexNow), `content-coach` (blog reminder emails, plan in `.github/content-coach/plan.json`). Both email via the `TEKI_EMAIL` and `GMAIL_APP_PASSWORD` secrets. `.github/social` is the social engine (briefs in `content/social/`, queued to Buffer after merge; Metricool posts listed in `.github/social/metricool.json`; daily 12:30 email when the calendar needs Khaya). No paid services. AI (Gemini free tier) may draft, but every post passes the brand checks and Khaya's approval before it publishes.
 - `SEO-CHANGELOG.md` is appended automatically on each deploy.
+- Planned: a private admin dashboard for anything that needs Khaya's input (post approvals, SEO checks, reminders).
 
 ## Content rules (to stay on the right side of Google)
 - One genuinely useful post at a time. Real, tested code. No mass-produced or auto-published AI posts.

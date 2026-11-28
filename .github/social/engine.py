@@ -5,6 +5,7 @@ One YAML brief per post lives in content/social/. This script:
   render   draws each brief's card image into source/assets/social/<id>/card.jpg
   check    enforces the brand rules (fails the PR if a post breaks one)
   publish  queues approved posts in Buffer at their scheduled time
+  remind   emails Khaya at 12:30 if the next 7 days have gaps
   draft    asks Gemini (free tier) for caption options where a post has no text yet
   doctor   checks the Buffer key and channels
 
@@ -497,6 +498,64 @@ def cmd_draft(args):
     return 0
 
 
+# ---------- remind (daily email at 12:30 if anything needs Khaya) ----------
+
+def calendar():
+    """Every planned post, Buffer briefs and Metricool together: [(datetime, platform, title, via)]."""
+    out = []
+    for b in load_briefs():
+        for plat in b.get("posts") or {}:
+            if str(b.get("date")).lower() == "asap":
+                continue  # posts on merge, never a planned slot
+            try:
+                out.append((when(b, plat), plat, b["id"], "Buffer"))
+            except Exception:
+                pass
+    mc = json.load(open(os.path.join(HERE, "metricool.json")))
+    for p in mc["posts"]:
+        out.append((dt.datetime.fromisoformat(p["date"]).replace(tzinfo=TZ), p["platform"], p["title"], "Metricool"))
+    return sorted(out), mc
+
+
+def cmd_remind(args):
+    now = dt.datetime.now(TZ)
+    if not args.force and now.hour != 12:
+        print(f"Not 12:xx in {BRAND['timezone']} ({now:%H:%M}), skipping."); return 0
+    cal, mc = calendar()
+    ahead = [c for c in cal if now <= c[0] <= now + dt.timedelta(days=7)]
+    needs = []
+    empty = [(now + dt.timedelta(days=i)).date() for i in range(1, 8)
+             if not any(c[0].date() == (now + dt.timedelta(days=i)).date() for c in ahead)]
+    if empty:
+        needs.append("Days with nothing scheduled: " + ", ".join(d.strftime("%a %d %b") for d in empty))
+    for plat in list(BRAND["channels"]) + ["pinterest", "bluesky", "tiktok"]:
+        if not any(c[1] == plat for c in ahead):
+            needs.append(f"No {plat} post in the next 7 days")
+    failing = [b["id"] for b in load_briefs() if check_brief(b, set(), {})[0]]
+    if failing:
+        needs.append("Briefs failing the brand checks: " + ", ".join(failing))
+    used = sum(1 for p in mc["posts"] if p["date"][:7] == now.strftime("%Y-%m"))
+    if used > mc["monthly_limit"] - 3:
+        needs.append(f"Metricool: {used} of {mc['monthly_limit']} free posts planned this month")
+    if not needs:
+        print("Nothing needs you today."); return 0
+    lines = ["Hi Khaya,", "", "The social calendar needs you today:", ""] + [f"- {n}" for n in needs]
+    lines += ["", "Next 7 days:"] + [f"  {c[0]:%a %d %b %H:%M}  {c[1]:<10} {c[2]}  ({c[3]})" for c in ahead]
+    lines += ["", "Easiest fix: tell Claude \"do this week's posts\". It writes the briefs and Metricool posts,",
+              "opens a pull request, and you review and merge.", "", "Teki Solves social bot"]
+    text = "\n".join(lines)
+    subject = f"Teki Solves: {len(needs)} social item(s) need you"
+    to, pw = os.environ.get("TEKI_EMAIL"), os.environ.get("GMAIL_APP_PASSWORD")
+    if not (to and pw):
+        print(f"[no email secrets] {subject}\n{text}"); return 0
+    import smtplib
+    from email.message import EmailMessage
+    m = EmailMessage(); m["Subject"], m["From"], m["To"] = subject, to, to; m.set_content(text)
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465, timeout=30) as smtp:
+        smtp.login(to, pw.replace(" ", "")); smtp.send_message(m)
+    print("Emailed:", subject); return 0
+
+
 def cmd_doctor(args):
     q = """query($i: ChannelsInput!) { channels(input: $i) { id service name isDisconnected } }"""
     org = os.environ.get("BUFFER_ORG_ID", "6b0ad2605965a4d22ddae09e")
@@ -514,9 +573,10 @@ def main():
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
     sub.add_parser("render"); sub.add_parser("check"); sub.add_parser("doctor"); sub.add_parser("draft")
+    rp = sub.add_parser("remind"); rp.add_argument("--force", action="store_true")
     sp = sub.add_parser("publish"); sp.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
-    sys.exit({"render": cmd_render, "check": cmd_check, "draft": cmd_draft, "publish": cmd_publish, "doctor": cmd_doctor}[a.cmd](a))
+    sys.exit({"render": cmd_render, "check": cmd_check, "draft": cmd_draft, "remind": cmd_remind, "publish": cmd_publish, "doctor": cmd_doctor}[a.cmd](a))
 
 
 if __name__ == "__main__":
