@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-28 16:04 UTC: Social: AI-drafted Instagram test post + no-repeat check (PR #23)
+
+- (no details in the commit message)
+- Areas changed: Documentation, Images
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-28 15:38 UTC: Social engine: Gemini caption drafter (PR #22)
 
 - (no details in the commit message)
