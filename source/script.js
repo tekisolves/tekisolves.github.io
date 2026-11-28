@@ -346,20 +346,19 @@
     }
   })();
 
-  /* ---------- signature splash: brief, and gone as soon as the page is ready ----------
-     Lifts at DOMContentLoaded (not window load), at least 450ms after navigation so the
-     mark still registers, and never later than 900ms. Keeps Largest Contentful Paint fast. */
+  /* ---------- signature splash: fade out once the page has loaded (min 650ms, max 1.6s) ---------- */
   (function () {
     const html = document.documentElement;
     if (!html.classList.contains('splash')) return;
+    const t0 = performance.now();
     let done = false;
     const out = () => {
       if (done) return; done = true;
-      const wait = Math.max(0, 450 - performance.now());   // performance.now() counts from navigation start
-      setTimeout(() => { html.classList.add('splash-out'); setTimeout(() => html.classList.remove('splash', 'splash-out'), 350); }, wait);
+      const wait = Math.max(0, 650 - (performance.now() - t0));
+      setTimeout(() => { html.classList.add('splash-out'); setTimeout(() => html.classList.remove('splash', 'splash-out'), 600); }, wait);
     };
-    if (document.readyState !== 'loading') out(); else addEventListener('DOMContentLoaded', out);
-    setTimeout(out, Math.max(0, 900 - performance.now()));
+    if (document.readyState === 'complete') out(); else addEventListener('load', out);
+    setTimeout(out, 1600);
     document.querySelector('.tk-splash')?.addEventListener('click', out);
   })();
 })();
