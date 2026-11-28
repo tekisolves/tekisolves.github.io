@@ -2,29 +2,61 @@
   "site": "https://tekisolves.github.io",
   "timezone": "Europe/Dublin",
   "queue_days": 7,
-
   "channels": {
-    "facebook":  "6b0ad38f8541f09ecbd30788",
+    "facebook": "6b0ad38f8541f09ecbd30788",
     "instagram": "6b0ad30f8541f09ecbd3011d",
-    "youtube":   "6b0ad3588541f09ecbd304d7"
+    "youtube": "6b0ad3588541f09ecbd304d7"
   },
-
-  "banned_characters": ["—", "–"],
-  "banned_phrases": [
-    "game-changer", "game changer", "revolutionary", "unlock the power",
-    "in today's fast-paced", "take it to the next level", "seamless",
-    "elevate your", "dive in", "delve", "look no further", "supercharge",
-    "best in class", "world-class", "guaranteed"
+  "banned_characters": [
+    "—",
+    "–"
   ],
-
+  "banned_phrases": [
+    "game-changer",
+    "game changer",
+    "revolutionary",
+    "unlock the power",
+    "in today's fast-paced",
+    "take it to the next level",
+    "seamless",
+    "elevate your",
+    "dive in",
+    "delve",
+    "look no further",
+    "supercharge",
+    "best in class",
+    "world-class",
+    "guaranteed"
+  ],
   "limits": {
-    "facebook":  {"text": 2000, "hashtags": 3, "links_per_month": 2},
-    "instagram": {"text": 2200, "hashtags": 5},
-    "youtube":   {"title": 100, "text": 5000, "hashtags": 3},
+    "facebook": {
+      "text": 2000,
+      "hashtags": 3,
+      "links_per_month": 2
+    },
+    "instagram": {
+      "text": 2200,
+      "hashtags": 5
+    },
+    "youtube": {
+      "title": 100,
+      "text": 5000,
+      "hashtags": 3
+    },
     "card_title": 60,
     "card_sub": 160
   },
-
   "youtube_category": "20",
-  "notes": "youtube_category 20 = Gaming, 28 = Science and Technology. links_per_month: Facebook limits link posts on Pages without Meta Verified; raise it here if Meta lifts it."
+  "notes": "youtube_category 20 = Gaming, 28 = Science and Technology. links_per_month: Facebook limits link posts on Pages without Meta Verified; raise it here if Meta lifts it.",
+  "voice": {
+    "model": "gemini-flash-latest",
+    "options": 3,
+    "tone": "Casual, warm and professional. Plain words, short sentences, correct grammar. Sounds like an experienced engineer helping a peer, never like an ad.",
+    "audience": "Indie game developers and web developers, mostly using Phaser and JavaScript, who want things that just work.",
+    "target_chars": {
+      "facebook": 700,
+      "instagram": 900,
+      "youtube": 600
+    }
+  }
 }

@@ -4,7 +4,8 @@ name: Social posts
 #   Pull request -> render cards, run the brand checks, show a preview table.
 #   Merge        -> the site deploys (so images are live), then posts are queued in Buffer.
 #   Daily        -> queues anything that has come within the next 7 days.
-# One-time setup: repo secret BUFFER_API_KEY (Buffer > Settings > API).
+# Secrets: BUFFER_API_KEY (Buffer > Settings > API).
+#          GEMINI_API_KEY (optional, free at aistudio.google.com) drafts captions you leave empty.
 
 on:
   pull_request:
@@ -40,18 +41,22 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install pyyaml playwright && python -m playwright install --with-deps chromium
+      - name: Draft missing captions (Gemini free tier, skipped if no key)
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python3 .github/social/engine.py draft
       - name: Render cards
         run: python3 .github/social/engine.py render
       - name: Brand checks
         run: python3 .github/social/engine.py check
-      - name: Save rendered cards to this pull request
+      - name: Save drafts and cards to this pull request
         if: github.event.pull_request.head.repo.full_name == github.repository
         run: |
-          git add source/assets/social
+          git add source/assets/social content/social
           if git diff --cached --quiet; then exit 0; fi
           git config user.name "social-bot"
           git config user.email "social-bot@users.noreply.github.com"
-          git commit -m "social: render cards"
+          git commit -m "social: drafts and cards"
           git push
 
   publish:

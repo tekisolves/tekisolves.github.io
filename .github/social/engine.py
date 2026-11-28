@@ -5,15 +5,21 @@ One YAML brief per post lives in content/social/. This script:
   render   draws each brief's card image into source/assets/social/<id>/card.jpg
   check    enforces the brand rules (fails the PR if a post breaks one)
   publish  queues approved posts in Buffer at their scheduled time
+  draft    asks Gemini (free tier) for caption options where a post has no text yet
   doctor   checks the Buffer key and channels
 
 Approval = Khaya merging the pull request. Nothing reaches Buffer before that.
-Free: GitHub Actions + GitHub Pages + Buffer's free API. No AI APIs.
+AI only drafts: every caption still passes the brand checks and Khaya's review.
+Free: GitHub Actions + GitHub Pages + Buffer's free API + Gemini's free tier.
 """
 import argparse, datetime as dt, glob, html, json, os, re, sys, urllib.request, urllib.error
 from zoneinfo import ZoneInfo
 
 import yaml
+
+# Keep multi-line captions readable when the drafter writes a brief back.
+yaml.SafeDumper.add_representer(str, lambda d, v: d.represent_scalar(
+    "tag:yaml.org,2002:str", v, style="|" if "\n" in v else None))
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -190,6 +196,7 @@ def check_brief(b, ids, fb_links):
         p = p or {}
         lim = BRAND["limits"][plat]
         text = text_for(b, plat)
+        need(text, f"{plat}: no text yet (write it, or add GEMINI_API_KEY to draft it)")
         everything = " ".join([text, p.get("title", ""), json.dumps(b.get("card", {}), ensure_ascii=False)])
         for ch in BRAND["banned_characters"]:
             need(ch not in everything, f"{plat}: no em or en dashes")
@@ -337,6 +344,111 @@ def cmd_publish(args):
     return 1 if failed else 0
 
 
+# ---------- draft (Gemini, free tier) ----------
+
+GEMINI = "https://generativelanguage.googleapis.com/v1beta/models/{}:generateContent"
+DRAFTS = os.path.join(BRIEFS, "drafts")
+
+
+def examples(platform, skip_id, n=4):
+    """The best guide to the voice is what has already been approved and posted."""
+    done = ledger()
+    out = []
+    for b in sorted(load_briefs(), key=lambda b: str(b.get("date")), reverse=True):
+        t = ((b.get("posts") or {}).get(platform) or {}).get("text")
+        if t and b["id"] != skip_id and f"{b['id']}:{platform}" in done:
+            out.append(t.strip())
+        if len(out) == n:
+            break
+    return out
+
+
+def prompt_for(b, platform):
+    v = BRAND["voice"]
+    lim = BRAND["limits"][platform]
+    rules = [
+        f"Write {v['options']} different options for a {platform} post for Teki Solves.",
+        f"Voice: {v['tone']}",
+        f"Audience: {v['audience']}",
+        "Use ONLY the facts below. Never invent numbers, results, customers, reviews or experiences.",
+        "Never mention or name the founder. 'I' is fine.",
+        "No em dashes or en dashes. No hype words: " + ", ".join(BRAND["banned_phrases"]) + ".",
+        f"At most {lim['hashtags']} hashtags, at the end.",
+        f"Under {min(lim['text'], v['target_chars'].get(platform, lim['text']))} characters.",
+        "Open with a hook that names the reader's problem or a concrete result. One idea per post.",
+    ]
+    if platform == "instagram":
+        rules.append("No URLs: say 'link in bio'.")
+    elif b.get("link"):
+        rules.append("Put the literal token {link} on its own line where the link goes.")
+    if platform == "youtube":
+        rules.append("Also write a title under 100 characters for each option.")
+    if (b.get("posts", {}).get(platform) or {}).get("brief"):
+        rules.append("Angle for this post: " + b["posts"][platform]["brief"])
+    facts = "\n".join(f"- {f}" for f in (b.get("facts") or [])) or "- " + b.get("honest", "")
+    ex = examples(platform, b["id"])
+    shots = ("\n\nApproved past posts, match this voice:\n" + "\n---\n".join(ex)) if ex else ""
+    return "\n".join(rules) + f"\n\nFacts:\n{facts}\n- {b.get('honest', '')}{shots}"
+
+
+def gemini(prompt, with_title):
+    key = os.environ.get("GEMINI_API_KEY")
+    model = os.environ.get("GEMINI_MODEL", BRAND["voice"]["model"])
+    item = {"type": "OBJECT", "properties": {"text": {"type": "STRING"}}, "required": ["text"]}
+    if with_title:
+        item["properties"]["title"] = {"type": "STRING"}; item["required"].append("title")
+    body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
+            "generationConfig": {"temperature": 0.9, "responseMimeType": "application/json",
+                                 "responseSchema": {"type": "ARRAY", "items": item}}}
+    req = urllib.request.Request(GEMINI.format(model), method="POST", data=json.dumps(body).encode(),
+                                 headers={"Content-Type": "application/json", "x-goog-api-key": key})
+    res = json.load(urllib.request.urlopen(req, timeout=90))
+    return json.loads(res["candidates"][0]["content"]["parts"][0]["text"])
+
+
+def passes(b, platform, option):
+    """Run a candidate through the same brand checks as a real post."""
+    trial = dict(b, posts={platform: dict(b["posts"].get(platform) or {}, **option)})
+    err, _ = check_brief(trial, set(), {})
+    about_text = ("dash", "phrase", "chars", "hashtags", "clickable", "title", "no text", "{link}")
+    return [e for e in err if any(k in e for k in about_text)]
+
+
+def cmd_draft(args):
+    if not os.environ.get("GEMINI_API_KEY"):
+        print("GEMINI_API_KEY not set, skipping drafts (write captions by hand)."); return 0
+    os.makedirs(DRAFTS, exist_ok=True)
+    for b in load_briefs():
+        empty = [p for p, v in (b.get("posts") or {}).items() if not (v or {}).get("text")]
+        if not empty:
+            continue
+        notes = [f"# Draft options for {b['id']}\n", "Written by Gemini from the brief's facts. "
+                 "The first option that passed the brand checks was put in the brief. Edit or swap before merging.\n"]
+        for plat in empty:
+            try:
+                options = gemini(prompt_for(b, plat), plat == "youtube")
+            except Exception as e:
+                print(f"draft {b['id']}:{plat} failed: {e}"); continue
+            notes.append(f"\n## {plat}\n")
+            chosen = None
+            for i, o in enumerate(options, 1):
+                o = {k: v.strip() for k, v in o.items() if k in ("text", "title")}
+                problems = passes(b, plat, o)
+                chosen = chosen or (None if problems else o)
+                flag = "fails: " + "; ".join(problems) if problems else "passes checks"
+                notes.append(f"\n### Option {i} ({flag})\n" + (f"**{o['title']}**\n\n" if o.get("title") else "") + o["text"] + "\n")
+            if chosen:
+                b["posts"][plat] = dict(b["posts"].get(plat) or {}, **chosen)
+                print(f"drafted {b['id']}:{plat}")
+            else:
+                print(f"draft {b['id']}:{plat}: no option passed the checks, see the drafts file")
+        open(os.path.join(DRAFTS, b["id"] + ".md"), "w").write("".join(notes))
+        path = os.path.join(ROOT, b["_file"])
+        clean = {k: v for k, v in b.items() if not k.startswith("_")}
+        open(path, "w").write(yaml.safe_dump(clean, sort_keys=False, allow_unicode=True, width=1000))
+    return 0
+
+
 def cmd_doctor(args):
     q = """query($i: ChannelsInput!) { channels(input: $i) { id service name isDisconnected } }"""
     org = os.environ.get("BUFFER_ORG_ID", "6b0ad2605965a4d22ddae09e")
@@ -353,10 +465,10 @@ def cmd_doctor(args):
 def main():
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("render"); sub.add_parser("check"); sub.add_parser("doctor")
+    sub.add_parser("render"); sub.add_parser("check"); sub.add_parser("doctor"); sub.add_parser("draft")
     sp = sub.add_parser("publish"); sp.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
-    sys.exit({"render": cmd_render, "check": cmd_check, "publish": cmd_publish, "doctor": cmd_doctor}[a.cmd](a))
+    sys.exit({"render": cmd_render, "check": cmd_check, "draft": cmd_draft, "publish": cmd_publish, "doctor": cmd_doctor}[a.cmd](a))
 
 
 if __name__ == "__main__":
