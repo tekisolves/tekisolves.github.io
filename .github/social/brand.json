@@ -57,7 +57,10 @@
       "facebook": 700,
       "instagram": 900,
       "youtube": 600
-    }
+    },
+    "fallback_models": [
+      "gemini-flash-lite-latest"
+    ]
   },
   "max_similarity": 0.55
 }

@@ -432,10 +432,26 @@ def gemini(prompt, with_title):
     body = {"contents": [{"role": "user", "parts": [{"text": prompt}]}],
             "generationConfig": {"temperature": 0.9, "responseMimeType": "application/json",
                                  "responseSchema": {"type": "ARRAY", "items": item}}}
-    req = urllib.request.Request(GEMINI.format(model), method="POST", data=json.dumps(body).encode(),
-                                 headers={"Content-Type": "application/json", "x-goog-api-key": key})
-    res = json.load(urllib.request.urlopen(req, timeout=90))
-    return json.loads(res["candidates"][0]["content"]["parts"][0]["text"])
+    # Free tier is often busy: retry with backoff, and fall back to the lighter model.
+    import time
+    models = [model] + [m for m in BRAND["voice"].get("fallback_models", []) if m != model]
+    last = None
+    for attempt in range(6):
+        m = models[attempt % len(models)]
+        req = urllib.request.Request(GEMINI.format(m), method="POST", data=json.dumps(body).encode(),
+                                     headers={"Content-Type": "application/json", "x-goog-api-key": key})
+        try:
+            res = json.load(urllib.request.urlopen(req, timeout=90))
+            return json.loads(res["candidates"][0]["content"]["parts"][0]["text"])
+        except urllib.error.HTTPError as e:
+            last = f"{m}: HTTP {e.code} {e.read().decode()[:200]}"
+            if e.code not in (429, 500, 502, 503, 504):
+                break
+        except Exception as e:
+            last = f"{m}: {e}"
+        print(f"  gemini retry {attempt + 1}: {last}")
+        time.sleep(5 * (attempt + 1))
+    raise RuntimeError(last)
 
 
 def passes(b, platform, option):
