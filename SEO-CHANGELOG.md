@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-28 16:31 UTC: Social: daily 12:30 check + Buffer/Metricool calendar (PR #24)
+
+- (no details in the commit message)
+- Areas changed: Automation (build, deploy, checks), Documentation, Images
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-28 16:04 UTC: Social: AI-drafted Instagram test post + no-repeat check (PR #23)
 
 - (no details in the commit message)
