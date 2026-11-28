@@ -1,0 +1,18 @@
+id: 2026-11-29-aim-barrel-fb
+date: 2026-11-29T12:00
+honest: This is the exact aiming code running in the live Retro Arsenal demo.
+
+media:
+  - src: source/assets/social/2026-11-28-aim-barrel/card.jpg
+    alt: "Card: aim the barrel, not the grip. Phaser 4 code rotating a gun by the angle to the cursor minus asin of the muzzle offset over the distance."
+
+posts:
+  facebook:
+    text: |
+      Ever pointed a gun sprite at the mouse and watched every shot sail over the target?
+
+      The sprite rotates around its pivot, which is the grip. The barrel sits higher, so the bullets leave from the wrong line.
+
+      The fix is two lines: take the angle to the cursor, then subtract Math.asin(muzzleOffset / distance). Now the line out of the barrel goes straight through the cursor.
+
+      It's the same code running in the Retro Arsenal demo. Which part of aiming has caught you out before?
