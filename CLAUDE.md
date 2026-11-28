@@ -16,7 +16,7 @@ Owner: Khaya (Teki Solves). Keep answers short. Correct grammar, no em-dashes, h
 ## Workflow rules
 - Work on a branch, open a PR with `gh api repos/tekisolves/tekisolves.github.io/pulls`. Khaya merges PRs himself.
 - Pushing to `main` deploys automatically (GitHub Actions to GitHub Pages).
-- Bots in `.github/`: `seo-bot` (daily SEO news, Monday digest, IndexNow), `content-coach` (blog reminder emails, plan in `.github/content-coach/plan.json`). Both email via the `TEKI_EMAIL` and `GMAIL_APP_PASSWORD` secrets. No paid services, no AI APIs.
+- Bots in `.github/`: `seo-bot` (daily SEO news, Monday digest, IndexNow), `content-coach` (blog reminder emails, plan in `.github/content-coach/plan.json`). Both email via the `TEKI_EMAIL` and `GMAIL_APP_PASSWORD` secrets. `.github/social` is the social engine (briefs in `content/social/`, queued to Buffer after merge). No paid services. AI (Gemini free tier) may draft, but every post passes the brand checks and Khaya's approval before it publishes.
 - `SEO-CHANGELOG.md` is appended automatically on each deploy.
 
 ## Content rules (to stay on the right side of Google)
