@@ -2,6 +2,12 @@
 
 Newest first. Updated automatically after every deploy.
 
+## 2026-11-28 15:38 UTC: Social engine: Gemini caption drafter (PR #22)
+
+- (no details in the commit message)
+- Areas changed: Automation (build, deploy, checks), Documentation
+- SEO check after deploy: 11 pages checked, 0 critical problems, 1 minor warnings
+
 ## 2026-11-28 15:15 UTC: Free social engine (Buffer publisher, brand checks, card renderer) (PR #21)
 
 - (no details in the commit message)
